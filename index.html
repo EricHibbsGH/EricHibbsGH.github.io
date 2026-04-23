@@ -23,6 +23,14 @@
     </defs>
   </svg>
 
+  <!-- Scroll progress + back-to-top (injected here so they sit below the promo banner) -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top" hidden>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
   <!-- Skip to content -->
   <a href="#home" class="skip-link">Skip to content</a>
 
@@ -1463,6 +1471,112 @@
       }
     });
 
+    // ── Scroll progress bar + back-to-top (single rAF loop for efficiency) ──
+    (function initScrollChrome() {
+      var progress = document.getElementById('scrollProgress');
+      var backTop  = document.getElementById('backToTop');
+      if (!progress && !backTop) return;
+      var ticking = false;
+
+      function update() {
+        ticking = false;
+        var doc = document.documentElement;
+        var max = Math.max(1, doc.scrollHeight - doc.clientHeight);
+        var y = window.scrollY || doc.scrollTop;
+        var pct = Math.min(100, Math.max(0, (y / max) * 100));
+        if (progress) {
+          progress.style.width = pct + '%';
+          progress.classList.toggle('is-active', y > 40);
+        }
+        if (backTop) {
+          backTop.classList.toggle('is-visible', y > 600);
+        }
+      }
+
+      window.addEventListener('scroll', function() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      }, { passive: true });
+
+      if (backTop) {
+        backTop.addEventListener('click', function() {
+          var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+          // Return focus to the top of the page for keyboard users
+          var skip = document.querySelector('.skip-link');
+          if (skip) { skip.focus({ preventScroll: true }); skip.blur(); }
+        });
+      }
+
+      update();
+    })();
+
+    // ── Scrollspy: highlight the nav link of the section in view ──
+    (function initScrollSpy() {
+      var links = document.querySelectorAll('.main-nav a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var map = {};
+      links.forEach(function(a) {
+        var id = a.getAttribute('href').slice(1);
+        var section = id && document.getElementById(id);
+        if (section) map[id] = a;
+      });
+      if (!Object.keys(map).length) return;
+
+      function setCurrent(id) {
+        links.forEach(function(a) { a.classList.remove('is-current'); });
+        if (map[id]) map[id].classList.add('is-current');
+      }
+
+      // Watch sections: the one whose top is closest to the viewport top wins
+      var sectionEls = Object.keys(map).map(function(id) { return document.getElementById(id); });
+      var observer = new IntersectionObserver(function(entries) {
+        // Pick the entry with the largest intersection ratio among currently-intersecting sections
+        var best = null;
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+        });
+        if (best) setCurrent(best.target.id);
+      }, {
+        // Consider a section "current" when it occupies the top third of the viewport
+        rootMargin: '-35% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      });
+      sectionEls.forEach(function(s) { observer.observe(s); });
+    })();
+
+    // ── Before/after handle hint on first viewport entry ──
+    (function initBaHints() {
+      var sliders = document.querySelectorAll('.ba-slider');
+      if (!sliders.length || !('IntersectionObserver' in window)) return;
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      var io = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var slider = entry.target;
+          var after = slider.querySelector('.ba-after');
+          if (!after) return;
+          // Sync the after-image clip-path with the CSS handle animation
+          var keyframes = [
+            { offset: 0,    clipPath: 'inset(0 50% 0 0)' },
+            { offset: 0.30, clipPath: 'inset(0 70% 0 0)' },
+            { offset: 0.60, clipPath: 'inset(0 30% 0 0)' },
+            { offset: 1,    clipPath: 'inset(0 50% 0 0)' }
+          ];
+          try {
+            after.animate(keyframes, { duration: 1400, delay: 300, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+          } catch (_) {}
+          slider.classList.add('hinted');
+          obs.unobserve(slider);
+        });
+      }, { threshold: 0.4 });
+      sliders.forEach(function(s) { io.observe(s); });
+    })();
+
     // ── Pause hero-mesh when hero is off-screen (saves paint on scroll) ──
     (function pauseOffscreenHero() {
       var hero = document.querySelector('.hero');
@@ -2355,6 +2469,9 @@
     var mapEl = document.getElementById('serviceMap');
     if (!mapEl) return;
 
+    // Show loading skeleton immediately so the reserved space isn't blank
+    mapEl.classList.add('is-loading');
+
     var LEAFLET_JS  = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
     var LEAFLET_JS_INTEGRITY  = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
     var LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
@@ -2395,6 +2512,7 @@
 
   function initServiceMap() {
     if (typeof L === 'undefined') return;
+    mapEl.classList.remove('is-loading'); // hide skeleton now that Leaflet is ready
 
     var map = L.map('serviceMap', {
       center: [34.05, -84.15],
@@ -2447,7 +2565,7 @@
 
     window.serviceMapMarkers = [];
 
-    locations.forEach(function(loc) {
+    locations.forEach(function(loc, i) {
       var icon = loc.isHQ ? hqIcon : tealIcon;
       var popupContent = '<div class="map-popup">' +
         '<strong class="map-popup-city">' + loc.name + '</strong>' +
@@ -2459,6 +2577,10 @@
       var marker = L.marker([loc.lat, loc.lng], { icon: icon })
         .addTo(map)
         .bindPopup(popupContent, { className: 'rsc-popup', maxWidth: 220 });
+
+      // Stagger the drop-in animation (HQ first, then others in array order)
+      var el = marker.getElement();
+      if (el) el.style.animationDelay = (i * 60) + 'ms';
 
       window.serviceMapMarkers.push({ marker: marker, cityName: loc.name });
     });

@@ -156,6 +156,176 @@ ul { list-style: none; }
   padding: 0 var(--space-6);
 }
 
+/* ============================================
+   SCROLL PROGRESS BAR (top, 3px)
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--teal-light) 70%, var(--accent) 100%);
+  z-index: var(--z-promo);
+  pointer-events: none;
+  transform-origin: left center;
+  transition: opacity 0.3s var(--ease-out-quart);
+  opacity: 0;
+  box-shadow: 0 1px 4px rgba(13,115,119,0.2);
+}
+.scroll-progress.is-active { opacity: 1; }
+body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
+
+/* ============================================
+   BACK-TO-TOP BUTTON
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: var(--z-nav-backdrop);
+  box-shadow: 0 8px 24px rgba(13,115,119,0.28);
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-out-quart), transform 0.3s var(--ease-out-expo), background var(--transition);
+}
+.back-to-top[hidden] { display: flex !important; } /* JS toggles via .is-visible, not hidden attr */
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+@media (hover: hover) {
+  .back-to-top:hover { background: var(--teal-dark); transform: translateY(-3px) scale(1); }
+}
+.back-to-top:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+/* Keep clear of the mobile CTA bar on phones */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 72px;
+    right: var(--space-4);
+    width: 44px; height: 44px;
+  }
+}
+
+/* ============================================
+   SCROLLSPY NAV (active link indicator)
+   ============================================ */
+.main-nav a.is-current {
+  color: var(--teal);
+}
+.main-nav a.is-current::after {
+  width: 100%;
+  background: var(--teal);
+}
+
+/* ============================================
+   MAP LOADING SKELETON (shimmer)
+   ============================================ */
+.service-map.is-loading {
+  position: relative;
+}
+.service-map.is-loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%),
+    radial-gradient(circle at 30% 40%, rgba(13,115,119,0.06) 0 2%, transparent 3%),
+    radial-gradient(circle at 60% 30%, rgba(13,115,119,0.06) 0 2%, transparent 3%),
+    radial-gradient(circle at 45% 65%, rgba(13,115,119,0.06) 0 2%, transparent 3%),
+    radial-gradient(circle at 72% 58%, rgba(13,115,119,0.06) 0 2%, transparent 3%),
+    var(--surface-1);
+  background-size: 200% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  animation: skeletonShimmer 1.8s var(--ease-in-out) infinite;
+}
+.service-map.is-loading::after {
+  content: "Loading service map…";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  letter-spacing: var(--tracking-tight);
+}
+@keyframes skeletonShimmer {
+  0%   { background-position: -100% 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+  100% { background-position:  200% 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+}
+
+/* ============================================
+   MAP MARKER DROP-IN
+   ============================================ */
+.leaflet-marker-icon.leaflet-pin-icon,
+.leaflet-marker-icon.leaflet-hq-icon {
+  animation: pinDrop 0.7s var(--ease-out-expo) backwards;
+}
+@keyframes pinDrop {
+  from { opacity: 0; transform: translate3d(0, -24px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* ============================================
+   BEFORE/AFTER HANDLE HINT (fires once per slider)
+   ============================================ */
+.ba-slider.hinted .ba-handle {
+  animation: baHandleHint 1.4s var(--ease-out-expo) 0.3s both;
+}
+@keyframes baHandleHint {
+  0%   { left: 50%; }
+  30%  { left: 30%; }
+  60%  { left: 70%; }
+  100% { left: 50%; }
+}
+/* The handle animation moves left, but the after clip-path needs
+   to sync. We'll drive that via JS for perf rather than CSS. */
+
+/* ============================================
+   FORM SUCCESS CHECKMARK (SVG path draw)
+   ============================================ */
+.form-status-success svg polyline {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: checkDraw 0.55s var(--ease-out-expo) 0.1s forwards;
+}
+@keyframes checkDraw {
+  to { stroke-dashoffset: 0; }
+}
+.form-status-success {
+  animation: formSuccessPulse 0.6s var(--ease-out-quart);
+}
+@keyframes formSuccessPulse {
+  0%   { transform: scale(0.98); opacity: 0; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* Reduced motion — disable the decorative animations,
+   keep the functional state changes. */
+@media (prefers-reduced-motion: reduce) {
+  .leaflet-marker-icon.leaflet-pin-icon,
+  .leaflet-marker-icon.leaflet-hq-icon,
+  .ba-slider.hinted .ba-handle,
+  .service-map.is-loading::before,
+  .form-status-success,
+  .form-status-success svg polyline {
+    animation: none !important;
+  }
+}
+
 /* --- Visually-hidden utility for screen-reader-only labels --- */
 .sr-only {
   position: absolute;
