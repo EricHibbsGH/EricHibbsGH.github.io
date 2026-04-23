@@ -8,10 +8,20 @@
   <title>Red Sky Cleaning | Professional Cleaning Done Right</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Leaflet CSS + JS are loaded lazily when the #serviceMap section scrolls into view. See bottom of document. -->
 </head>
 <body>
+
+  <!-- Reusable SVG symbols (one-time payload shared via <use>) -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 20 20">
+        <path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/>
+      </symbol>
+    </defs>
+  </svg>
 
   <!-- Skip to content -->
   <a href="#home" class="skip-link">Skip to content</a>
@@ -27,8 +37,8 @@
   <!-- HEADER -->
   <header class="site-header" id="header">
     <div class="container header-inner">
-      <a href="#" class="logo">
-        <img src="logo.png" alt="Red Sky Cleaning" class="logo-img">
+      <a href="#" class="logo" aria-label="Red Sky Cleaning, go to top">
+        <img src="logo.png" alt="Red Sky Cleaning" class="logo-img" width="180" height="68" decoding="async" fetchpriority="high">
       </a>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -655,11 +665,11 @@
           <div class="testimonial-card">
             <div class="testimonial-card-inner">
               <div class="stars">
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
               </div>
               <blockquote>Red Sky transformed our home. The team was incredibly thorough and left every room sparkling. I couldn't believe the difference!</blockquote>
               <div class="testimonial-author">
@@ -671,11 +681,11 @@
           <div class="testimonial-card">
             <div class="testimonial-card-inner">
               <div class="stars">
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
               </div>
               <blockquote>We've been using Red Sky for our bi-weekly cleans for over a year. Consistently excellent quality and the booking process is so easy.</blockquote>
               <div class="testimonial-author">
@@ -687,11 +697,11 @@
           <div class="testimonial-card">
             <div class="testimonial-card-inner">
               <div class="stars">
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
               </div>
               <blockquote>They did an amazing deep clean before we moved in. Every corner was spotless. Highly recommend for move-in/move-out cleans!</blockquote>
               <div class="testimonial-author">
@@ -703,11 +713,11 @@
           <div class="testimonial-card">
             <div class="testimonial-card-inner">
               <div class="stars">
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
               </div>
               <blockquote>Professional, punctual, and friendly. Red Sky has been a game-changer for keeping our office clean. Worth every penny.</blockquote>
               <div class="testimonial-author">
@@ -719,11 +729,11 @@
           <div class="testimonial-card">
             <div class="testimonial-card-inner">
               <div class="stars">
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
-                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08" aria-hidden="true"><use href="#i-star"/></svg>
               </div>
               <blockquote>I love that they use eco-friendly products. My kids and pets are safe, and the house smells amazing after every clean. Best service in Atlanta!</blockquote>
               <div class="testimonial-author">
@@ -955,8 +965,8 @@
     </div>
     <div class="container footer-inner">
       <div class="footer-col footer-brand">
-        <a href="#" class="logo footer-logo">
-          <img src="logo.png" alt="Red Sky Cleaning" class="footer-logo-img">
+        <a href="#" class="logo footer-logo" aria-label="Red Sky Cleaning, back to top">
+          <img src="logo.png" alt="Red Sky Cleaning" class="footer-logo-img" width="180" height="56" loading="lazy" decoding="async">
         </a>
         <p>Professional residential cleaning services for homes in the greater Atlanta area. Licensed, insured, and committed to excellence.</p>
         <div class="footer-social">
@@ -2117,12 +2127,52 @@
   })();
   </script>
 
-  <!-- Leaflet Map -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Leaflet Map (lazy-loaded when the service-area section approaches the viewport) -->
   <script>
-  (function initServiceMap() {
+  (function lazyLoadLeaflet() {
     var mapEl = document.getElementById('serviceMap');
-    if (!mapEl || typeof L === 'undefined') return;
+    if (!mapEl) return;
+
+    var LEAFLET_JS  = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    var LEAFLET_JS_INTEGRITY  = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+    var LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    var LEAFLET_CSS_INTEGRITY = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+    var loaded = false;
+
+    function loadAssets() {
+      if (loaded) return;
+      loaded = true;
+
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = LEAFLET_CSS;
+      css.integrity = LEAFLET_CSS_INTEGRITY;
+      css.crossOrigin = '';
+      document.head.appendChild(css);
+
+      var js = document.createElement('script');
+      js.src = LEAFLET_JS;
+      js.integrity = LEAFLET_JS_INTEGRITY;
+      js.crossOrigin = '';
+      js.defer = true;
+      js.onload = initServiceMap;
+      js.onerror = function() {
+        mapEl.innerHTML = '<div class="map-fallback">Map couldn\'t load. <a href="#contact">Contact us</a> and we\'ll check your area.</div>';
+      };
+      document.body.appendChild(js);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries, o) {
+        entries.forEach(function(e) { if (e.isIntersecting) { loadAssets(); o.disconnect(); } });
+      }, { rootMargin: '200px' });
+      io.observe(mapEl);
+    } else {
+      loadAssets();
+    }
+
+  function initServiceMap() {
+    if (typeof L === 'undefined') return;
 
     var map = L.map('serviceMap', {
       center: [34.05, -84.15],
@@ -2206,15 +2256,9 @@
     mapEl.addEventListener('click', function() { map.scrollWheelZoom.enable(); });
     mapEl.addEventListener('mouseleave', function() { map.scrollWheelZoom.disable(); });
 
-    // Invalidate size when map becomes visible (scroll reveal)
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) { map.invalidateSize(); obs.unobserve(entry.target); }
-        });
-      }, { threshold: 0.1 });
-      obs.observe(mapEl);
-    }
+    // Invalidate size once the map is rendered into a visible container
+    requestAnimationFrame(function() { map.invalidateSize(); });
+  }
   })();
   </script>
 
