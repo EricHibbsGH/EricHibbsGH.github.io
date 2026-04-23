@@ -1346,6 +1346,18 @@
       }
     });
 
+    // ── Pause hero-mesh when hero is off-screen (saves paint on scroll) ──
+    (function pauseOffscreenHero() {
+      var hero = document.querySelector('.hero');
+      if (!hero || !('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(ent) {
+          hero.classList.toggle('is-offscreen', !ent.isIntersecting);
+        });
+      }, { threshold: 0 });
+      io.observe(hero);
+    })();
+
     // ── Scroll Reveal (Intersection Observer) ──
     var revealEls = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {

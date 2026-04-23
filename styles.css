@@ -103,8 +103,16 @@
 
   --header-height: 90px;
   --header-height-scrolled: 64px;
-  --transition: 0.3s ease;
-  --transition-slow: 0.6s ease;
+
+  /* Easing — confident, decelerating curves. No bounce/elastic (dated). */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.6, 0, 0.4, 1);
+
+  /* Default transitions use the ease-out-quart curve for natural deceleration */
+  --transition: 0.22s var(--ease-out-quart);
+  --transition-slow: 0.6s var(--ease-out-quint);
   --shadow-sm: 0 2px 8px rgba(13,115,119,0.08);
   --shadow-md: 0 4px 20px rgba(13,115,119,0.12);
   --shadow-lg: 0 12px 40px rgba(13,115,119,0.16);
@@ -181,8 +189,8 @@ ul { list-style: none; }
 /* --- Scroll Reveal --- */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
 }
 .reveal.revealed {
   opacity: 1;
@@ -244,12 +252,30 @@ ul { list-style: none; }
   letter-spacing: 0.01em;
   border: none;
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+  transition: background var(--transition), color var(--transition), transform 0.18s var(--ease-out-quart), box-shadow var(--transition);
   line-height: 1;
+  will-change: transform;
 }
 @media (hover: hover) {
   .btn:hover { transform: translateY(-2px); }
 }
+.btn:active { transform: translateY(0) scale(0.98); transition-duration: 0.08s; }
+.btn[aria-busy="true"] {
+  cursor: progress;
+  opacity: 0.85;
+}
+.btn[aria-busy="true"]::after {
+  content: "";
+  display: inline-block;
+  width: 0.9em; height: 0.9em;
+  margin-left: 0.5em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  vertical-align: -0.15em;
+  animation: btnSpin 0.7s linear infinite;
+}
+@keyframes btnSpin { to { transform: rotate(360deg); } }
 
 .btn-pill { border-radius: 9999px; }
 
@@ -443,8 +469,12 @@ ul { list-style: none; }
   border-radius: 50%;
   background: radial-gradient(circle, rgba(13,115,119,0.07) 0%, transparent 70%);
   top: -200px; right: -150px;
-  animation: meshFloat 18s ease-in-out infinite alternate;
+  animation: meshFloat 22s var(--ease-in-out) infinite alternate;
+  will-change: transform;
+  /* Stop animation when the hero is not on screen */
+  animation-play-state: paused;
 }
+.hero:not(.is-offscreen) .hero-mesh { animation-play-state: running; }
 .hero-mesh-2 {
   width: 400px; height: 400px;
   background: radial-gradient(circle, rgba(250,92,8,0.04) 0%, transparent 70%);
@@ -467,6 +497,28 @@ ul { list-style: none; }
 }
 
 .hero-text { max-width: 560px; }
+
+/* Hero entrance — staggered fade-up on first paint (not scroll-reveal) */
+.hero-tagline,
+.hero h1,
+.hero-sub,
+.hero .next-slot,
+.hero-actions,
+.hero-phone,
+.hero-trust {
+  animation: heroRise 0.8s var(--ease-out-expo) backwards;
+}
+.hero-tagline      { animation-delay: 0.05s; }
+.hero h1           { animation-delay: 0.15s; }
+.hero-sub          { animation-delay: 0.30s; }
+.hero .next-slot   { animation-delay: 0.40s; }
+.hero-actions      { animation-delay: 0.50s; }
+.hero-phone        { animation-delay: 0.60s; }
+.hero-trust        { animation-delay: 0.55s; animation-duration: 1s; }
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 .hero-tagline {
   display: inline-block;
@@ -747,11 +799,11 @@ ul { list-style: none; }
 }
 .quiz-step.active {
   display: block;
-  animation: quizFadeIn 0.4s ease;
+  animation: quizSlideIn 0.45s var(--ease-out-expo);
 }
-@keyframes quizFadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes quizSlideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 .quiz-question {
@@ -1842,7 +1894,7 @@ blockquote::before {
 
 .faq-icon {
   color: var(--teal);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s var(--ease-out-expo);
   flex-shrink: 0;
   width: 24px; height: 24px;
   display: flex;
@@ -1854,11 +1906,14 @@ blockquote::before {
 .faq-item.active .faq-icon { transform: rotate(180deg); }
 
 .faq-answer {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: grid-template-rows 0.45s var(--ease-out-expo);
 }
-.faq-item.active .faq-answer { max-height: 300px; }
+.faq-item.active .faq-answer { grid-template-rows: 1fr; }
+.faq-answer > .faq-answer-inner { min-height: 0; }
+/* grid-row animation on .faq-answer handles the open state (see above) */
 
 .faq-answer-inner {
   padding: 0 0 20px;
@@ -2313,12 +2368,14 @@ blockquote::before {
   max-width: 640px;
   width: 100%;
   position: relative;
-  transform: translateY(20px) scale(0.98);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(16px) scale(0.985);
+  transition: transform 0.35s var(--ease-out-expo), opacity 0.25s var(--ease-out-quart);
   box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  opacity: 0;
 }
 .modal-overlay.active .modal {
   transform: translateY(0) scale(1);
+  opacity: 1;
 }
 
 .modal-close {
@@ -3293,16 +3350,29 @@ label.toggle-label {
 }
 
 /* ============================================
-   REDUCED MOTION
+   REDUCED MOTION — disable continuous + large-motion animations;
+   keep short transitions for feedback (state changes still need to
+   complete within ~150ms for clarity).
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.15s !important;
     scroll-behavior: auto !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal,
   .reveal.revealed { opacity: 1; transform: none; }
-  .hero-mesh { animation: none; }
+  .hero-mesh,
+  .hero-mesh-2 { display: none !important; }
+  .hq-pulse-ring { display: none !important; }
+  .next-slot.urgent svg { animation: none !important; }
+  /* Skip hero entrance choreography entirely */
+  .hero-tagline, .hero h1, .hero-sub, .hero .next-slot,
+  .hero-actions, .hero-phone, .hero-trust {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
