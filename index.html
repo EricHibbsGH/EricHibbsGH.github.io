@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Sky Cleaning | Professional Cleaning Done Right</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+
+  <!-- Skip to content -->
+  <a href="#home" class="skip-link">Skip to content</a>
+
+  <!-- SEASONAL PROMO BANNER -->
+  <div class="promo-banner" id="promoBanner" role="complementary">
+    <div class="container promo-banner-inner">
+      <p><strong>Spring Deep Clean Special!</strong> Book this month and save 15% on your first deep cleaning. <a href="#" onclick="openQuoteModal(); return false;">Book Now &rarr;</a></p>
+      <button class="promo-close" onclick="dismissPromo()" aria-label="Dismiss promotion">&times;</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="Red Sky Cleaning" class="logo-img">
+      </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="#home">Homepage</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#areas">Areas</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#faq">Help</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" class="nav-booking" onclick="openQuoteModal(); return false;">Booking Page</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-mesh"></div>
+    <div class="hero-mesh hero-mesh-2"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="hero-tagline">Trusted by 500+ Atlanta Homeowners</p>
+        <h1>Professional cleaning<br><span class="hero-accent">Done right.</span></h1>
+        <p class="hero-sub">Get an instant quote and book a trusted, background-checked cleaner for your home or office.</p>
+        <div class="next-slot" id="nextSlotHero" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span class="next-slot-text"></span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-accent btn-pill" onclick="openQuoteModal()">Get a Free Quote</button>
+          <a href="#services" class="btn btn-outline btn-pill">See Services</a>
+        </div>
+        <div class="hero-phone">
+          <span class="phone-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </span>
+          <a href="tel:4702400645" class="phone-number">470-240-0645</a>
+          <a href="sms:4702400645?body=Hi!%20I'm%20interested%20in%20a%20cleaning%20quote." class="btn-sms" aria-label="Text us for a quote">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Text Us
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <!-- Replace src with your WP media library URL -->
+        <div class="hero-image-placeholder">
+          <svg viewBox="0 0 440 400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="440" height="400" rx="24" fill="#e8f4f4"/>
+            <circle cx="220" cy="155" r="65" fill="#d1ecec"/>
+            <rect x="155" y="220" width="130" height="85" rx="10" fill="#d1ecec"/>
+            <text x="220" y="340" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" fill="#0D7377" opacity="0.6">Professional Cleaner Image</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar" id="stats">
+    <div class="container stats-grid">
+      <div class="stat reveal" data-target="500" data-suffix="+">
+        <div class="stat-icon-ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <span class="stat-number">0</span>
+        <span class="stat-label">Homes Cleaned</span>
+      </div>
+      <div class="stat reveal" data-target="100" data-suffix="%" style="transition-delay:0.1s">
+        <div class="stat-icon-ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+        </div>
+        <span class="stat-number">0</span>
+        <span class="stat-label">Satisfaction Rate</span>
+      </div>
+      <div class="stat reveal" data-target="15" data-suffix="+" style="transition-delay:0.2s">
+        <div class="stat-icon-ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <span class="stat-number">0</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat reveal" data-target="5" data-suffix=".0" style="transition-delay:0.3s">
+        <div class="stat-icon-ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span class="stat-number">0</span>
+        <span class="stat-label">Star Rating</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE RECOMMENDER QUIZ -->
+  <section class="section quiz-section" id="quiz">
+    <div class="container">
+      <h2 class="section-heading">Find Your Perfect Clean</h2>
+      <p class="section-sub">Answer 3 quick questions and we'll recommend the best service for your home.</p>
+
+      <div class="quiz-container reveal">
+        <!-- Progress bar -->
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" id="quizProgressBar"></div>
+          <div class="quiz-step-dots">
+            <span class="quiz-dot active" data-step="1">1</span>
+            <span class="quiz-dot" data-step="2">2</span>
+            <span class="quiz-dot" data-step="3">3</span>
+            <span class="quiz-dot" data-step="result">
+              <svg viewBox="0 0 20 20" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Step 1: Situation -->
+        <div class="quiz-step active" id="quizStep1">
+          <h3 class="quiz-question">What best describes your situation?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-value="regular" onclick="quizSelect(1, this)">
+              <div class="quiz-option-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/><path d="M16 34V22l8-8 8 8v12" stroke="#0D7377" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="26" width="8" height="8" stroke="#0D7377" stroke-width="1.5" fill="none"/></svg>
+              </div>
+              <span class="quiz-option-label">Regular upkeep</span>
+              <span class="quiz-option-desc">My home needs routine maintenance cleaning</span>
+            </button>
+            <button class="quiz-option" data-value="deep" onclick="quizSelect(1, this)">
+              <div class="quiz-option-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/><path d="M18 36l3-12h6l3 12" stroke="#0D7377" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="24" cy="18" r="5" stroke="#0D7377" stroke-width="1.5" fill="none"/><path d="M22 18h4" stroke="#0D7377" stroke-width="1.5"/><path d="M24 16v4" stroke="#0D7377" stroke-width="1.5"/></svg>
+              </div>
+              <span class="quiz-option-label">Deep refresh</span>
+              <span class="quiz-option-desc">It's been a while and needs a thorough clean</span>
+            </button>
+            <button class="quiz-option" data-value="movein" onclick="quizSelect(1, this)">
+              <div class="quiz-option-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/><rect x="14" y="18" width="20" height="16" rx="2" stroke="#0D7377" stroke-width="1.5" fill="none"/><path d="M14 22h20" stroke="#0D7377" stroke-width="1.5"/><path d="M30 14v4" stroke="#0D7377" stroke-width="1.5"/><path d="M18 14v4" stroke="#0D7377" stroke-width="1.5"/></svg>
+              </div>
+              <span class="quiz-option-label">Moving</span>
+              <span class="quiz-option-desc">I'm moving in or out and need it spotless</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Home size -->
+        <div class="quiz-step" id="quizStep2">
+          <h3 class="quiz-question">How big is your home?</h3>
+          <div class="quiz-options quiz-options-grid">
+            <button class="quiz-option quiz-option-compact" data-value="small" onclick="quizSelect(2, this)">
+              <span class="quiz-option-label">Small</span>
+              <span class="quiz-option-desc">Under 1,000 sq ft</span>
+            </button>
+            <button class="quiz-option quiz-option-compact" data-value="medium" onclick="quizSelect(2, this)">
+              <span class="quiz-option-label">Medium</span>
+              <span class="quiz-option-desc">1,000 – 2,000 sq ft</span>
+            </button>
+            <button class="quiz-option quiz-option-compact" data-value="large" onclick="quizSelect(2, this)">
+              <span class="quiz-option-label">Large</span>
+              <span class="quiz-option-desc">2,000 – 3,000 sq ft</span>
+            </button>
+            <button class="quiz-option quiz-option-compact" data-value="xlarge" onclick="quizSelect(2, this)">
+              <span class="quiz-option-label">Extra Large</span>
+              <span class="quiz-option-desc">3,000+ sq ft</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Frequency -->
+        <div class="quiz-step" id="quizStep3">
+          <h3 class="quiz-question">How often do you want cleaning?</h3>
+          <div class="quiz-options">
+            <button class="quiz-option" data-value="one-time" onclick="quizSelect(3, this)">
+              <div class="quiz-option-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/><text x="24" y="30" text-anchor="middle" fill="#0D7377" font-family="Inter,sans-serif" font-size="16" font-weight="700">1x</text></svg>
+              </div>
+              <span class="quiz-option-label">One-time</span>
+              <span class="quiz-option-desc">Just this once</span>
+            </button>
+            <button class="quiz-option" data-value="bi-weekly" onclick="quizSelect(3, this)">
+              <div class="quiz-option-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/><text x="24" y="30" text-anchor="middle" fill="#0D7377" font-family="Inter,sans-serif" font-size="14" font-weight="700">2x</text></svg>
+              </div>
+              <span class="quiz-option-label">Bi-weekly</span>
+              <span class="quiz-option-desc">Most popular — save 10%</span>
+            </button>
+            <button class="quiz-option" data-value="weekly" onclick="quizSelect(3, this)">
+              <div class="quiz-option-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/><text x="24" y="30" text-anchor="middle" fill="#0D7377" font-family="Inter,sans-serif" font-size="14" font-weight="700">4x</text></svg>
+              </div>
+              <span class="quiz-option-label">Weekly</span>
+              <span class="quiz-option-desc">Best value — save 15%</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="quiz-step" id="quizResult">
+          <div class="quiz-result-card">
+            <div class="quiz-result-badge">Your Perfect Match</div>
+            <h3 class="quiz-result-title" id="quizResultTitle">Standard Cleaning</h3>
+            <p class="quiz-result-price" id="quizResultPrice">Starting at <strong>$100</strong></p>
+            <p class="quiz-result-desc" id="quizResultDesc">Regular maintenance cleaning to keep your home fresh and tidy.</p>
+            <div class="quiz-result-features" id="quizResultFeatures">
+              <span class="quiz-result-tag">Eco-Friendly</span>
+              <span class="quiz-result-tag">Background-Checked</span>
+              <span class="quiz-result-tag">Satisfaction Guaranteed</span>
+            </div>
+            <div class="quiz-result-savings" id="quizResultSavings" style="display:none">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#27ae60" stroke-width="2"><polyline points="4 10 8 14 16 6"/></svg>
+              <span></span>
+            </div>
+            <div class="quiz-result-actions">
+              <button class="btn btn-accent btn-pill" onclick="quizBook()">Book This Clean &rarr;</button>
+              <button class="btn btn-outline btn-pill" onclick="quizRestart()">Start Over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-it-works" id="how">
+    <div class="container">
+      <h2 class="section-heading">How It Works</h2>
+      <p class="section-sub">Getting your space cleaned has never been easier.</p>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <rect x="22" y="18" width="36" height="44" rx="3" fill="none" stroke="#0D7377" stroke-width="2"/>
+              <line x1="28" y1="28" x2="52" y2="28" stroke="#0D7377" stroke-width="2"/>
+              <line x1="28" y1="36" x2="52" y2="36" stroke="#0D7377" stroke-width="2"/>
+              <line x1="28" y1="44" x2="42" y2="44" stroke="#0D7377" stroke-width="2"/>
+              <circle cx="48" cy="52" r="6" fill="#0D7377" opacity="0.15"/>
+              <path d="M46 52l2 2 4-4" stroke="#0D7377" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Book Online</h3>
+          <p>Select a convenient date and time, and we'll handle the rest.</p>
+        </div>
+        <div class="step-connector" aria-hidden="true">
+          <svg viewBox="0 0 60 20"><path d="M0 10h50" stroke="#0D7377" stroke-width="2" stroke-dasharray="4 4" opacity="0.3"/><path d="M45 5l10 5-10 5" fill="#0D7377" opacity="0.3"/></svg>
+        </div>
+        <div class="step-card reveal" style="transition-delay:0.15s">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <path d="M30 55 L35 30 Q40 20 45 30 L50 55" stroke="#0D7377" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <ellipse cx="40" cy="56" rx="12" ry="4" fill="none" stroke="#0D7377" stroke-width="1.5"/>
+              <line x1="32" y1="42" x2="48" y2="42" stroke="#0D7377" stroke-width="1.5"/>
+              <circle cx="40" cy="25" r="3" fill="#0D7377" opacity="0.25"/>
+            </svg>
+          </div>
+          <h3>We Clean</h3>
+          <p>Our certified crew comes to you and delivers a thorough clean.</p>
+        </div>
+        <div class="step-connector" aria-hidden="true">
+          <svg viewBox="0 0 60 20"><path d="M0 10h50" stroke="#0D7377" stroke-width="2" stroke-dasharray="4 4" opacity="0.3"/><path d="M45 5l10 5-10 5" fill="#0D7377" opacity="0.3"/></svg>
+        </div>
+        <div class="step-card reveal" style="transition-delay:0.3s">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="38" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <path d="M25 45 Q30 25 40 22 Q50 25 55 45" stroke="#0D7377" stroke-width="2" fill="none"/>
+              <line x1="25" y1="45" x2="55" y2="45" stroke="#0D7377" stroke-width="2"/>
+              <path d="M30 50 Q40 58 50 50" stroke="#0D7377" stroke-width="1.5" fill="none"/>
+              <circle cx="40" cy="36" r="2" fill="#0D7377"/>
+              <circle cx="34" cy="38" r="1.5" fill="#0D7377" opacity="0.4"/>
+              <circle cx="46" cy="38" r="1.5" fill="#0D7377" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3>Relax</h3>
+          <p>Unwind and enjoy the difference. Your space shines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services">
+    <div class="container">
+      <h2 class="section-heading">Our Cleaning Services</h2>
+      <p class="section-sub">Choose the service that fits your needs. Every clean includes our satisfaction guarantee.</p>
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-image">
+            <!-- Replace src with your WP media library URL -->
+            <div class="service-img-placeholder" style="background:#e8f4f4">
+              <span>Standard Cleaning Photo</span>
+            </div>
+          </div>
+          <div class="service-body">
+            <h3>Standard Cleaning</h3>
+            <p class="service-price">Starting at <strong>$100</strong></p>
+            <ul class="service-features">
+              <li>Detailed dusting of all surfaces</li>
+              <li>Kitchen sanitizing &amp; cleaning</li>
+              <li>General disinfection throughout</li>
+              <li>Bathroom cleaning &amp; freshening</li>
+            </ul>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:0.1s">
+          <div class="service-image">
+            <div class="service-img-placeholder" style="background:#e4ecf4">
+              <span>Deep Clean Photo</span>
+            </div>
+          </div>
+          <div class="service-body">
+            <h3>Deep Clean</h3>
+            <p class="service-price">Starting at <strong>$250</strong></p>
+            <ul class="service-features">
+              <li>Detailed appliance cleaning</li>
+              <li>Kitchen surfaces deep cleaned</li>
+              <li>Deep scrubbing of bathrooms</li>
+              <li>Baseboards &amp; trim detailing</li>
+            </ul>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:0.2s">
+          <div class="service-image">
+            <div class="service-img-placeholder" style="background:#e8f0e4">
+              <span>Move In Cleaning Photo</span>
+            </div>
+          </div>
+          <div class="service-body">
+            <h3>Move In</h3>
+            <p class="service-price">Starting at <strong>$250</strong></p>
+            <ul class="service-features">
+              <li>Baseboards &amp; trim cleaning</li>
+              <li>Complete floor care</li>
+              <li>Toilet disinfection &amp; sanitizing</li>
+              <li>Cabinet interior wiped down</li>
+            </ul>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+          </div>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay:0.3s">
+          <div class="service-image">
+            <div class="service-img-placeholder" style="background:#f0e8ec">
+              <span>Move Out Cleaning Photo</span>
+            </div>
+          </div>
+          <div class="service-body">
+            <h3>Move Out</h3>
+            <p class="service-price">Starting at <strong>$250</strong></p>
+            <ul class="service-features">
+              <li>Cabinet &amp; drawer cleaning</li>
+              <li>Appliance interior cleaning</li>
+              <li>Spot treatment on surfaces</li>
+              <li>Inspection-ready preparation</li>
+            </ul>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section before-after" id="gallery">
+    <div class="container">
+      <h2 class="section-heading">See the Difference</h2>
+      <p class="section-sub">Drag the slider to compare before and after results.</p>
+      <!-- Room type filter tabs -->
+      <div class="ba-tabs" role="tablist">
+        <button class="ba-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="ba-tab" role="tab" aria-selected="false" data-filter="kitchen">Kitchen</button>
+        <button class="ba-tab" role="tab" aria-selected="false" data-filter="bathroom">Bathroom</button>
+        <button class="ba-tab" role="tab" aria-selected="false" data-filter="bedroom">Bedroom</button>
+        <button class="ba-tab" role="tab" aria-selected="false" data-filter="living">Living Room</button>
+      </div>
+      <div class="ba-gallery" aria-label="Before and after cleaning photos">
+        <div class="ba-slider reveal" data-room="kitchen" aria-label="Before and after kitchen cleaning comparison">
+          <!-- Replace src with your WP media library URLs -->
+          <div class="ba-image ba-before">
+            <div class="ba-placeholder" style="background:#d4c5b5"><span>Before Photo (Kitchen)</span></div>
+            <span class="ba-label">Before</span>
+          </div>
+          <div class="ba-image ba-after">
+            <div class="ba-placeholder" style="background:#c5dbd4"><span>After Photo (Kitchen)</span></div>
+            <span class="ba-label ba-label-after">After</span>
+          </div>
+          <div class="ba-handle" aria-label="Drag to compare">
+            <div class="ba-handle-line"></div>
+            <div class="ba-handle-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
+            </div>
+            <div class="ba-handle-line"></div>
+          </div>
+        </div>
+        <div class="ba-slider reveal" data-room="bathroom" style="transition-delay:0.15s" aria-label="Before and after bathroom cleaning comparison">
+          <div class="ba-image ba-before">
+            <div class="ba-placeholder" style="background:#c5bfb5"><span>Before Photo (Bathroom)</span></div>
+            <span class="ba-label">Before</span>
+          </div>
+          <div class="ba-image ba-after">
+            <div class="ba-placeholder" style="background:#b5d5cd"><span>After Photo (Bathroom)</span></div>
+            <span class="ba-label ba-label-after">After</span>
+          </div>
+          <div class="ba-handle" aria-label="Drag to compare">
+            <div class="ba-handle-line"></div>
+            <div class="ba-handle-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
+            </div>
+            <div class="ba-handle-line"></div>
+          </div>
+        </div>
+        <div class="ba-slider reveal" data-room="bedroom" style="transition-delay:0.3s" aria-label="Before and after bedroom cleaning comparison">
+          <div class="ba-image ba-before">
+            <div class="ba-placeholder" style="background:#c9bfad"><span>Before Photo (Bedroom)</span></div>
+            <span class="ba-label">Before</span>
+          </div>
+          <div class="ba-image ba-after">
+            <div class="ba-placeholder" style="background:#aed1c5"><span>After Photo (Bedroom)</span></div>
+            <span class="ba-label ba-label-after">After</span>
+          </div>
+          <div class="ba-handle" aria-label="Drag to compare">
+            <div class="ba-handle-line"></div>
+            <div class="ba-handle-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
+            </div>
+            <div class="ba-handle-line"></div>
+          </div>
+        </div>
+        <div class="ba-slider reveal" data-room="living" style="transition-delay:0.45s" aria-label="Before and after living room cleaning comparison">
+          <div class="ba-image ba-before">
+            <div class="ba-placeholder" style="background:#c2b8a8"><span>Before Photo (Living Room)</span></div>
+            <span class="ba-label">Before</span>
+          </div>
+          <div class="ba-image ba-after">
+            <div class="ba-placeholder" style="background:#a8cfc2"><span>After Photo (Living Room)</span></div>
+            <span class="ba-label ba-label-after">After</span>
+          </div>
+          <div class="ba-handle" aria-label="Drag to compare">
+            <div class="ba-handle-line"></div>
+            <div class="ba-handle-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
+            </div>
+            <div class="ba-handle-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR PROMISE -->
+  <section class="section promise" id="promise">
+    <div class="container">
+      <h2 class="section-heading">Our Promise</h2>
+      <p class="section-sub">What you can expect every time we clean your space.</p>
+      <div class="promise-grid">
+        <div class="promise-card reveal">
+          <div class="promise-icon">
+            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <path d="M17 28l7 7 14-14" stroke="#0D7377" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>100% Satisfaction Guaranteed</h3>
+          <p>If something doesn't meet your expectations, we come back and make it right &mdash; no questions asked.</p>
+          <a href="#" class="policy-link" onclick="openPolicy('policySatisfaction'); return false;">Learn More &rarr;</a>
+        </div>
+        <div class="promise-card reveal" style="transition-delay:0.1s">
+          <div class="promise-icon">
+            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <text x="28" y="34" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="700" fill="#0D7377">$</text>
+            </svg>
+          </div>
+          <h3>Honest Pricing. No Hidden Fees</h3>
+          <p>What you see is what you pay. We provide transparent, upfront pricing with no surprise charges.</p>
+          <a href="#" class="policy-link" onclick="openPolicy('policyPricing'); return false;">Learn More &rarr;</a>
+        </div>
+        <div class="promise-card reveal" style="transition-delay:0.2s">
+          <div class="promise-icon">
+            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <path d="M20 36l4-8h8l4 8" stroke="#0D7377" stroke-width="2" fill="none" stroke-linejoin="round"/>
+              <circle cx="28" cy="23" r="5" stroke="#0D7377" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3>Consistent Quality</h3>
+          <p>Our standards are maintained across every single visit. You can count on the same excellent results every time.</p>
+          <a href="#" class="policy-link" onclick="openPolicy('policyQuality'); return false;">Learn More &rarr;</a>
+        </div>
+        <div class="promise-card reveal" style="transition-delay:0.3s">
+          <div class="promise-icon">
+            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
+              <path d="M28 16 L32 24 L40 25 L34 31 L35.5 39 L28 35 L20.5 39 L22 31 L16 25 L24 24 Z" stroke="#0D7377" stroke-width="2" fill="none" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Trust on Every Visit</h3>
+          <p>Our team is background-checked and fully vetted, so you can feel safe and confident every time we arrive.</p>
+          <a href="#" class="policy-link" onclick="openPolicy('policyTrust'); return false;">Learn More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE POLICY MODALS -->
+  <div class="modal-overlay policy-modal" id="policySatisfaction" role="dialog" aria-modal="true">
+    <div class="modal policy-modal-content">
+      <button class="modal-close" onclick="closePolicy('policySatisfaction')" aria-label="Close">&times;</button>
+      <div class="policy-icon"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#e8f4f4" stroke="#0D7377" stroke-width="2"/><path d="M20 32l8 8 16-16" stroke="#0D7377" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>100% Satisfaction Guarantee</h2>
+      <p>Your happiness is our top priority. If any part of your cleaning doesn't meet your expectations, simply contact us within <strong>24 hours</strong> and we'll send our team back to re-clean the area at <strong>absolutely no extra charge</strong>.</p>
+      <p>No fine print. No runaround. If you're not satisfied, we make it right — period.</p>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policySatisfaction'); openQuoteModal();">Book with Confidence</button>
+    </div>
+  </div>
+  <div class="modal-overlay policy-modal" id="policyPricing" role="dialog" aria-modal="true">
+    <div class="modal policy-modal-content">
+      <button class="modal-close" onclick="closePolicy('policyPricing')" aria-label="Close">&times;</button>
+      <div class="policy-icon"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#e8f4f4" stroke="#0D7377" stroke-width="2"/><text x="32" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="28" font-weight="700" fill="#0D7377">$</text></svg></div>
+      <h2>Transparent Pricing</h2>
+      <p>We believe in <strong>complete transparency</strong>. The price you're quoted is the price you pay — no hidden fees, no surprise charges, no upselling on cleaning day.</p>
+      <p>Our pricing is based on your home's size, the service type, and any optional add-ons you choose. You'll see an estimated range before you even submit your quote request.</p>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyPricing'); openQuoteModal();">Get Your Quote</button>
+    </div>
+  </div>
+  <div class="modal-overlay policy-modal" id="policyQuality" role="dialog" aria-modal="true">
+    <div class="modal policy-modal-content">
+      <button class="modal-close" onclick="closePolicy('policyQuality')" aria-label="Close">&times;</button>
+      <div class="policy-icon"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#e8f4f4" stroke="#0D7377" stroke-width="2"/><path d="M24 44l4-8h8l4 8" stroke="#0D7377" stroke-width="2.5" fill="none"/><circle cx="32" cy="27" r="6" stroke="#0D7377" stroke-width="2.5" fill="none"/></svg></div>
+      <h2>Consistent Quality</h2>
+      <p>Every Red Sky cleaner follows our <strong>detailed checklist system</strong> — the same thorough process on every visit, whether it's your first clean or your fiftieth.</p>
+      <p>We conduct regular quality audits, and our team leads inspect results to ensure nothing is missed. Your home gets the same premium treatment, every single time.</p>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyQuality'); openQuoteModal();">Schedule a Clean</button>
+    </div>
+  </div>
+  <div class="modal-overlay policy-modal" id="policyTrust" role="dialog" aria-modal="true">
+    <div class="modal policy-modal-content">
+      <button class="modal-close" onclick="closePolicy('policyTrust')" aria-label="Close">&times;</button>
+      <div class="policy-icon"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#e8f4f4" stroke="#0D7377" stroke-width="2"/><path d="M32 18 L37 28 L48 29 L40 37 L42 48 L32 42.5 L22 48 L24 37 L16 29 L27 28 Z" stroke="#0D7377" stroke-width="2.5" fill="none"/></svg></div>
+      <h2>Trust & Safety</h2>
+      <p>Every member of our team undergoes a <strong>comprehensive background check</strong> before their first day. We verify employment history, check references, and run criminal background screenings.</p>
+      <p>We're also <strong>fully insured and bonded</strong>, so your home and belongings are protected. You can feel completely safe and secure when our team arrives.</p>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyTrust'); openQuoteModal();">Book with Confidence</button>
+    </div>
+  </div>
+
+  <!-- EXIT-INTENT MODAL -->
+  <div class="modal-overlay exit-modal" id="exitModal" role="dialog" aria-modal="true">
+    <div class="modal exit-modal-content">
+      <button class="modal-close" onclick="closeExitModal()" aria-label="Close">&times;</button>
+      <div class="exit-header">
+        <span class="exit-badge">10% OFF</span>
+        <h2>Wait! Don't Leave Empty-Handed</h2>
+        <p>Get <strong>10% off your first cleaning</strong> when you book today.</p>
+      </div>
+      <form class="exit-form" id="exitForm" onsubmit="submitToZapier(event, 'exit')">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn-accent btn-pill btn-block">Claim My Discount</button>
+      </form>
+      <a href="#" class="exit-dismiss" onclick="closeExitModal(); return false;">No thanks, I'll pay full price</a>
+    </div>
+  </div>
+
+  <!-- TRUST BADGES -->
+  <section class="section trust-badges" id="trust">
+    <div class="container">
+      <div class="badges-grid">
+        <div class="badge-item reveal">
+          <div class="badge-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 4L6 12v12c0 10.55 7.68 20.41 18 22.54C34.32 44.41 42 34.55 42 24V12L24 4z" stroke="#27ae60" stroke-width="2" fill="#e8f8ef"/><path d="M17 24l5 5 9-9" stroke="#27ae60" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Insured &amp; Bonded</h4>
+          <p>Fully covered for your peace of mind</p>
+        </div>
+        <div class="badge-item reveal" style="transition-delay:0.1s">
+          <div class="badge-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="8" stroke="#27ae60" stroke-width="2" fill="#e8f8ef"/><path d="M10 40c0-7.73 6.27-14 14-14s14 6.27 14 14" stroke="#27ae60" stroke-width="2" fill="none"/><path d="M20 18l3 3 6-6" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Background-Checked</h4>
+          <p>Every team member vetted and verified</p>
+        </div>
+        <div class="badge-item reveal" style="transition-delay:0.2s">
+          <div class="badge-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="28" r="3" fill="#27ae60"/><path d="M24 6c-2 4-8 6-8 14a8 8 0 0016 0c0-8-6-10-8-14z" stroke="#27ae60" stroke-width="2" fill="#e8f8ef"/><path d="M18 36l6 8 6-8" stroke="#27ae60" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Eco-Friendly Products</h4>
+          <p>Safe for your family and pets</p>
+        </div>
+        <div class="badge-item reveal" style="transition-delay:0.3s">
+          <div class="badge-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 6l5.18 10.49L40.5 18.3l-8.25 8.04L34.36 38 24 32.49 13.64 38l2.11-11.66L7.5 18.3l11.32-1.81L24 6z" stroke="#27ae60" stroke-width="2" fill="#e8f8ef" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>5-Star Rated</h4>
+          <p>Consistently top-rated by clients</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-heading">What Our Clients Say</h2>
+      <p class="section-sub">Real reviews from real Atlanta homeowners.</p>
+      <div class="testimonial-carousel">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="stars">
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+              </div>
+              <blockquote>"Red Sky transformed our home. The team was incredibly thorough and left every room sparkling. I couldn't believe the difference!"</blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img src="logo.png" alt="Red Sky Cleaning">
+                </div>
+                <div><strong>Sarah M.</strong><span>Johns Creek, GA</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="stars">
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+              </div>
+              <blockquote>"We've been using Red Sky for our bi-weekly cleans for over a year. Consistently excellent quality and the booking process is so easy."</blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img src="logo.png" alt="Red Sky Cleaning">
+                </div>
+                <div><strong>James R.</strong><span>Alpharetta, GA</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="stars">
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+              </div>
+              <blockquote>"They did an amazing deep clean before we moved in. Every corner was spotless. Highly recommend for move-in/move-out cleans!"</blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img src="logo.png" alt="Red Sky Cleaning">
+                </div>
+                <div><strong>Lisa P.</strong><span>Marietta, GA</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="stars">
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+              </div>
+              <blockquote>"Professional, punctual, and friendly. Red Sky has been a game-changer for keeping our office clean. Worth every penny."</blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img src="logo.png" alt="Red Sky Cleaning">
+                </div>
+                <div><strong>David K.</strong><span>Buckhead, GA</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card-inner">
+              <div class="stars">
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+                <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
+              </div>
+              <blockquote>"I love that they use eco-friendly products. My kids and pets are safe, and the house smells amazing after every clean. Best service in Atlanta!"</blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <img src="logo.png" alt="Red Sky Cleaning">
+                </div>
+                <div><strong>Amanda T.</strong><span>Lawrenceville, GA</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Next testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="container about-inner">
+      <div class="about-image reveal">
+        <!-- Replace src with your WP media library URL -->
+        <div class="about-img-placeholder">
+          <svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg">
+            <rect width="500" height="350" rx="16" fill="#e8f4f4"/>
+            <text x="250" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" fill="#0D7377" opacity="0.5">Team / Company Photo</text>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text reveal" style="transition-delay:0.15s">
+        <h2>About Red Sky Cleaning</h2>
+        <p>Red Sky Cleaning is a trusted residential and commercial cleaning service proudly serving the greater Atlanta area. Our mission is simple: provide professional, reliable, and thorough cleaning that lets our clients focus on what matters most.</p>
+        <p>Every member of our crew is background-checked, trained, and committed to delivering a spotless result. We treat your space with the same care and attention we'd give our own homes.</p>
+        <a href="#" class="btn btn-accent btn-pill" onclick="openQuoteModal(); return false;">Book a Cleaning</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREAS -->
+  <section class="section areas" id="areas">
+    <div class="container">
+      <h2 class="section-heading">Service Areas</h2>
+      <p class="section-sub">We proudly serve the following North Atlanta communities and surrounding areas.</p>
+      <div class="zip-checker reveal">
+        <div class="zip-input-group">
+          <input type="text" id="zipInput" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric" pattern="[0-9]{5}" aria-label="Check if we serve your area" onkeydown="if(event.key==='Enter'){checkZip();event.preventDefault();}">
+          <button class="btn btn-accent btn-pill" onclick="checkZip()">Check</button>
+        </div>
+        <div id="zipResult" aria-live="polite"></div>
+      </div>
+      <div class="areas-map-visual reveal">
+        <div id="serviceMap" class="service-map"></div>
+        <p class="areas-note">Don't see your area? <a href="#contact">Contact us</a> &mdash; we may still be able to help!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <h2 class="section-heading">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know about our cleaning services.</p>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            What's included in a standard cleaning?
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Our standard cleaning includes detailed dusting of all surfaces, kitchen sanitizing and cleaning, bathroom cleaning and freshening, general disinfection throughout, vacuuming, and mopping of all floors. It's perfect for regular upkeep of your home.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.05s">
+          <button class="faq-question" aria-expanded="false">
+            How do I book a cleaning?
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>You can book directly through our website by clicking "Get a Free Quote" or "Booking Page" in the navigation. Fill out the form with your details and preferred date, and we'll confirm your appointment within 24 hours. You can also call us at (470) 240-0645.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.1s">
+          <button class="faq-question" aria-expanded="false">
+            Are your cleaners background-checked?
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes, every member of our cleaning team undergoes a thorough background check before being hired. We also verify references and provide ongoing training to ensure the highest quality of service and your complete peace of mind.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.15s">
+          <button class="faq-question" aria-expanded="false">
+            What areas do you serve?
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>We serve the greater North Atlanta area including Johns Creek, Lawrenceville, Alpharetta, Marietta, Buford, Gainesville, Canton, Dawsonville, Winder, and Buckhead. Contact us if you're unsure whether we cover your area.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.2s">
+          <button class="faq-question" aria-expanded="false">
+            Do you bring your own supplies?
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes, we bring all necessary cleaning supplies and equipment. We use professional-grade, eco-friendly products that are safe for children and pets. If you have a preferred product you'd like us to use, just let us know.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.25s">
+          <button class="faq-question" aria-expanded="false">
+            What is your cancellation policy?
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>We understand plans change. We ask for at least 24 hours' notice for cancellations or rescheduling. Cancellations with less than 24 hours' notice may be subject to a cancellation fee. Please contact us as soon as possible if you need to make changes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-text reveal">
+        <h2>Get in Touch</h2>
+        <p>Have questions or need a custom quote? We'd love to hear from you.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:4702400645">(470) 240-0645</a> <a href="sms:4702400645?body=Hi!%20I'm%20interested%20in%20a%20cleaning%20quote." class="btn-sms btn-sms-inline" aria-label="Text us for a quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Text</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:support@redskycleaning.com">support@redskycleaning.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <strong>Hours</strong>
+              <p>Monday &ndash; Friday: 7am &ndash; 6pm<br>Saturday &ndash; Sunday: Closed</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <strong>Location</strong>
+              <p>Atlanta, GA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal" style="transition-delay:0.15s">
+        <form class="contact-form" id="contactForm" onsubmit="submitToZapier(event, 'contact')">
+          <div class="form-group floating">
+            <input type="text" id="c-name" name="name" placeholder=" " required>
+            <label for="c-name">Name *</label>
+          </div>
+          <div class="form-group floating">
+            <input type="email" id="c-email" name="email" placeholder=" " required>
+            <label for="c-email">Email *</label>
+          </div>
+          <div class="form-group floating">
+            <input type="tel" id="c-phone" name="phone" placeholder=" ">
+            <label for="c-phone">Phone</label>
+          </div>
+          <div class="form-group floating">
+            <textarea id="c-message" name="message" rows="5" placeholder=" " required></textarea>
+            <label for="c-message">Message *</label>
+          </div>
+          <button type="submit" class="btn btn-accent btn-pill btn-block">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <h2>Ready for a Sparkling Clean Home?</h2>
+      <p>Book today and experience the Red Sky difference. Your satisfaction is guaranteed.</p>
+      <button class="btn btn-accent btn-pill btn-lg" onclick="openQuoteModal()">Get a Free Quote</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-newsletter">
+        <div class="newsletter-text">
+          <h4>Stay Updated</h4>
+          <p>Get cleaning tips and exclusive offers delivered to your inbox.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm" onsubmit="submitToZapier(event, 'newsletter')">
+          <input type="email" name="email" placeholder="Your email address" required>
+          <button type="submit" class="btn btn-accent btn-pill">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="container footer-inner">
+      <div class="footer-col footer-brand">
+        <a href="#" class="logo footer-logo">
+          <img src="logo.png" alt="Red Sky Cleaning" class="footer-logo-img">
+        </a>
+        <p>Professional residential cleaning services for homes in the greater Atlanta area. Licensed, insured, and committed to excellence.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" aria-label="Google Business" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+          </a>
+          <a href="#" aria-label="Yelp" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308c.564-.835 1.857-.416 1.857.6v3.305c0 .24-.08.46-.22.637l-.37-.037zm-8.127 4.675l1.433-4.995c.276-.96-.8-1.74-1.63-1.176l-4.308 2.905c-.835.564-.416 1.857.6 1.857h3.305c.24 0 .46-.08.637-.22l-.037-.37zM7.56 7.56l4.308 2.905c.83.564 1.906-.216 1.63-1.176L12.065 4.294c-.276-.96-1.657-.96-1.857.6V8.2c0 .24.08.46.22.637l.37-.037-.037-.37c-.176.157-.393.24-.637.24H6.96c-1.016 0-1.436 1.293-.6 1.857L7.56 7.56zm4.875-4.875c.276.96-.216 1.906-1.176 1.63L6.264 2.882c-.835-.276-1.293.564-.6 1.857l2.905 4.308c.564.83 1.906.216 1.63-1.176l-1.433-4.995c-.08-.24-.08-.46.22-.637l.037.37.37.037c-.157-.176-.24-.393-.24-.637V.96c0-1.016-1.293-1.436-1.857-.6L4.988 4.668"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#areas">Service Areas</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#services">Standard Cleaning</a></li>
+          <li><a href="#services">Deep Cleaning</a></li>
+          <li><a href="#services">Move-In Cleaning</a></li>
+          <li><a href="#services">Move-Out Cleaning</a></li>
+          <li><a href="#" onclick="openQuoteModal(); return false;">Get a Free Quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-info">
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:4702400645">(470) 240-0645</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:support@redskycleaning.com">support@redskycleaning.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Atlanta, GA &amp; Surrounding Areas</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon&ndash;Fri: 7am&ndash;6pm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Red Sky Cleaning. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- QUOTE MODAL -->
+  <div class="modal-overlay" id="quoteModal" role="dialog" aria-modal="true">
+    <div class="modal modal-wide">
+      <button class="modal-close" onclick="closeQuoteModal()" aria-label="Close">&times;</button>
+      <form class="quote-form quote-form-grid" id="quoteForm" onsubmit="submitToZapier(event, 'quote')">
+
+        <!-- LEFT COLUMN: Contact & Address -->
+        <div class="qf-col qf-col-left">
+          <div class="qf-col-header">
+            <h2>Request a Quote</h2>
+            <p class="modal-sub">Tell us about yourself and your home.</p>
+          </div>
+          <div class="form-row">
+            <div class="form-group floating">
+              <input type="text" id="q-fname" name="first_name" placeholder=" " required>
+              <label for="q-fname">First Name *</label>
+            </div>
+            <div class="form-group floating">
+              <input type="text" id="q-lname" name="last_name" placeholder=" " required>
+              <label for="q-lname">Last Name *</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group floating">
+              <input type="tel" id="q-phone" name="phone" pattern="[0-9]{10}" placeholder=" " required>
+              <label for="q-phone">Phone *</label>
+            </div>
+            <div class="form-group floating">
+              <input type="email" id="q-email" name="email" placeholder=" " required>
+              <label for="q-email">Email *</label>
+            </div>
+          </div>
+          <div class="form-group floating">
+            <input type="text" id="q-address" name="address" placeholder=" " required>
+            <label for="q-address">Address *</label>
+          </div>
+          <div class="form-row form-row-3">
+            <div class="form-group floating">
+              <input type="text" id="q-city" name="city" placeholder=" " required>
+              <label for="q-city">City *</label>
+            </div>
+            <div class="form-group floating">
+              <input type="text" id="q-state" name="state" value="GA" placeholder=" " required>
+              <label for="q-state">State *</label>
+            </div>
+            <div class="form-group floating">
+              <input type="text" id="q-zip" name="zip" placeholder=" " required>
+              <label for="q-zip">Zip *</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pets?</label>
+              <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="pets" value="no" checked> No</label>
+                <label class="radio-label"><input type="radio" name="pets" value="yes"> Yes</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="q-date">Preferred Date</label>
+              <input type="date" id="q-date" name="preferred_date">
+            </div>
+          </div>
+          <!-- Household Preferences -->
+          <div class="form-group pref-section">
+            <div class="pref-header">Household Preferences</div>
+            <div class="pref-toggles">
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-pets">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">I have pets <span class="pref-price">+$15</span></span>
+                    <span class="toggle-text-desc">Pet-safe, non-toxic products</span>
+                  </span>
+                  <input type="checkbox" id="pref-pets" name="pref_pets" class="pref-toggle pref-priced" data-price="15" data-panel="prefPetsPanel" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+                <div class="pref-sub-panel" id="prefPetsPanel">
+                  <p class="pref-note">We pay special attention to pet hair removal and use only products safe for dogs, cats, and other pets.</p>
+                </div>
+              </div>
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-allergy">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">Allergy-sensitive <span class="pref-price">+$20</span></span>
+                    <span class="toggle-text-desc">HEPA-filtered &amp; hypoallergenic</span>
+                  </span>
+                  <input type="checkbox" id="pref-allergy" name="pref_allergy" class="pref-toggle pref-priced" data-price="20" data-panel="prefAllergyPanel" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+                <div class="pref-sub-panel" id="prefAllergyPanel">
+                  <p class="pref-note">We'll use HEPA-filtered equipment and hypoallergenic, fragrance-free products throughout your home.</p>
+                </div>
+              </div>
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-eco">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">Eco-friendly only <span class="pref-price">+$10</span></span>
+                    <span class="toggle-text-desc">EPA Safer Choice certified</span>
+                  </span>
+                  <input type="checkbox" id="pref-eco" name="pref_eco" class="pref-toggle pref-priced" data-price="10" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-fragrance">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">Fragrance-free <span class="pref-price">+$5</span></span>
+                    <span class="toggle-text-desc">No artificial scents</span>
+                  </span>
+                  <input type="checkbox" id="pref-fragrance" name="pref_fragrance" class="pref-toggle pref-priced" data-price="5" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Service & Pricing -->
+        <div class="qf-col qf-col-right">
+          <div class="qf-col-header">
+            <h3>Customize Your Clean</h3>
+            <p class="modal-sub">Select your service and options below.</p>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="q-service">Service Type *</label>
+              <select id="q-service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="standard">Standard Cleaning</option>
+                <option value="deep">Deep Clean</option>
+                <option value="movein">Move In</option>
+                <option value="moveout">Move Out</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="q-sqft">Square Footage</label>
+              <select id="q-sqft" name="sqft">
+                <option value="">Select range</option>
+                <option value="0-1000">Under 1,000 sq ft</option>
+                <option value="1000-2000">1,000 - 2,000 sq ft</option>
+                <option value="2000-3000">2,000 - 3,000 sq ft</option>
+                <option value="3000+">3,000+ sq ft</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row form-row-4">
+            <div class="form-group">
+              <label for="q-bed">Beds</label>
+              <select id="q-bed" name="bedrooms">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="q-bath">Baths</label>
+              <select id="q-bath" name="bathrooms">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+              </select>
+            </div>
+            <div class="form-group" style="grid-column: span 2">
+              <label for="q-recurring">Frequency</label>
+              <select id="q-recurring" name="frequency">
+                <option value="one-time">One-time</option>
+                <option value="weekly">Weekly</option>
+                <option value="bi-weekly">Bi-weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Add-on Services</label>
+            <div class="checkbox-grid">
+              <label class="checkbox-label"><input type="checkbox" id="addon-walls" name="addon_walls" class="addon-check"> Walls <span class="addon-price">+$30</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-windows" name="addon_windows" class="addon-check"> Windows <span class="addon-price">+$40</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-fridge" name="addon_fridge" class="addon-check"> Fridge <span class="addon-price">+$25</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-oven" name="addon_oven" class="addon-check"> Oven <span class="addon-price">+$25</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-laundry" name="addon_laundry" class="addon-check"> Laundry <span class="addon-price">+$35</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-organizing" name="addon_organizing" class="addon-check"> Organizing <span class="addon-price">+$50</span></label>
+            </div>
+          </div>
+          <div class="form-group floating">
+            <textarea id="q-details" name="details" rows="2" placeholder=" "></textarea>
+            <label for="q-details">Additional Details</label>
+          </div>
+          <!-- Price Estimate Bar -->
+          <div class="price-estimate-bar" id="priceEstimateBar" role="status" aria-live="polite">
+            <div class="estimate-content">
+              <span class="estimate-label">Estimated Price:</span>
+              <span class="estimate-range">$0</span>
+            </div>
+            <span class="estimate-savings" style="display:none"></span>
+          </div>
+          <button type="submit" class="btn btn-submit btn-pill btn-block">Submit Quote Request</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- STICKY MOBILE CTA BAR -->
+  <div class="mobile-cta-bar" id="mobileCta">
+    <a href="tel:4702400645" class="mobile-cta-phone" aria-label="Call us">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span>(470) 240-0645</span>
+    </a>
+    <button class="mobile-cta-quote btn btn-accent btn-pill" onclick="openQuoteModal()">Free Quote</button>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ── Header shrink on scroll ──
+    var header = document.getElementById('header');
+    window.addEventListener('scroll', function() {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Mobile nav (slide-from-right with backdrop) ──
+    var mobileToggle = document.getElementById('mobileToggle');
+    var mainNav = document.getElementById('mainNav');
+    var navBackdrop = document.getElementById('navBackdrop');
+
+    function toggleNav() {
+      var isOpen = mainNav.classList.toggle('open');
+      mobileToggle.classList.toggle('active', isOpen);
+      navBackdrop.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    mobileToggle.addEventListener('click', toggleNav);
+    navBackdrop.addEventListener('click', toggleNav);
+
+    document.querySelectorAll('.main-nav a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (mainNav.classList.contains('open')) toggleNav();
+      });
+    });
+
+    // ── Smooth scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) {
+          var headerH = header.offsetHeight;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Quote Modal ──
+    var _lastFocused = null;
+    window.openQuoteModal = function() {
+      _lastFocused = document.activeElement;
+      var modal = document.getElementById('quoteModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      var firstInput = modal.querySelector('input, select, button');
+      if (firstInput) setTimeout(function() { firstInput.focus(); }, 100);
+    };
+    window.closeQuoteModal = function() {
+      document.getElementById('quoteModal').classList.remove('active');
+      document.body.style.overflow = '';
+      if (_lastFocused) _lastFocused.focus();
+    };
+    document.getElementById('quoteModal').addEventListener('click', function(e) {
+      if (e.target === this) closeQuoteModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        // Close whichever modal is open (priority: policy > exit > quote)
+        var openPolicy = document.querySelector('.policy-modal.active');
+        if (openPolicy) { closePolicy(openPolicy.id); return; }
+        var exitModal = document.getElementById('exitModal');
+        if (exitModal && exitModal.classList.contains('active')) { closeExitModal(); return; }
+        closeQuoteModal();
+      }
+      // Focus trap for all active modals
+      if (e.key === 'Tab') {
+        var activeModal = document.querySelector('.modal-overlay.active, .policy-modal.active');
+        if (!activeModal) return;
+        var focusable = activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
+    });
+
+    // ── Scroll Reveal (Intersection Observer) ──
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(function(el) { revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function(el) { el.classList.add('revealed'); });
+    }
+
+    // ── Animated Counters ──
+    var statsSection = document.querySelector('.stats-bar');
+    var counterFired = false;
+    function animateCounters() {
+      if (counterFired) return;
+      counterFired = true;
+      document.querySelectorAll('.stat').forEach(function(stat) {
+        var target = parseInt(stat.dataset.target);
+        var suffix = stat.dataset.suffix || '';
+        var numberEl = stat.querySelector('.stat-number');
+        var duration = 2000;
+        var startTime = null;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          numberEl.textContent = Math.floor(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+    if (statsSection && 'IntersectionObserver' in window) {
+      var statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCounters();
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      statsObserver.observe(statsSection);
+    }
+
+    // ── Before/After Sliders ──
+    document.querySelectorAll('.ba-slider').forEach(function(slider) {
+      var handle = slider.querySelector('.ba-handle');
+      var afterImg = slider.querySelector('.ba-after');
+      var isDragging = false;
+
+      function updatePosition(x) {
+        var rect = slider.getBoundingClientRect();
+        var percent = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+        afterImg.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+        handle.style.left = percent + '%';
+      }
+
+      handle.addEventListener('pointerdown', function(e) {
+        isDragging = true;
+        handle.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      slider.addEventListener('pointermove', function(e) {
+        if (isDragging) updatePosition(e.clientX);
+      });
+      handle.addEventListener('pointerup', function() { isDragging = false; });
+      handle.addEventListener('lostpointercapture', function() { isDragging = false; });
+
+      // Initialize at 50%
+      afterImg.style.clipPath = 'inset(0 50% 0 0)';
+      handle.style.left = '50%';
+    });
+
+    // ── Testimonial Carousel ──
+    var track = document.getElementById('testimonialTrack');
+    var cards = track ? track.querySelectorAll('.testimonial-card') : [];
+    var dotsContainer = document.getElementById('carouselDots');
+    var prevBtn = document.getElementById('carouselPrev');
+    var nextBtn = document.getElementById('carouselNext');
+    var currentIndex = 0;
+    var autoPlayInterval;
+
+    function getVisibleCount() {
+      if (window.innerWidth > 1024) return 3;
+      if (window.innerWidth > 768) return 2;
+      return 1;
+    }
+
+    function buildDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      var maxIndex = cards.length - getVisibleCount();
+      for (var i = 0; i <= maxIndex; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.dataset.index = i;
+        dot.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function goTo(index) {
+      var visibleCount = getVisibleCount();
+      var maxIndex = cards.length - visibleCount;
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      if (track) {
+        track.style.transform = 'translateX(-' + (currentIndex * (100 / visibleCount)) + '%)';
+      }
+      if (dotsContainer) {
+        dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+          d.classList.toggle('active', i === currentIndex);
+        });
+      }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); resetAutoPlay(); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); resetAutoPlay(); });
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(function() {
+        var maxIndex = cards.length - getVisibleCount();
+        goTo(currentIndex >= maxIndex ? 0 : currentIndex + 1);
+      }, 5000);
+    }
+    function resetAutoPlay() {
+      clearInterval(autoPlayInterval);
+      startAutoPlay();
+    }
+
+    if (track) {
+      buildDots();
+      startAutoPlay();
+      var carouselEl = track.closest('.testimonial-carousel');
+      if (carouselEl) {
+        carouselEl.addEventListener('mouseenter', function() { clearInterval(autoPlayInterval); });
+        carouselEl.addEventListener('mouseleave', startAutoPlay);
+      }
+      // Touch swipe
+      var startX = 0;
+      track.addEventListener('pointerdown', function(e) { startX = e.clientX; });
+      track.addEventListener('pointerup', function(e) {
+        var diff = startX - e.clientX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goTo(currentIndex + 1);
+          else goTo(currentIndex - 1);
+          resetAutoPlay();
+        }
+      });
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() { buildDots(); goTo(currentIndex); }, 200);
+    });
+
+    // ── FAQ Accordion ──
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.parentElement;
+        var isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(function(el) {
+          el.classList.remove('active');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isActive) {
+          item.classList.add('active');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ── Seasonal Promo Banner ──
+    var promoConfig = [
+      { startMonth: 3, endMonth: 5, text: '<strong>Spring Deep Clean Special!</strong> Book this month and save 15% on your first deep cleaning.' },
+      { startMonth: 6, endMonth: 8, text: '<strong>Summer Refresh!</strong> Get your home guest-ready with 10% off standard cleaning.' },
+      { startMonth: 9, endMonth: 11, text: '<strong>Fall Prep Special!</strong> Prepare for the holidays with 15% off deep cleaning.' },
+      { startMonth: 12, endMonth: 2, text: '<strong>Holiday Ready!</strong> Book a holiday deep clean and save 10%.' }
+    ];
+    window.dismissPromo = function() {
+      var banner = document.getElementById('promoBanner');
+      if (banner) { banner.classList.remove('active'); document.body.classList.remove('promo-active'); }
+      document.documentElement.style.setProperty('--promo-height', '0px');
+      sessionStorage.setItem('promoHidden', 'true');
+    };
+    (function initPromo() {
+      if (sessionStorage.getItem('promoHidden')) return;
+      var month = new Date().getMonth() + 1;
+      var promo = promoConfig.find(function(p) {
+        if (p.startMonth <= p.endMonth) return month >= p.startMonth && month <= p.endMonth;
+        return month >= p.startMonth || month <= p.endMonth;
+      });
+      if (promo) {
+        var banner = document.getElementById('promoBanner');
+        var textEl = banner.querySelector('p');
+        textEl.innerHTML = promo.text + ' <a href="#" onclick="openQuoteModal(); return false;">Book Now &rarr;</a>';
+        banner.classList.add('active');
+        document.body.classList.add('promo-active');
+        // Measure actual banner height and set CSS variable
+        requestAnimationFrame(function() {
+          var h = banner.offsetHeight;
+          document.documentElement.style.setProperty('--promo-height', h + 'px');
+        });
+      }
+    })();
+
+    // ── Next Available Slot ──
+    var nextSlotConfig = { nextDate: '2026-04-17', displayText: 'Next available' };
+    (function initNextSlot() {
+      var slots = document.querySelectorAll('.next-slot');
+      var now = new Date();
+      var next = new Date(nextSlotConfig.nextDate + 'T00:00:00');
+      if (isNaN(next.getTime()) || next < now) {
+        slots.forEach(function(s) { s.style.display = 'none'; });
+        return;
+      }
+      var diff = Math.ceil((next - now) / (1000 * 60 * 60 * 24));
+      var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var label = nextSlotConfig.displayText + ': ' + dayNames[next.getDay()] + ', ' + monthNames[next.getMonth()] + ' ' + next.getDate();
+      slots.forEach(function(s) {
+        s.querySelector('.next-slot-text').textContent = label;
+        if (diff <= 2) s.classList.add('urgent');
+      });
+    })();
+
+    // ── Sticky Mobile CTA Bar ──
+    (function initMobileCta() {
+      var bar = document.getElementById('mobileCta');
+      if (!bar) return;
+      var lastY = window.scrollY;
+      var ticking = false;
+      window.addEventListener('scroll', function() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function() {
+          var y = window.scrollY;
+          if (y > 300) {
+            bar.classList.toggle('hidden', y > lastY && y - lastY > 5);
+            bar.classList.add('visible');
+          } else {
+            bar.classList.remove('visible');
+          }
+          lastY = y;
+          ticking = false;
+        });
+      });
+      // Hide when modal is open
+      var origOpen = window.openQuoteModal;
+      var origClose = window.closeQuoteModal;
+      window.openQuoteModal = function() { bar.classList.add('modal-open'); origOpen(); };
+      window.closeQuoteModal = function() { bar.classList.remove('modal-open'); origClose(); };
+    })();
+
+    // ── Exit-Intent Quote Rescue ──
+    (function initExitIntent() {
+      if (sessionStorage.getItem('exitShown')) return;
+      document.documentElement.addEventListener('mouseleave', function(e) {
+        if (e.clientY > 0) return;
+        if (document.getElementById('quoteModal').classList.contains('active')) return;
+        if (sessionStorage.getItem('exitShown')) return;
+        sessionStorage.setItem('exitShown', 'true');
+        var exitEl = document.getElementById('exitModal');
+        exitEl.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        var firstInput = exitEl.querySelector('input, button');
+        if (firstInput) setTimeout(function() { firstInput.focus(); }, 100);
+      });
+    })();
+    window.closeExitModal = function() {
+      document.getElementById('exitModal').classList.remove('active');
+      document.body.style.overflow = '';
+    };
+    document.getElementById('exitModal').addEventListener('click', function(e) {
+      if (e.target === this) closeExitModal();
+    });
+
+    // ── Guarantee Policy Modals ──
+    var _policyLastFocused = null;
+    window.openPolicy = function(id) {
+      _policyLastFocused = document.activeElement;
+      var modal = document.getElementById(id);
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      var closeBtn = modal.querySelector('.modal-close, button');
+      if (closeBtn) setTimeout(function() { closeBtn.focus(); }, 100);
+    };
+    window.closePolicy = function(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+      if (_policyLastFocused) _policyLastFocused.focus();
+    };
+    document.querySelectorAll('.policy-modal').forEach(function(modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) closePolicy(this.id);
+      });
+    });
+
+    // ── ZIP Code Eligibility Checker ──
+    var zipMap = {
+      '30004':'Alpharetta','30005':'Alpharetta','30009':'Alpharetta','30022':'Alpharetta','30023':'Alpharetta',
+      '30024':'Johns Creek','30097':'Johns Creek',
+      '30043':'Lawrenceville','30044':'Lawrenceville','30045':'Lawrenceville','30046':'Lawrenceville',
+      '30060':'Marietta','30061':'Marietta','30062':'Marietta','30063':'Marietta','30064':'Marietta','30066':'Marietta','30067':'Marietta','30068':'Marietta',
+      '30518':'Buford','30519':'Buford',
+      '30501':'Gainesville','30503':'Gainesville','30504':'Gainesville','30506':'Gainesville','30507':'Gainesville',
+      '30114':'Canton','30115':'Canton',
+      '30534':'Dawsonville',
+      '30680':'Winder',
+      '30305':'Buckhead','30309':'Buckhead','30326':'Buckhead','30327':'Buckhead',
+      '30301':'Atlanta','30302':'Atlanta','30303':'Atlanta','30306':'Atlanta','30307':'Atlanta','30308':'Atlanta',
+      '30310':'Atlanta','30311':'Atlanta','30312':'Atlanta','30313':'Atlanta','30314':'Atlanta','30315':'Atlanta','30316':'Atlanta','30317':'Atlanta','30318':'Atlanta','30319':'Atlanta','30320':'Atlanta','30324':'Atlanta','30328':'Atlanta','30329':'Atlanta','30331':'Atlanta','30332':'Atlanta','30334':'Atlanta','30336':'Atlanta','30337':'Atlanta','30338':'Atlanta','30339':'Atlanta','30340':'Atlanta','30341':'Atlanta','30342':'Atlanta','30344':'Atlanta','30345':'Atlanta','30346':'Atlanta','30349':'Atlanta','30350':'Atlanta','30354':'Atlanta','30360':'Atlanta',
+      '30075':'Roswell','30076':'Roswell','30077':'Roswell',
+      '30188':'Woodstock','30189':'Woodstock',
+      '30096':'Duluth','30095':'Duluth',
+      '30071':'Norcross','30091':'Norcross','30093':'Norcross',
+      '30092':'Peachtree Corners','30360':'Peachtree Corners',
+      '30019':'Dacula','30542':'Flowery Branch','30041':'Cumming','30040':'Cumming',
+      '30017':'Grayson','30078':'Snellville','30039':'Snellville',
+      '30028':'Cumming','30041':'Cumming'
+    };
+    window.checkZip = function() {
+      var input = document.getElementById('zipInput');
+      var val = input.value.trim();
+      var result = document.getElementById('zipResult');
+      if (!/^\d{5}$/.test(val)) {
+        result.innerHTML = '<div class="zip-result zip-error">Please enter a valid 5-digit ZIP code.</div>';
+        return;
+      }
+      var city = zipMap[val];
+      if (city) {
+        result.innerHTML = '<div class="zip-result zip-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Great news! We serve <strong>' + city + '</strong>. <a href="#" onclick="openQuoteModal(); return false;">Get your free quote &rarr;</a></div>';
+        // Highlight matching marker on Leaflet map
+        if (window.serviceMapMarkers) {
+          window.serviceMapMarkers.forEach(function(m) {
+            if (m.cityName === city) {
+              m.marker.openPopup();
+              window.serviceLeafletMap.setView(m.marker.getLatLng(), 11, { animate: true });
+            }
+          });
+        }
+      } else {
+        result.innerHTML = '<div class="zip-result zip-miss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> We don\'t serve that area yet, but we\'re expanding! <a href="#contact">Contact us</a> to join our waitlist.</div>';
+      }
+    };
+
+    // ── Instant Price Estimator ──
+    var priceConfig = {
+      base: { standard: 100, deep: 250, movein: 250, moveout: 250 },
+      sqft: { '': 1, '0-1000': 1, '1000-2000': 1.3, '2000-3000': 1.6, '3000+': 2 },
+      bedroomExtra: 15,
+      bathroomExtra: 10,
+      addons: { 'addon-walls': 30, 'addon-windows': 40, 'addon-fridge': 25, 'addon-oven': 25, 'addon-laundry': 35, 'addon-organizing': 50 },
+      discount: { '': 0, 'one-time': 0, 'monthly': 0.05, 'bi-weekly': 0.10, 'weekly': 0.15 }
+    };
+    function calcEstimate() {
+      var svc = document.getElementById('q-service');
+      var bar = document.getElementById('priceEstimateBar');
+      if (!svc || !bar) return;
+      var svcVal = svc.value;
+      if (!svcVal) { bar.classList.remove('visible'); return; }
+      var base = priceConfig.base[svcVal] || 100;
+      var sqftSel = document.getElementById('q-sqft');
+      var mult = priceConfig.sqft[sqftSel ? sqftSel.value : ''] || 1;
+      var bedSel = document.getElementById('q-bed');
+      var beds = bedSel ? (parseInt(bedSel.value) || 1) : 1;
+      var bathSel = document.getElementById('q-bath');
+      var baths = bathSel ? (parseInt(bathSel.value) || 1) : 1;
+      var addonsTotal = 0;
+      document.querySelectorAll('.addon-check').forEach(function(cb) {
+        if (cb.checked) addonsTotal += priceConfig.addons[cb.id] || 0;
+      });
+      var prefsTotal = 0;
+      document.querySelectorAll('.pref-priced').forEach(function(cb) {
+        if (cb.checked) prefsTotal += parseInt(cb.getAttribute('data-price')) || 0;
+      });
+      var freqSel = document.getElementById('q-recurring');
+      var disc = priceConfig.discount[freqSel ? freqSel.value : ''] || 0;
+      var subtotal = (base * mult) + ((beds - 1) * priceConfig.bedroomExtra) + ((baths - 1) * priceConfig.bathroomExtra) + addonsTotal + prefsTotal;
+      var discounted = subtotal * (1 - disc);
+      var low = Math.round(discounted * 0.85);
+      var high = Math.round(discounted * 1.15);
+      var numEl = bar.querySelector('.estimate-range');
+      numEl.textContent = '$' + low + ' \u2013 $' + high;
+      bar.classList.add('visible');
+      var savingsEl = bar.querySelector('.estimate-savings');
+      if (disc > 0) {
+        var saved = Math.round(subtotal * disc);
+        savingsEl.textContent = 'Save $' + saved + ' with ' + (freqSel ? freqSel.value : '') + ' service';
+        savingsEl.style.display = '';
+      } else {
+        savingsEl.style.display = 'none';
+      }
+    }
+    // Attach listeners to quote form fields
+    ['q-service','q-sqft','q-bed','q-bath','q-recurring'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('change', calcEstimate);
+    });
+    document.querySelectorAll('.addon-check').forEach(function(cb) {
+      cb.addEventListener('change', calcEstimate);
+    });
+
+    // ── Before/After Room Tabs ──
+    document.querySelectorAll('.ba-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.ba-tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+        this.classList.add('active');
+        this.setAttribute('aria-selected','true');
+        var filter = this.getAttribute('data-filter');
+        document.querySelectorAll('.ba-slider').forEach(function(slider) {
+          if (filter === 'all' || slider.getAttribute('data-room') === filter) {
+            slider.style.display = '';
+            slider.style.opacity = '1';
+          } else {
+            slider.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ── Pet & Allergy Preferences ──
+    document.querySelectorAll('.pref-toggle').forEach(function(toggle) {
+      toggle.addEventListener('change', function() {
+        // Update aria state
+        this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
+        // Toggle active class on parent row for visual feedback
+        var row = this.closest('.pref-row');
+        if (row) {
+          if (this.checked) { row.classList.add('pref-row-active'); }
+          else { row.classList.remove('pref-row-active'); }
+        }
+        // Expand/collapse sub-panel if present
+        var panel = document.getElementById(this.getAttribute('data-panel'));
+        if (panel) {
+          panel.style.maxHeight = this.checked ? panel.scrollHeight + 'px' : '0';
+        }
+        // Update price estimate
+        if (typeof calcEstimate === 'function') calcEstimate();
+      });
+    });
+
+    // ── Service Recommender Quiz ──
+    (function initQuiz() {
+      var quizAnswers = {};
+      var currentStep = 1;
+
+      var recommendations = {
+        regular:  { title: 'Standard Cleaning', base: 100, desc: 'Regular maintenance cleaning to keep your home fresh, tidy, and welcoming every time.' },
+        deep:     { title: 'Deep Clean', base: 250, desc: 'A thorough, top-to-bottom clean for homes that need extra attention — baseboards, fixtures, and all the details.' },
+        movein:   { title: 'Move-In / Move-Out Clean', base: 250, desc: 'Get your space inspection-ready or move into a spotless home. Every corner, every surface.' }
+      };
+
+      var sizeMultiplier = { small: 1, medium: 1.3, large: 1.6, xlarge: 2 };
+      var freqDiscount   = { 'one-time': 0, 'bi-weekly': 0.10, weekly: 0.15 };
+      var sizeLabels     = { small: 'Under 1,000 sq ft', medium: '1,000–2,000 sq ft', large: '2,000–3,000 sq ft', xlarge: '3,000+ sq ft' };
+
+      function updateDots() {
+        document.querySelectorAll('.quiz-dot').forEach(function(dot) {
+          var step = dot.getAttribute('data-step');
+          dot.classList.remove('active', 'completed');
+          if (step === 'result') {
+            if (currentStep === 4) dot.classList.add('active');
+            else if (currentStep > 3) dot.classList.add('completed');
+          } else {
+            var num = parseInt(step);
+            if (num === currentStep) dot.classList.add('active');
+            else if (num < currentStep) dot.classList.add('completed');
+          }
+        });
+      }
+
+      function showStep(n) {
+        currentStep = n;
+        document.querySelectorAll('.quiz-step').forEach(function(s) { s.classList.remove('active'); });
+        var target = n === 4 ? document.getElementById('quizResult') : document.getElementById('quizStep' + n);
+        if (target) target.classList.add('active');
+        updateDots();
+      }
+
+      function buildResult() {
+        var rec = recommendations[quizAnswers[1]] || recommendations.regular;
+        var mult = sizeMultiplier[quizAnswers[2]] || 1;
+        var disc = freqDiscount[quizAnswers[3]] || 0;
+        var price = Math.round(rec.base * mult);
+        var discounted = disc > 0 ? Math.round(price * (1 - disc)) : price;
+
+        document.getElementById('quizResultTitle').textContent = rec.title;
+        document.getElementById('quizResultPrice').innerHTML = 'Starting at <strong>$' + discounted + '</strong>';
+        document.getElementById('quizResultDesc').textContent = rec.desc;
+
+        // Savings
+        var savingsEl = document.getElementById('quizResultSavings');
+        if (disc > 0) {
+          var saved = price - discounted;
+          var freqLabel = quizAnswers[3] === 'weekly' ? 'weekly' : 'bi-weekly';
+          savingsEl.innerHTML = 'Save <strong>$' + saved + ' per visit</strong> with ' + freqLabel + ' service (' + Math.round(disc * 100) + '% off)';
+          savingsEl.style.display = 'block';
+        } else {
+          savingsEl.style.display = 'none';
+        }
+
+        // Tags
+        var features = document.getElementById('quizResultFeatures');
+        var tags = ['Eco-Friendly', 'Background-Checked', 'Satisfaction Guaranteed'];
+        if (quizAnswers[2] === 'large' || quizAnswers[2] === 'xlarge') tags.push('Full-Home Coverage');
+        if (quizAnswers[3] === 'weekly' || quizAnswers[3] === 'bi-weekly') tags.push('Priority Scheduling');
+        features.innerHTML = tags.map(function(t) { return '<span class="quiz-result-tag">' + t + '</span>'; }).join('');
+
+        showStep(4);
+      }
+
+      // Expose to global scope for onclick handlers
+      window.quizSelect = function(step, btn) {
+        var value = btn.getAttribute('data-value');
+        quizAnswers[step] = value;
+
+        // Mark selected
+        btn.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+        btn.classList.add('selected');
+
+        // Advance after brief delay
+        setTimeout(function() {
+          if (step < 3) {
+            showStep(step + 1);
+          } else {
+            buildResult();
+          }
+        }, 350);
+      };
+
+      window.quizBook = function() {
+        var rec = recommendations[quizAnswers[1]] || recommendations.regular;
+        // Pre-fill quote modal
+        var serviceMap = { regular: 'standard', deep: 'deep', movein: 'movein' };
+        var sizeMap = { small: 'under1000', medium: '1000-2000', large: '2000-3000', xlarge: '3000plus' };
+        var freqMap = { 'one-time': 'one-time', 'bi-weekly': 'bi-weekly', weekly: 'weekly' };
+
+        // Open quote modal
+        if (typeof openQuoteModal === 'function') {
+          openQuoteModal();
+        } else {
+          var modal = document.getElementById('quoteModal');
+          if (modal) modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        // Try to set form values
+        setTimeout(function() {
+          var serviceSelect = document.querySelector('#quoteModal select[name="service"]');
+          var sqftSelect = document.querySelector('#quoteModal select[name="sqft"]');
+          var freqSelect = document.querySelector('#quoteModal select[name="frequency"]');
+
+          if (serviceSelect) {
+            var sv = serviceMap[quizAnswers[1]] || '';
+            for (var i = 0; i < serviceSelect.options.length; i++) {
+              if (serviceSelect.options[i].value.toLowerCase().indexOf(sv) > -1) {
+                serviceSelect.selectedIndex = i;
+                serviceSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                break;
+              }
+            }
+          }
+          if (sqftSelect) {
+            var sz = sizeMap[quizAnswers[2]] || '';
+            for (var j = 0; j < sqftSelect.options.length; j++) {
+              if (sqftSelect.options[j].value.toLowerCase().replace(/[\s,]/g, '').indexOf(sz.replace(/-/g, '')) > -1 ||
+                  sqftSelect.options[j].textContent.toLowerCase().replace(/[\s,]/g, '').indexOf(sz.replace(/-/g, '')) > -1) {
+                sqftSelect.selectedIndex = j;
+                sqftSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                break;
+              }
+            }
+          }
+          if (freqSelect) {
+            var fv = freqMap[quizAnswers[3]] || '';
+            for (var k = 0; k < freqSelect.options.length; k++) {
+              if (freqSelect.options[k].value.toLowerCase().indexOf(fv) > -1 ||
+                  freqSelect.options[k].textContent.toLowerCase().replace(/[\s-]/g, '').indexOf(fv.replace(/-/g, '')) > -1) {
+                freqSelect.selectedIndex = k;
+                freqSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                break;
+              }
+            }
+          }
+        }, 200);
+      };
+
+      window.quizRestart = function() {
+        quizAnswers = {};
+        document.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+        showStep(1);
+      };
+    })();
+
+  })();
+  </script>
+
+  <!-- Leaflet Map -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+  (function initServiceMap() {
+    var mapEl = document.getElementById('serviceMap');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    var map = L.map('serviceMap', {
+      center: [34.05, -84.15],
+      zoom: 9,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true
+    });
+    window.serviceLeafletMap = map;
+
+    // Tile layer — clean CartoDB Voyager style
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Custom teal pin icon
+    var tealIcon = L.divIcon({
+      className: 'leaflet-pin-icon',
+      html: '<svg viewBox="0 0 24 36" width="28" height="40"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="#0D7377"/><circle cx="12" cy="11" r="5" fill="white"/></svg>',
+      iconSize: [28, 40],
+      iconAnchor: [14, 40],
+      popupAnchor: [0, -36]
+    });
+
+    // Atlanta HQ icon (larger, orange accent ring)
+    var hqIcon = L.divIcon({
+      className: 'leaflet-hq-icon',
+      html: '<div class="hq-marker-wrap"><div class="hq-pulse-ring"></div><svg viewBox="0 0 24 36" width="36" height="50"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="#0D7377"/><circle cx="12" cy="11" r="5" fill="#FA5C08"/></svg></div>',
+      iconSize: [36, 50],
+      iconAnchor: [18, 50],
+      popupAnchor: [0, -46]
+    });
+
+    // Service area locations
+    var locations = [
+      { name: 'Atlanta, GA', lat: 33.749, lng: -84.388, distance: 'Headquarters', zips: '30301–30360', isHQ: true },
+      { name: 'Buckhead', lat: 33.838, lng: -84.379, distance: '~8 mi', zips: '30305, 30309, 30326, 30327' },
+      { name: 'Marietta', lat: 33.953, lng: -84.550, distance: '~18 mi', zips: '30060–30068' },
+      { name: 'Alpharetta', lat: 34.075, lng: -84.294, distance: '~26 mi', zips: '30004, 30005, 30009, 30022' },
+      { name: 'Johns Creek', lat: 34.029, lng: -84.198, distance: '~27 mi', zips: '30024, 30097' },
+      { name: 'Lawrenceville', lat: 33.956, lng: -83.988, distance: '~30 mi', zips: '30043–30046' },
+      { name: 'Buford', lat: 34.120, lng: -84.004, distance: '~38 mi', zips: '30518, 30519' },
+      { name: 'Canton', lat: 34.237, lng: -84.491, distance: '~40 mi', zips: '30114, 30115' },
+      { name: 'Winder', lat: 33.993, lng: -83.720, distance: '~46 mi', zips: '30680' },
+      { name: 'Gainesville', lat: 34.298, lng: -83.824, distance: '~54 mi', zips: '30501, 30503–30507' },
+      { name: 'Dawsonville', lat: 34.421, lng: -84.119, distance: '~55 mi', zips: '30534' }
+    ];
+
+    window.serviceMapMarkers = [];
+
+    locations.forEach(function(loc) {
+      var icon = loc.isHQ ? hqIcon : tealIcon;
+      var popupContent = '<div class="map-popup">' +
+        '<strong class="map-popup-city">' + loc.name + '</strong>' +
+        '<span class="map-popup-distance">' + loc.distance + ' from Atlanta</span>' +
+        '<span class="map-popup-zips">ZIP codes: ' + loc.zips + '</span>' +
+        '<a href="#" class="map-popup-cta" onclick="openQuoteModal(); return false;">Get a Free Quote &rarr;</a>' +
+        '</div>';
+
+      var marker = L.marker([loc.lat, loc.lng], { icon: icon })
+        .addTo(map)
+        .bindPopup(popupContent, { className: 'rsc-popup', maxWidth: 220 });
+
+      window.serviceMapMarkers.push({ marker: marker, cityName: loc.name });
+    });
+
+    // Service area coverage circle
+    L.circle([33.85, -84.2], {
+      radius: 65000,
+      color: '#0D7377',
+      weight: 1.5,
+      opacity: 0.15,
+      fillColor: '#0D7377',
+      fillOpacity: 0.04,
+      dashArray: '6 4'
+    }).addTo(map);
+
+    // Enable scroll zoom on focus
+    mapEl.addEventListener('click', function() { map.scrollWheelZoom.enable(); });
+    mapEl.addEventListener('mouseleave', function() { map.scrollWheelZoom.disable(); });
+
+    // Invalidate size when map becomes visible (scroll reveal)
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { map.invalidateSize(); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.1 });
+      obs.observe(mapEl);
+    }
+  })();
+  </script>
+
+  <!-- ============================================
+       ZAPIER FORM SUBMISSIONS
+       ============================================
+       HOW TO SET UP:
+       1. Go to zapier.com → Create a new Zap
+       2. Trigger: "Webhooks by Zapier" → "Catch Hook"
+       3. Copy the webhook URL Zapier gives you
+       4. Paste it below in the matching slot
+       5. Action: "Gmail" / "Email by Zapier" → send to your inbox
+       6. Create one Zap per form (quote, contact, newsletter, exit)
+       ============================================ -->
+  <script>
+  (function() {
+    // ┌─────────────────────────────────────────────┐
+    // │  PASTE YOUR ZAPIER WEBHOOK URLS BELOW       │
+    // └─────────────────────────────────────────────┘
+    var ZAPIER_HOOKS = {
+      quote:      'YOUR_ZAPIER_QUOTE_WEBHOOK_URL',
+      contact:    'YOUR_ZAPIER_CONTACT_WEBHOOK_URL',
+      newsletter: 'YOUR_ZAPIER_NEWSLETTER_WEBHOOK_URL',
+      exit:       'YOUR_ZAPIER_EXIT_INTENT_WEBHOOK_URL'
+    };
+
+    // Success messages per form
+    var SUCCESS_MSG = {
+      quote:      'Thank you! Your quote request has been submitted. We\'ll get back to you within 24 hours.',
+      contact:    'Thank you! We\'ll be in touch shortly.',
+      newsletter: 'You\'re subscribed! Watch your inbox for cleaning tips and offers.',
+      exit:       'Discount code sent! Check your email for 10% off your first clean.'
+    };
+
+    window.submitToZapier = function(e, formType) {
+      e.preventDefault();
+
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      var hookUrl = ZAPIER_HOOKS[formType];
+
+      // Check if webhook URL is configured
+      if (!hookUrl || hookUrl.indexOf('YOUR_') === 0) {
+        showFormStatus(form, 'success', SUCCESS_MSG[formType]);
+        handlePostSubmit(form, formType);
+        return;
+      }
+
+      // Disable button + show loading
+      var originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      // Collect form data
+      var data = collectFormData(form, formType);
+
+      // Send to Zapier
+      fetch(hookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        mode: 'no-cors'
+      })
+      .then(function() {
+        showFormStatus(form, 'success', SUCCESS_MSG[formType]);
+        handlePostSubmit(form, formType);
+      })
+      .catch(function() {
+        showFormStatus(form, 'error', 'Something went wrong. Please call us at (470) 240-0645 or try again.');
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      });
+    };
+
+    function collectFormData(form, formType) {
+      var data = { form_type: formType, submitted_at: new Date().toISOString() };
+      var inputs = form.querySelectorAll('input, select, textarea');
+      inputs.forEach(function(el) {
+        if (!el.name) return;
+        if (el.type === 'checkbox') {
+          data[el.name] = el.checked;
+        } else if (el.type === 'radio') {
+          if (el.checked) data[el.name] = el.value;
+        } else {
+          data[el.name] = el.value;
+        }
+      });
+
+      // For quote form, also collect add-ons as a readable list
+      if (formType === 'quote') {
+        var addons = [];
+        form.querySelectorAll('.addon-check:checked').forEach(function(cb) {
+          var label = cb.closest('label');
+          if (label) addons.push(label.textContent.trim().split('+')[0].trim());
+        });
+        data.addons_list = addons.join(', ') || 'None';
+
+        // Collect preferences
+        var prefs = [];
+        form.querySelectorAll('.pref-toggle:checked').forEach(function(cb) {
+          var title = cb.closest('.pref-row');
+          if (title) {
+            var t = title.querySelector('.toggle-text-title');
+            if (t) prefs.push(t.textContent.trim());
+          }
+        });
+        data.preferences = prefs.join(', ') || 'None';
+
+        // Get estimate if visible
+        var est = document.querySelector('.estimate-range');
+        if (est && est.textContent !== '$0') data.price_estimate = est.textContent;
+      }
+
+      return data;
+    }
+
+    function showFormStatus(form, type, msg) {
+      // Remove any existing status
+      var existing = form.querySelector('.form-status');
+      if (existing) existing.remove();
+
+      var div = document.createElement('div');
+      div.className = 'form-status form-status-' + type;
+      div.innerHTML = (type === 'success'
+        ? '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>'
+        : '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>')
+        + '<span>' + msg + '</span>';
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.parentNode.insertBefore(div, btn);
+      else form.appendChild(div);
+
+      // Auto-remove after 8 seconds
+      setTimeout(function() { if (div.parentNode) div.remove(); }, 8000);
+    }
+
+    function handlePostSubmit(form, formType) {
+      form.reset();
+      if (formType === 'quote' && typeof closeQuoteModal === 'function') {
+        setTimeout(closeQuoteModal, 2000);
+      }
+      if (formType === 'exit' && typeof closeExitModal === 'function') {
+        setTimeout(closeExitModal, 2000);
+      }
+    }
+  })();
+  </script>
+
+</body>
+</html>
