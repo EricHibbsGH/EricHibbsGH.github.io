@@ -2161,18 +2161,26 @@ blockquote::before {
 .faq-list {
   max-width: 760px;
   margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .faq-item {
-  border-bottom: 1px solid rgba(13,115,119,0.1);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.2s var(--ease-out-quart);
 }
+.faq-item:last-child { border-bottom: 0; }
+.faq-item.active { background: var(--surface-1); }
 
 .faq-question {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: var(--space-5) var(--space-6);
   background: none;
   border: none;
   font-family: var(--font-heading);
@@ -2182,10 +2190,12 @@ blockquote::before {
   color: var(--dark);
   cursor: pointer;
   text-align: left;
-  gap: 16px;
+  gap: var(--space-4);
   transition: color var(--transition);
 }
-.faq-question:hover { color: var(--teal); }
+@media (hover: hover) {
+  .faq-question:hover { color: var(--teal); }
+}
 
 .faq-icon {
   color: var(--teal);
@@ -2201,23 +2211,25 @@ blockquote::before {
 .faq-item.active .faq-icon { transform: rotate(180deg); }
 
 .faq-answer {
-  display: grid;
-  grid-template-rows: 0fr;
+  max-height: 0;
   overflow: hidden;
-  transition: grid-template-rows 0.45s var(--ease-out-expo);
+  opacity: 0;
+  transition: max-height 0.4s var(--ease-out-expo), opacity 0.3s var(--ease-out-quart);
 }
-.faq-item.active .faq-answer { grid-template-rows: 1fr; }
-.faq-answer > .faq-answer-inner { min-height: 0; }
-/* grid-row animation on .faq-answer handles the open state (see above) */
+.faq-item.active .faq-answer {
+  max-height: 600px; /* comfortably larger than any answer */
+  opacity: 1;
+}
 
 .faq-answer-inner {
-  padding: 0 0 20px;
+  padding: 0 var(--space-6) var(--space-5);
 }
 .faq-answer-inner p {
   font-size: var(--text-base);
   color: var(--text-secondary);
   line-height: var(--leading-loose);
   max-width: 62ch;
+  margin: 0;
 }
 
 /* ============================================
