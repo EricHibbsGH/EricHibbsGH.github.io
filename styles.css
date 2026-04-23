@@ -121,6 +121,10 @@
 
 html { scroll-behavior: smooth; }
 
+/* Branded text selection — a small touch of personality */
+::selection { background: rgba(13,115,119,0.2); color: var(--dark); }
+::-moz-selection { background: rgba(13,115,119,0.2); color: var(--dark); }
+
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -715,7 +719,21 @@ ul { list-style: none; }
   letter-spacing: 0;
   text-transform: none;
 }
-.stat-star { color: var(--accent); font-size: 0.9em; margin-left: 2px; }
+.stat-star {
+  color: var(--accent);
+  font-size: 0.9em;
+  margin-left: 2px;
+  display: inline-block;
+  transform-origin: center;
+}
+.stat-static.revealed .stat-star {
+  animation: starTwinkle 1.2s var(--ease-out-expo) 0.6s both;
+}
+@keyframes starTwinkle {
+  0%   { transform: scale(0) rotate(-90deg); opacity: 0; }
+  55%  { transform: scale(1.2) rotate(8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
 
 /* ============================================
    SERVICE RECOMMENDER QUIZ
@@ -1850,9 +1868,16 @@ blockquote::before {
 }
 .areas-note a {
   color: var(--teal);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  font-weight: var(--weight-semibold);
+  background-image: linear-gradient(var(--teal), var(--teal));
+  background-size: 100% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s var(--ease-out-quart);
+}
+@media (hover: hover) {
+  .areas-note a:hover { background-size: 100% 3px; }
 }
 
 /* ============================================
@@ -2864,7 +2889,16 @@ body.promo-active .hero { margin-top: calc(var(--header-height) + var(--promo-he
   text-decoration: none;
   transition: color var(--transition);
 }
-.policy-link:hover { color: var(--accent); }
+.policy-link::after {
+  content: "";
+  display: inline-block;
+  width: 1ch;
+  transition: transform 0.25s var(--ease-out-quart);
+}
+@media (hover: hover) {
+  .policy-link:hover { color: var(--accent); }
+  .policy-link:hover::after { transform: translateX(4px); }
+}
 
 /* ============================================
    FEATURE: EXIT-INTENT MODAL

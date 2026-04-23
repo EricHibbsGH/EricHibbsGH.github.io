@@ -1248,6 +1248,21 @@
   (function() {
     'use strict';
 
+    // ── Dev hello (shown once in console) ──
+    try {
+      if (console && console.log) {
+        console.log(
+          '%c Red Sky Cleaning %c  Hi there. Taking a look under the hood?',
+          'background:#0D7377;color:#fff;font-weight:700;padding:6px 10px;border-radius:999px 0 0 999px',
+          'background:#FA5C08;color:#fff;padding:6px 14px;border-radius:0 999px 999px 0'
+        );
+        console.log(
+          '%cLike clean code? Email us at support@redskycleaning.com — we always appreciate a thoughtful note.',
+          'color:#0D7377;font-size:12px;padding:4px 0'
+        );
+      }
+    } catch (_) {}
+
     // ── Header shrink on scroll ──
     var header = document.getElementById('header');
     if (header) {
