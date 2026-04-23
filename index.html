@@ -51,77 +51,83 @@
   <main id="content">
 
   <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-mesh"></div>
-    <div class="hero-mesh hero-mesh-2"></div>
+  <section class="hero" id="home" aria-labelledby="hero-heading">
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="hero-mesh hero-mesh-2" aria-hidden="true"></div>
     <div class="container hero-content">
       <div class="hero-text">
-        <p class="hero-tagline">Trusted by 500+ Atlanta Homeowners</p>
-        <h1>Professional cleaning<br><span class="hero-accent">Done right.</span></h1>
-        <p class="hero-sub">Get an instant quote and book a trusted, background-checked cleaner for your home or office.</p>
+        <p class="hero-tagline">Trusted by 500+ Atlanta homeowners</p>
+        <h1 id="hero-heading">Professional cleaning,<br><span class="hero-accent">done right.</span></h1>
+        <p class="hero-sub">Instant quote. Background-checked cleaners. Same team, every visit — for your home or office across North Atlanta.</p>
         <div class="next-slot" id="nextSlotHero" role="status">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           <span class="next-slot-text"></span>
         </div>
         <div class="hero-actions">
           <button class="btn btn-accent btn-pill" onclick="openQuoteModal()">Get a Free Quote</button>
-          <a href="#services" class="btn btn-outline btn-pill">See Services</a>
+          <a href="#services" class="btn btn-outline btn-pill">See services</a>
         </div>
         <div class="hero-phone">
-          <span class="phone-icon">
+          <span class="phone-icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           </span>
-          <a href="tel:4702400645" class="phone-number">470-240-0645</a>
+          <a href="tel:4702400645" class="phone-number">(470) 240-0645</a>
           <a href="sms:4702400645?body=Hi!%20I'm%20interested%20in%20a%20cleaning%20quote." class="btn-sms" aria-label="Text us for a quote">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            Text Us
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Text us
           </a>
         </div>
       </div>
-      <div class="hero-image">
-        <!-- Replace src with your WP media library URL -->
-        <div class="hero-image-placeholder">
-          <svg viewBox="0 0 440 400" xmlns="http://www.w3.org/2000/svg">
-            <rect width="440" height="400" rx="24" fill="#e8f4f4"/>
-            <circle cx="220" cy="155" r="65" fill="#d1ecec"/>
-            <rect x="155" y="220" width="130" height="85" rx="10" fill="#d1ecec"/>
-            <text x="220" y="340" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" fill="#0D7377" opacity="0.6">Professional Cleaner Image</text>
-          </svg>
-        </div>
-      </div>
+      <aside class="hero-trust" aria-label="Trust markers">
+        <ul class="hero-trust-list">
+          <li>
+            <span class="hero-trust-dot" aria-hidden="true">01</span>
+            <div>
+              <strong>Background-checked crew</strong>
+              <span>Every member vetted &amp; insured</span>
+            </div>
+          </li>
+          <li>
+            <span class="hero-trust-dot" aria-hidden="true">02</span>
+            <div>
+              <strong>Upfront pricing</strong>
+              <span>No surprise charges, ever</span>
+            </div>
+          </li>
+          <li>
+            <span class="hero-trust-dot" aria-hidden="true">03</span>
+            <div>
+              <strong>Satisfaction guarantee</strong>
+              <span>We come back within 24&nbsp;hrs to make it right</span>
+            </div>
+          </li>
+        </ul>
+        <p class="hero-trust-foot">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span><strong>5.0</strong> across 500+ cleans</span>
+        </p>
+      </aside>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <section class="stats-bar" id="stats">
+  <!-- TRUST STRIP (formerly stats bar) -->
+  <section class="stats-bar" id="stats" aria-label="Red Sky Cleaning in numbers">
     <div class="container stats-grid">
       <div class="stat reveal" data-target="500" data-suffix="+">
-        <div class="stat-icon-ring">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
         <span class="stat-number">0</span>
-        <span class="stat-label">Homes Cleaned</span>
+        <span class="stat-label">Homes cleaned</span>
       </div>
       <div class="stat reveal" data-target="100" data-suffix="%" style="transition-delay:0.1s">
-        <div class="stat-icon-ring">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-        </div>
         <span class="stat-number">0</span>
-        <span class="stat-label">Satisfaction Rate</span>
+        <span class="stat-label">Satisfaction rate</span>
       </div>
       <div class="stat reveal" data-target="15" data-suffix="+" style="transition-delay:0.2s">
-        <div class="stat-icon-ring">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
         <span class="stat-number">0</span>
-        <span class="stat-label">Years Experience</span>
+        <span class="stat-label">Years experience</span>
       </div>
-      <div class="stat reveal" data-target="5" data-suffix=".0" style="transition-delay:0.3s">
-        <div class="stat-icon-ring">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <span class="stat-number">0</span>
-        <span class="stat-label">Star Rating</span>
+      <div class="stat reveal stat-static" style="transition-delay:0.3s">
+        <span class="stat-number">5.0 <span aria-hidden="true" class="stat-star">★</span></span>
+        <span class="stat-label">Average rating</span>
       </div>
     </div>
   </section>
@@ -321,11 +327,9 @@
       <div class="services-grid">
 
         <div class="service-card reveal">
-          <div class="service-image">
-            <!-- Replace src with your WP media library URL -->
-            <div class="service-img-placeholder" style="background:#e8f4f4">
-              <span>Standard Cleaning Photo</span>
-            </div>
+          <div class="service-image service-image-1" aria-hidden="true">
+            <!-- Replace with real photo when available; styled placeholder otherwise -->
+            <div class="service-img-placeholder"></div>
           </div>
           <div class="service-body">
             <div class="service-header">
@@ -343,10 +347,8 @@
         </div>
 
         <div class="service-card reveal" style="transition-delay:0.1s">
-          <div class="service-image">
-            <div class="service-img-placeholder" style="background:#e4ecf4">
-              <span>Deep Clean Photo</span>
-            </div>
+          <div class="service-image service-image-2" aria-hidden="true">
+            <div class="service-img-placeholder"></div>
           </div>
           <div class="service-body">
             <div class="service-header">
@@ -364,10 +366,8 @@
         </div>
 
         <div class="service-card reveal" style="transition-delay:0.2s">
-          <div class="service-image">
-            <div class="service-img-placeholder" style="background:#e8f0e4">
-              <span>Move In Cleaning Photo</span>
-            </div>
+          <div class="service-image service-image-3" aria-hidden="true">
+            <div class="service-img-placeholder"></div>
           </div>
           <div class="service-body">
             <div class="service-header">
@@ -385,10 +385,8 @@
         </div>
 
         <div class="service-card reveal" style="transition-delay:0.3s">
-          <div class="service-image">
-            <div class="service-img-placeholder" style="background:#f0e8ec">
-              <span>Move Out Cleaning Photo</span>
-            </div>
+          <div class="service-image service-image-4" aria-hidden="true">
+            <div class="service-img-placeholder"></div>
           </div>
           <div class="service-body">
             <div class="service-header">
@@ -426,11 +424,11 @@
         <div class="ba-slider reveal" data-room="kitchen" aria-label="Before and after kitchen cleaning comparison">
           <!-- Replace src with your WP media library URLs -->
           <div class="ba-image ba-before">
-            <div class="ba-placeholder" style="background:#d4c5b5"><span>Before Photo (Kitchen)</span></div>
+            <div class="ba-placeholder ba-placeholder-before" aria-hidden="true"></div>
             <span class="ba-label">Before</span>
           </div>
           <div class="ba-image ba-after">
-            <div class="ba-placeholder" style="background:#c5dbd4"><span>After Photo (Kitchen)</span></div>
+            <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
           <div class="ba-handle" aria-label="Drag to compare">
@@ -661,11 +659,9 @@
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
               </div>
-              <blockquote>"Red Sky transformed our home. The team was incredibly thorough and left every room sparkling. I couldn't believe the difference!"</blockquote>
+              <blockquote>Red Sky transformed our home. The team was incredibly thorough and left every room sparkling. I couldn't believe the difference!</blockquote>
               <div class="testimonial-author">
-                <div class="author-avatar">
-                  <img src="logo.png" alt="Red Sky Cleaning">
-                </div>
+                <div class="author-avatar" aria-hidden="true">SM</div>
                 <div><strong>Sarah M.</strong><span>Johns Creek, GA</span></div>
               </div>
             </div>
@@ -679,11 +675,9 @@
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
               </div>
-              <blockquote>"We've been using Red Sky for our bi-weekly cleans for over a year. Consistently excellent quality and the booking process is so easy."</blockquote>
+              <blockquote>We've been using Red Sky for our bi-weekly cleans for over a year. Consistently excellent quality and the booking process is so easy.</blockquote>
               <div class="testimonial-author">
-                <div class="author-avatar">
-                  <img src="logo.png" alt="Red Sky Cleaning">
-                </div>
+                <div class="author-avatar" aria-hidden="true">JR</div>
                 <div><strong>James R.</strong><span>Alpharetta, GA</span></div>
               </div>
             </div>
@@ -697,11 +691,9 @@
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
               </div>
-              <blockquote>"They did an amazing deep clean before we moved in. Every corner was spotless. Highly recommend for move-in/move-out cleans!"</blockquote>
+              <blockquote>They did an amazing deep clean before we moved in. Every corner was spotless. Highly recommend for move-in/move-out cleans!</blockquote>
               <div class="testimonial-author">
-                <div class="author-avatar">
-                  <img src="logo.png" alt="Red Sky Cleaning">
-                </div>
+                <div class="author-avatar" aria-hidden="true">LP</div>
                 <div><strong>Lisa P.</strong><span>Marietta, GA</span></div>
               </div>
             </div>
@@ -715,11 +707,9 @@
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
               </div>
-              <blockquote>"Professional, punctual, and friendly. Red Sky has been a game-changer for keeping our office clean. Worth every penny."</blockquote>
+              <blockquote>Professional, punctual, and friendly. Red Sky has been a game-changer for keeping our office clean. Worth every penny.</blockquote>
               <div class="testimonial-author">
-                <div class="author-avatar">
-                  <img src="logo.png" alt="Red Sky Cleaning">
-                </div>
+                <div class="author-avatar" aria-hidden="true">DK</div>
                 <div><strong>David K.</strong><span>Buckhead, GA</span></div>
               </div>
             </div>
@@ -733,11 +723,9 @@
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
                 <svg viewBox="0 0 20 20" fill="#FA5C08"><path d="M10 1l2.39 4.84L17.3 6.7l-3.65 3.56.86 5.02L10 13l-4.51 2.28.86-5.02L2.7 6.7l4.91-.86L10 1z"/></svg>
               </div>
-              <blockquote>"I love that they use eco-friendly products. My kids and pets are safe, and the house smells amazing after every clean. Best service in Atlanta!"</blockquote>
+              <blockquote>I love that they use eco-friendly products. My kids and pets are safe, and the house smells amazing after every clean. Best service in Atlanta!</blockquote>
               <div class="testimonial-author">
-                <div class="author-avatar">
-                  <img src="logo.png" alt="Red Sky Cleaning">
-                </div>
+                <div class="author-avatar" aria-hidden="true">AT</div>
                 <div><strong>Amanda T.</strong><span>Lawrenceville, GA</span></div>
               </div>
             </div>
@@ -1357,11 +1345,16 @@
     function animateCounters() {
       if (counterFired) return;
       counterFired = true;
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       document.querySelectorAll('.stat').forEach(function(stat) {
-        var target = parseInt(stat.dataset.target);
+        if (stat.classList.contains('stat-static')) return;
+        var target = parseInt(stat.dataset.target, 10);
+        if (isNaN(target)) return;
         var suffix = stat.dataset.suffix || '';
         var numberEl = stat.querySelector('.stat-number');
-        var duration = 2000;
+        if (!numberEl) return;
+        if (prefersReduced) { numberEl.textContent = target + suffix; return; }
+        var duration = 1800;
         var startTime = null;
         function step(timestamp) {
           if (!startTime) startTime = timestamp;
