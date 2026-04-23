@@ -2625,7 +2625,6 @@ blockquote::before {
 .radio-label {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: var(--space-2);
   font-size: var(--text-sm);
   font-weight: var(--weight-regular);
@@ -2637,15 +2636,24 @@ blockquote::before {
   min-height: 0;
   margin-bottom: 0;
 }
-.checkbox-label input,
-.radio-label input {
+/* High-specificity override — defeats .form-group input and
+   .modal-wide .form-group input so checkboxes stay 18px square,
+   not 100%-width/44px-tall form controls. */
+.form-group .checkbox-label input[type="checkbox"],
+.form-group .radio-label input[type="radio"],
+.modal-wide .form-group .checkbox-label input[type="checkbox"],
+.modal-wide .form-group .radio-label input[type="radio"] {
   width: 18px;
   height: 18px;
   min-height: 0;
   padding: 0;
-  flex-shrink: 0;
+  margin: 0;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 4px;
+  flex: 0 0 18px;
   accent-color: var(--teal);
   cursor: pointer;
+  vertical-align: middle;
 }
 /* Override the generic .form-group label rule that would otherwise
    uppercase and bold checkbox/radio labels inside the quote modal. */
@@ -2660,8 +2668,9 @@ blockquote::before {
 
 .radio-group {
   display: flex;
-  gap: 24px;
-  margin-top: 6px;
+  gap: var(--space-5);
+  margin-top: var(--space-2);
+  align-items: center;
 }
 
 /* ============================================
