@@ -2787,28 +2787,37 @@ blockquote::before {
 .checkbox-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 6px;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-2);
 }
 
+/* Each label is its own 3-column mini-grid so the checkbox,
+   label text, and price align predictably within every row.
+   minmax(76px, auto) pads short labels like "Walls" so the price
+   column doesn't wander from row to row. */
 .checkbox-label,
 .radio-label {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18px minmax(76px, max-content) auto;
   align-items: center;
-  gap: var(--space-2);
+  column-gap: var(--space-3);
   font-size: var(--text-sm);
   font-weight: var(--weight-regular);
   letter-spacing: 0;
   text-transform: none;
   color: var(--text);
   cursor: pointer;
-  padding: var(--space-1) 0;
+  padding: var(--space-2) 0;
   min-height: 0;
   margin-bottom: 0;
+  line-height: 1.2;
 }
-/* High-specificity override — defeats .form-group input and
-   .modal-wide .form-group input so checkboxes stay 18px square,
-   not 100%-width/44px-tall form controls. */
+.radio-label {
+  /* radios don't have a price slot — 2 cols */
+  grid-template-columns: 18px auto;
+}
+
+/* Force checkbox/radio dimensions against .form-group input specificity */
 .form-group .checkbox-label input[type="checkbox"],
 .form-group .radio-label input[type="radio"],
 .modal-wide .form-group .checkbox-label input[type="checkbox"],
@@ -2820,10 +2829,10 @@ blockquote::before {
   margin: 0;
   border: 1.5px solid var(--border-subtle);
   border-radius: 4px;
-  flex: 0 0 18px;
   accent-color: var(--teal);
   cursor: pointer;
-  vertical-align: middle;
+  grid-column: 1;
+  justify-self: start;
 }
 /* Override the generic .form-group label rule that would otherwise
    uppercase and bold checkbox/radio labels inside the quote modal. */
@@ -3505,13 +3514,13 @@ label.toggle-label {
 }
 .addon-price {
   color: var(--teal);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   font-variant-numeric: tabular-nums;
-  margin-left: auto;
-  padding-left: var(--space-3);
+  letter-spacing: var(--tracking-tight);
   white-space: nowrap;
-  flex-shrink: 0;
+  grid-column: 3;
+  justify-self: start;
 }
 
 /* ============================================
