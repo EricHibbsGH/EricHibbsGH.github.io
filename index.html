@@ -542,7 +542,7 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
@@ -560,7 +560,7 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
@@ -578,7 +578,7 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
@@ -596,7 +596,7 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
@@ -1589,10 +1589,10 @@
           if (!after) return;
           // Sync the after-image clip-path with the CSS handle animation
           var keyframes = [
-            { offset: 0,    clipPath: 'inset(0 92% 0 0)' },
+            { offset: 0,    clipPath: 'inset(0 100% 0 0)' },
             { offset: 0.40, clipPath: 'inset(0 45% 0 0)' },
-            { offset: 0.70, clipPath: 'inset(0 82% 0 0)' },
-            { offset: 1,    clipPath: 'inset(0 92% 0 0)' }
+            { offset: 0.70, clipPath: 'inset(0 85% 0 0)' },
+            { offset: 1,    clipPath: 'inset(0 100% 0 0)' }
           ];
           try {
             after.animate(keyframes, { duration: 1800, delay: 350, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
@@ -1677,7 +1677,7 @@
       var afterImg = slider.querySelector('.ba-after');
       if (!handle || !afterImg) return;
       var isDragging = false;
-      var percent = 8; // start on "before" — only a sliver of after peeks through
+      var percent = 0; // start fully on "before" — handle at the left edge, after hidden
 
       function markTouched() { slider.classList.add('is-touched'); }
 
@@ -1723,7 +1723,7 @@
         markTouched();
       });
 
-      setPercent(8);
+      setPercent(0);
     });
 
     // ── Testimonial Carousel ──

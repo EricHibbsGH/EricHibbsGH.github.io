@@ -286,10 +286,10 @@ body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
   animation: baHandleHint 1.8s var(--ease-out-expo) 0.35s both;
 }
 @keyframes baHandleHint {
-  0%   { left: 8%; }
+  0%   { left: 0%; }
   40%  { left: 55%; }
-  70%  { left: 18%; }
-  100% { left: 8%; }
+  70%  { left: 15%; }
+  100% { left: 0%; }
 }
 /* The handle animation moves left, but the after clip-path needs
    to sync. We'll drive that via JS for perf rather than CSS. */
