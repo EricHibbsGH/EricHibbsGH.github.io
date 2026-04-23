@@ -268,6 +268,97 @@
     </div>
   </section>
 
+  <!-- TIME-SAVED CALCULATOR -->
+  <section class="section time-calc" id="time-saved" aria-labelledby="tc-heading">
+    <div class="container">
+      <div class="tc-head reveal">
+        <p class="section-eyebrow">Your time, measured</p>
+        <h2 class="section-heading" id="tc-heading">How many weekends could you get back?</h2>
+        <p class="section-sub">The average household spends hundreds of hours a year cleaning. Pick your home size and frequency — we'll show you the math.</p>
+      </div>
+
+      <div class="tc-grid reveal">
+        <div class="tc-controls">
+          <fieldset class="tc-field">
+            <legend>Home size</legend>
+            <div class="tc-pills">
+              <button type="button" class="tc-pill" data-group="size" data-value="small" aria-pressed="false">
+                <strong>Small</strong><span>Under 1,000 sq ft</span>
+              </button>
+              <button type="button" class="tc-pill is-active" data-group="size" data-value="medium" aria-pressed="true">
+                <strong>Medium</strong><span>1,000 &ndash; 2,000</span>
+              </button>
+              <button type="button" class="tc-pill" data-group="size" data-value="large" aria-pressed="false">
+                <strong>Large</strong><span>2,000 &ndash; 3,000</span>
+              </button>
+              <button type="button" class="tc-pill" data-group="size" data-value="xlarge" aria-pressed="false">
+                <strong>Extra large</strong><span>3,000+ sq ft</span>
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset class="tc-field">
+            <legend>Cleaning frequency</legend>
+            <div class="tc-pills tc-pills-row">
+              <button type="button" class="tc-pill" data-group="freq" data-value="weekly" aria-pressed="false">
+                <strong>Weekly</strong><span>52&times; a year</span>
+              </button>
+              <button type="button" class="tc-pill is-active" data-group="freq" data-value="biweekly" aria-pressed="true">
+                <strong>Bi-weekly</strong><span>26&times; a year &middot; popular</span>
+              </button>
+              <button type="button" class="tc-pill" data-group="freq" data-value="monthly" aria-pressed="false">
+                <strong>Monthly</strong><span>12&times; a year</span>
+              </button>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="tc-viz" aria-live="polite">
+          <div class="tc-hero">
+            <span class="tc-big" data-tc="hours">0</span>
+            <span class="tc-big-unit">hours reclaimed / year</span>
+            <p class="tc-context" data-tc="context">&nbsp;</p>
+          </div>
+
+          <div class="tc-bars" role="group" aria-label="Time-use comparison">
+            <div class="tc-bar-row">
+              <div class="tc-bar-head">
+                <span class="tc-bar-label">Without a cleaner</span>
+                <span class="tc-bar-value" data-tc="diy-hours">0&nbsp;h</span>
+              </div>
+              <div class="tc-bar tc-bar-diy" aria-hidden="true">
+                <div class="tc-bar-fill" data-tc="diy-fill" style="width:100%"></div>
+              </div>
+            </div>
+            <div class="tc-bar-row">
+              <div class="tc-bar-head">
+                <span class="tc-bar-label">With Red&nbsp;Sky</span>
+                <span class="tc-bar-value tc-bar-value-rs">0&nbsp;h <span class="tc-bar-sub">answering the door</span></span>
+              </div>
+              <div class="tc-bar tc-bar-rs" aria-hidden="true">
+                <div class="tc-bar-fill" data-tc="rs-fill" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tc-foot">
+            <div class="tc-foot-col">
+              <span class="tc-foot-label">Estimated yearly cost</span>
+              <span class="tc-foot-value" data-tc="cost">$0</span>
+            </div>
+            <div class="tc-foot-col">
+              <span class="tc-foot-label">Per cleaning</span>
+              <span class="tc-foot-value" data-tc="per-clean">$0</span>
+            </div>
+            <button class="btn btn-accent btn-pill" onclick="openQuoteModal()">Book this &rarr;</button>
+          </div>
+
+          <p class="tc-caveat">Estimates use industry-standard time &amp; sq&nbsp;ft ranges for residential cleaning. Your actual quote depends on scope and add-ons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section class="section how-it-works" id="how" aria-labelledby="how-heading">
     <div class="container">
@@ -2026,6 +2117,136 @@
         document.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
         showStep(1);
       };
+    })();
+
+    // ── Time-saved calculator ──
+    (function initTimeCalc() {
+      var section = document.getElementById('time-saved');
+      if (!section) return;
+
+      // Pro hours per single clean (industry-standard estimates)
+      var proHoursBySize = { small: 2, medium: 3, large: 4.5, xlarge: 6 };
+      // DIY takes ~1.8x the pro time (less efficient, breaks, distractions)
+      var diyMultiplier = 1.8;
+      // Cleans per year by frequency
+      var cleansByFreq = { weekly: 52, biweekly: 26, monthly: 12 };
+      // Pricing (mirrors the quote-modal priceConfig baseline)
+      var basePrice = 100;
+      var sizeMult  = { small: 1, medium: 1.3, large: 1.6, xlarge: 2 };
+      var freqDisc  = { weekly: 0.15, biweekly: 0.10, monthly: 0.05 };
+
+      var state = { size: 'medium', freq: 'biweekly' };
+      var els = {
+        hours:     section.querySelector('[data-tc="hours"]'),
+        context:   section.querySelector('[data-tc="context"]'),
+        diyHours:  section.querySelector('[data-tc="diy-hours"]'),
+        diyFill:   section.querySelector('[data-tc="diy-fill"]'),
+        rsFill:    section.querySelector('[data-tc="rs-fill"]'),
+        cost:      section.querySelector('[data-tc="cost"]'),
+        perClean:  section.querySelector('[data-tc="per-clean"]')
+      };
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var currentHours = 0;
+      var animFrame = null;
+
+      function pluralize(n, s) { return n === 1 ? s : s + 's'; }
+
+      function buildContext(hours) {
+        if (hours >= 120) {
+          var weekends = Math.round(hours / 20); // ~20 waking weekend hours
+          return 'That\'s roughly <strong>' + weekends + ' ' + pluralize(weekends, 'full weekend') + '</strong> back.';
+        }
+        if (hours >= 60) {
+          var days = Math.round(hours / 8);
+          return 'That\'s about <strong>' + days + ' ' + pluralize(days, 'workday') + '</strong> of your year.';
+        }
+        if (hours >= 24) {
+          return 'That\'s <strong>' + Math.round(hours) + ' hours</strong> you\'d spend scrubbing.';
+        }
+        return 'A small but real chunk of free time.';
+      }
+
+      function animateNumber(el, from, to, duration) {
+        if (!el) return;
+        if (prefersReduced || duration === 0) {
+          el.textContent = Math.round(to);
+          return;
+        }
+        cancelAnimationFrame(animFrame);
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = from + (to - from) * eased;
+          el.textContent = Math.round(val);
+          if (p < 1) animFrame = requestAnimationFrame(step);
+        }
+        animFrame = requestAnimationFrame(step);
+      }
+
+      function formatCurrency(n) {
+        return '$' + Math.round(n).toLocaleString('en-US');
+      }
+
+      function recalc() {
+        var pro = proHoursBySize[state.size];
+        var cleans = cleansByFreq[state.freq];
+        var diyHoursYear = Math.round(pro * diyMultiplier * cleans);
+        var perCleanPrice = basePrice * sizeMult[state.size] * (1 - freqDisc[state.freq]);
+        var yearlyCost = perCleanPrice * cleans;
+
+        animateNumber(els.hours, currentHours, diyHoursYear, 650);
+        currentHours = diyHoursYear;
+
+        if (els.context) els.context.innerHTML = buildContext(diyHoursYear);
+        if (els.diyHours) els.diyHours.textContent = diyHoursYear + ' h';
+
+        // Bar scaling: DIY = 100%, RS ≈ 2% (never fully zero)
+        if (els.diyFill) els.diyFill.style.width = '100%';
+        if (els.rsFill)  els.rsFill.style.width  = '2%';
+
+        if (els.cost) els.cost.textContent = formatCurrency(yearlyCost);
+        if (els.perClean) els.perClean.textContent = formatCurrency(perCleanPrice);
+      }
+
+      // Pill click handlers
+      section.querySelectorAll('.tc-pill').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var group = btn.dataset.group;
+          var value = btn.dataset.value;
+          if (!group || !value || state[group] === value) return;
+          state[group] = value;
+          section.querySelectorAll('.tc-pill[data-group="' + group + '"]').forEach(function(b) {
+            var on = b === btn;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          recalc();
+        });
+        // Keyboard: ← / → cycles within the same group
+        btn.addEventListener('keydown', function(e) {
+          if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+          e.preventDefault();
+          var siblings = Array.from(section.querySelectorAll('.tc-pill[data-group="' + btn.dataset.group + '"]'));
+          var idx = siblings.indexOf(btn);
+          var next = e.key === 'ArrowRight' ? (idx + 1) % siblings.length : (idx - 1 + siblings.length) % siblings.length;
+          siblings[next].focus();
+          siblings[next].click();
+        });
+      });
+
+      // Fire first calc when section scrolls in (so numbers tween from 0)
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries, o) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) { recalc(); o.unobserve(e.target); }
+          });
+        }, { threshold: 0.25 });
+        io.observe(section);
+      } else {
+        recalc();
+      }
     })();
 
     // ── Form resilience ──
