@@ -33,15 +33,15 @@
       <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
-      <nav class="main-nav" id="mainNav">
+      <nav class="main-nav" id="mainNav" aria-label="Main">
         <ul>
-          <li><a href="#home">Homepage</a></li>
+          <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#areas">Areas</a></li>
-          <li><a href="#about">About us</a></li>
-          <li><a href="#faq">Help</a></li>
+          <li><a href="#areas">Service area</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="#" class="nav-booking" onclick="openQuoteModal(); return false;">Booking Page</a></li>
+          <li><a href="#" class="nav-booking" onclick="openQuoteModal(); return false;">Book now</a></li>
         </ul>
       </nav>
     </div>
@@ -132,11 +132,12 @@
     </div>
   </section>
 
-  <!-- SERVICE RECOMMENDER QUIZ -->
-  <section class="section quiz-section" id="quiz">
+  <!-- SERVICE RECOMMENDER -->
+  <section class="section quiz-section" id="quiz" aria-labelledby="recommender-heading">
     <div class="container">
-      <h2 class="section-heading">Find Your Perfect Clean</h2>
-      <p class="section-sub">Answer 3 quick questions and we'll recommend the best service for your home.</p>
+      <p class="section-eyebrow" style="display:block; text-align:center;">Not sure which service?</p>
+      <h2 class="section-heading" id="recommender-heading">Find the right clean in 30 seconds</h2>
+      <p class="section-sub">Three quick questions — we'll recommend the service and show you a price estimate.</p>
 
       <div class="quiz-container reveal">
         <!-- Progress bar -->
@@ -248,8 +249,8 @@
               <span></span>
             </div>
             <div class="quiz-result-actions">
-              <button class="btn btn-accent btn-pill" onclick="quizBook()">Book This Clean &rarr;</button>
-              <button class="btn btn-outline btn-pill" onclick="quizRestart()">Start Over</button>
+              <button class="btn btn-accent btn-pill" onclick="quizBook()">Get a free quote &rarr;</button>
+              <button class="btn btn-outline btn-pill" onclick="quizRestart()">Start over</button>
             </div>
           </div>
         </div>
@@ -258,10 +259,10 @@
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section how-it-works" id="how">
+  <section class="section how-it-works" id="how" aria-labelledby="how-heading">
     <div class="container">
-      <h2 class="section-heading">How It Works</h2>
-      <p class="section-sub">Getting your space cleaned has never been easier.</p>
+      <h2 class="section-heading" id="how-heading">How it works</h2>
+      <p class="section-sub">Three steps from booked to spotless.</p>
       <div class="steps-grid">
         <div class="step-card reveal">
           <div class="step-number">1</div>
@@ -276,8 +277,8 @@
               <path d="M46 52l2 2 4-4" stroke="#0D7377" stroke-width="1.5" fill="none" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3>Book Online</h3>
-          <p>Select a convenient date and time, and we'll handle the rest.</p>
+          <h3>Book online</h3>
+          <p>Pick a date and time. We confirm within 24&nbsp;hours.</p>
         </div>
         <div class="step-connector" aria-hidden="true">
           <svg viewBox="0 0 60 20"><path d="M0 10h50" stroke="#0D7377" stroke-width="2" stroke-dasharray="4 4" opacity="0.3"/><path d="M45 5l10 5-10 5" fill="#0D7377" opacity="0.3"/></svg>
@@ -293,8 +294,8 @@
               <circle cx="40" cy="25" r="3" fill="#0D7377" opacity="0.25"/>
             </svg>
           </div>
-          <h3>We Clean</h3>
-          <p>Our certified crew comes to you and delivers a thorough clean.</p>
+          <h3>We clean</h3>
+          <p>Your vetted crew arrives on time with everything they need.</p>
         </div>
         <div class="step-connector" aria-hidden="true">
           <svg viewBox="0 0 60 20"><path d="M0 10h50" stroke="#0D7377" stroke-width="2" stroke-dasharray="4 4" opacity="0.3"/><path d="M45 5l10 5-10 5" fill="#0D7377" opacity="0.3"/></svg>
@@ -313,17 +314,17 @@
             </svg>
           </div>
           <h3>Relax</h3>
-          <p>Unwind and enjoy the difference. Your space shines.</p>
+          <p>Come home to a space that feels genuinely different.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="section services" id="services">
+  <section class="section services" id="services" aria-labelledby="services-heading">
     <div class="container">
-      <h2 class="section-heading">Our Cleaning Services</h2>
-      <p class="section-sub">Choose the service that fits your needs. Every clean includes our satisfaction guarantee.</p>
+      <h2 class="section-heading" id="services-heading">Our cleaning services</h2>
+      <p class="section-sub">Pick the service that fits. Every clean includes our satisfaction guarantee.</p>
       <div class="services-grid">
 
         <div class="service-card reveal">
@@ -342,7 +343,7 @@
               <li>General disinfection throughout</li>
               <li>Bathroom cleaning &amp; freshening</li>
             </ul>
-            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">Get a quote</button>
           </div>
         </div>
 
@@ -361,7 +362,7 @@
               <li>Deep scrubbing of bathrooms</li>
               <li>Baseboards &amp; trim detailing</li>
             </ul>
-            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">Get a quote</button>
           </div>
         </div>
 
@@ -380,7 +381,7 @@
               <li>Toilet disinfection &amp; sanitizing</li>
               <li>Cabinet interior wiped down</li>
             </ul>
-            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">Get a quote</button>
           </div>
         </div>
 
@@ -399,7 +400,7 @@
               <li>Spot treatment on surfaces</li>
               <li>Inspection-ready preparation</li>
             </ul>
-            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">GET QUOTE</button>
+            <button class="btn btn-accent btn-pill btn-sm" onclick="openQuoteModal()">Get a quote</button>
           </div>
         </div>
 
@@ -408,17 +409,17 @@
   </section>
 
   <!-- BEFORE / AFTER -->
-  <section class="section before-after" id="gallery">
+  <section class="section before-after" id="gallery" aria-labelledby="gallery-heading">
     <div class="container">
-      <h2 class="section-heading">See the Difference</h2>
-      <p class="section-sub">Drag the slider to compare before and after results.</p>
+      <h2 class="section-heading" id="gallery-heading">See the difference</h2>
+      <p class="section-sub">Drag the slider to compare before and after.</p>
       <!-- Room type filter tabs -->
-      <div class="ba-tabs" role="tablist">
-        <button class="ba-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+      <div class="ba-tabs" role="tablist" aria-label="Filter gallery by room">
+        <button class="ba-tab active" role="tab" aria-selected="true" data-filter="all">All rooms</button>
         <button class="ba-tab" role="tab" aria-selected="false" data-filter="kitchen">Kitchen</button>
         <button class="ba-tab" role="tab" aria-selected="false" data-filter="bathroom">Bathroom</button>
         <button class="ba-tab" role="tab" aria-selected="false" data-filter="bedroom">Bedroom</button>
-        <button class="ba-tab" role="tab" aria-selected="false" data-filter="living">Living Room</button>
+        <button class="ba-tab" role="tab" aria-selected="false" data-filter="living">Living room</button>
       </div>
       <div class="ba-gallery" aria-label="Before and after cleaning photos">
         <div class="ba-slider reveal" data-room="kitchen" aria-label="Before and after kitchen cleaning comparison">
@@ -548,7 +549,7 @@
       <h2>100% Satisfaction Guarantee</h2>
       <p>Your happiness is our top priority. If any part of your cleaning doesn't meet your expectations, simply contact us within <strong>24 hours</strong> and we'll send our team back to re-clean the area at <strong>absolutely no extra charge</strong>.</p>
       <p>No fine print. No runaround. If you're not satisfied, we make it right — period.</p>
-      <button class="btn btn-accent btn-pill" onclick="closePolicy('policySatisfaction'); openQuoteModal();">Book with Confidence</button>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policySatisfaction'); openQuoteModal();">Get a free quote</button>
     </div>
   </div>
   <div class="modal-overlay policy-modal" id="policyPricing" role="dialog" aria-modal="true">
@@ -558,7 +559,7 @@
       <h2>Transparent Pricing</h2>
       <p>We believe in <strong>complete transparency</strong>. The price you're quoted is the price you pay — no hidden fees, no surprise charges, no upselling on cleaning day.</p>
       <p>Our pricing is based on your home's size, the service type, and any optional add-ons you choose. You'll see an estimated range before you even submit your quote request.</p>
-      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyPricing'); openQuoteModal();">Get Your Quote</button>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyPricing'); openQuoteModal();">Get a free quote</button>
     </div>
   </div>
   <div class="modal-overlay policy-modal" id="policyQuality" role="dialog" aria-modal="true">
@@ -568,7 +569,7 @@
       <h2>Consistent Quality</h2>
       <p>Every Red Sky cleaner follows our <strong>detailed checklist system</strong> — the same thorough process on every visit, whether it's your first clean or your fiftieth.</p>
       <p>We conduct regular quality audits, and our team leads inspect results to ensure nothing is missed. Your home gets the same premium treatment, every single time.</p>
-      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyQuality'); openQuoteModal();">Schedule a Clean</button>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyQuality'); openQuoteModal();">Get a free quote</button>
     </div>
   </div>
   <div class="modal-overlay policy-modal" id="policyTrust" role="dialog" aria-modal="true">
@@ -578,7 +579,7 @@
       <h2>Trust & Safety</h2>
       <p>Every member of our team undergoes a <strong>comprehensive background check</strong> before their first day. We verify employment history, check references, and run criminal background screenings.</p>
       <p>We're also <strong>fully insured and bonded</strong>, so your home and belongings are protected. You can feel completely safe and secure when our team arrives.</p>
-      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyTrust'); openQuoteModal();">Book with Confidence</button>
+      <button class="btn btn-accent btn-pill" onclick="closePolicy('policyTrust'); openQuoteModal();">Get a free quote</button>
     </div>
   </div>
 
@@ -588,14 +589,15 @@
       <button class="modal-close" onclick="closeExitModal()" aria-label="Close">&times;</button>
       <div class="exit-header">
         <span class="exit-badge">10% OFF</span>
-        <h2>Wait! Don't Leave Empty-Handed</h2>
-        <p>Get <strong>10% off your first cleaning</strong> when you book today.</p>
+        <h2>Before you go — keep 10% off?</h2>
+        <p>We'll email a code for <strong>10% off your first clean</strong>. No spam, one message.</p>
       </div>
-      <form class="exit-form" id="exitForm" onsubmit="submitToZapier(event, 'exit')">
-        <input type="email" name="email" placeholder="Enter your email" required>
-        <button type="submit" class="btn btn-accent btn-pill btn-block">Claim My Discount</button>
+      <form class="exit-form" id="exitForm" onsubmit="submitToZapier(event, 'exit')" novalidate>
+        <label class="sr-only" for="exit-email">Email address</label>
+        <input type="email" id="exit-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <button type="submit" class="btn btn-accent btn-pill btn-block">Email me the code</button>
       </form>
-      <a href="#" class="exit-dismiss" onclick="closeExitModal(); return false;">No thanks, I'll pay full price</a>
+      <a href="#" class="exit-dismiss" onclick="closeExitModal(); return false;">No thanks, maybe next time</a>
     </div>
   </div>
 
@@ -644,10 +646,10 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="section testimonials" id="testimonials">
+  <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-heading">
     <div class="container">
-      <h2 class="section-heading">What Our Clients Say</h2>
-      <p class="section-sub">Real reviews from real Atlanta homeowners.</p>
+      <h2 class="section-heading" id="testimonials-heading">What our customers say</h2>
+      <p class="section-sub">Unedited reviews from Atlanta homeowners we clean for every week.</p>
       <div class="testimonial-carousel">
         <div class="testimonial-track" id="testimonialTrack">
           <div class="testimonial-card">
@@ -757,38 +759,41 @@
         </div>
       </div>
       <div class="about-text reveal" style="transition-delay:0.15s">
-        <h2>About Red Sky Cleaning</h2>
-        <p>Red Sky Cleaning is a trusted residential and commercial cleaning service proudly serving the greater Atlanta area. Our mission is simple: provide professional, reliable, and thorough cleaning that lets our clients focus on what matters most.</p>
-        <p>Every member of our crew is background-checked, trained, and committed to delivering a spotless result. We treat your space with the same care and attention we'd give our own homes.</p>
-        <a href="#" class="btn btn-accent btn-pill" onclick="openQuoteModal(); return false;">Book a Cleaning</a>
+        <p class="section-eyebrow">About Red Sky</p>
+        <h2>A local cleaning service that sweats the details.</h2>
+        <p>We're a residential and commercial cleaning team serving the greater Atlanta area. Our mission is simple: professional, reliable, thorough cleaning that lets you focus on what matters most.</p>
+        <p>Every member of our crew is background-checked, trained, and committed to delivering a spotless result — and we treat your space with the same care we'd give our own home.</p>
+        <a href="#" class="btn btn-accent btn-pill" onclick="openQuoteModal(); return false;">Get a free quote</a>
       </div>
     </div>
   </section>
 
   <!-- SERVICE AREAS -->
-  <section class="section areas" id="areas">
+  <section class="section areas" id="areas" aria-labelledby="areas-heading">
     <div class="container">
-      <h2 class="section-heading">Service Areas</h2>
-      <p class="section-sub">We proudly serve the following North Atlanta communities and surrounding areas.</p>
+      <h2 class="section-heading" id="areas-heading">Where we clean</h2>
+      <p class="section-sub">Serving North Atlanta and surrounding communities. Check your ZIP below.</p>
       <div class="zip-checker reveal">
+        <label for="zipInput" class="zip-label">Your ZIP code</label>
         <div class="zip-input-group">
-          <input type="text" id="zipInput" placeholder="Enter your ZIP code" maxlength="5" inputmode="numeric" pattern="[0-9]{5}" aria-label="Check if we serve your area" onkeydown="if(event.key==='Enter'){checkZip();event.preventDefault();}">
-          <button class="btn btn-accent btn-pill" onclick="checkZip()">Check</button>
+          <input type="text" id="zipInput" placeholder="30309" maxlength="5" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" aria-describedby="zipHelp zipResult" onkeydown="if(event.key==='Enter'){checkZip();event.preventDefault();}">
+          <button class="btn btn-accent btn-pill" onclick="checkZip()">Check coverage</button>
         </div>
+        <p id="zipHelp" class="zip-help">We'll tell you instantly if we serve your area.</p>
         <div id="zipResult" aria-live="polite"></div>
       </div>
       <div class="areas-map-visual reveal">
-        <div id="serviceMap" class="service-map"></div>
-        <p class="areas-note">Don't see your area? <a href="#contact">Contact us</a> &mdash; we may still be able to help!</p>
+        <div id="serviceMap" class="service-map" aria-label="Map of Red Sky Cleaning service areas in North Atlanta"></div>
+        <p class="areas-note">Don't see your neighborhood? <a href="#contact">Get in touch</a> — we may still be able to help.</p>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section faq" id="faq">
+  <section class="section faq" id="faq" aria-labelledby="faq-heading">
     <div class="container">
-      <h2 class="section-heading">Frequently Asked Questions</h2>
-      <p class="section-sub">Everything you need to know about our cleaning services.</p>
+      <h2 class="section-heading" id="faq-heading">Frequently asked questions</h2>
+      <p class="section-sub">Everything you need to know before booking.</p>
       <div class="faq-list">
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
@@ -861,11 +866,12 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section contact-section" id="contact">
+  <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
     <div class="container contact-inner">
       <div class="contact-text reveal">
-        <h2>Get in Touch</h2>
-        <p>Have questions or need a custom quote? We'd love to hear from you.</p>
+        <p class="section-eyebrow">Contact</p>
+        <h2 id="contact-heading">Get in touch.</h2>
+        <p>Questions, commercial inquiries, or need a custom quote? Drop us a note — we reply within one business day.</p>
         <div class="contact-details">
           <div class="contact-item">
             <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -882,10 +888,10 @@
             </div>
           </div>
           <div class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <div>
               <strong>Hours</strong>
-              <p>Monday &ndash; Friday: 7am &ndash; 6pm<br>Saturday &ndash; Sunday: Closed</p>
+              <p>Mon&ndash;Fri · 7 am&ndash;6 pm<br>Sat &amp; Sun · closed</p>
             </div>
           </div>
           <div class="contact-item">
@@ -915,7 +921,7 @@
             <textarea id="c-message" name="message" rows="5" placeholder=" " required></textarea>
             <label for="c-message">Message *</label>
           </div>
-          <button type="submit" class="btn btn-accent btn-pill btn-block">Send Message</button>
+          <button type="submit" class="btn btn-accent btn-pill btn-block">Send message</button>
         </form>
       </div>
     </div>
@@ -937,11 +943,12 @@
     <div class="container">
       <div class="footer-newsletter">
         <div class="newsletter-text">
-          <h4>Stay Updated</h4>
-          <p>Get cleaning tips and exclusive offers delivered to your inbox.</p>
+          <h4>Cleaning tips &amp; offers</h4>
+          <p>One short email a month. Unsubscribe anytime.</p>
         </div>
-        <form class="newsletter-form" id="newsletterForm" onsubmit="submitToZapier(event, 'newsletter')">
-          <input type="email" name="email" placeholder="Your email address" required>
+        <form class="newsletter-form" id="newsletterForm" onsubmit="submitToZapier(event, 'newsletter')" novalidate>
+          <label class="sr-only" for="newsletter-email">Email address</label>
+          <input type="email" id="newsletter-email" name="email" placeholder="you@example.com" autocomplete="email" required>
           <button type="submit" class="btn btn-accent btn-pill">Subscribe</button>
         </form>
       </div>
@@ -1030,8 +1037,8 @@
         <!-- LEFT COLUMN: Contact & Address -->
         <div class="qf-col qf-col-left">
           <div class="qf-col-header">
-            <h2>Request a Quote</h2>
-            <p class="modal-sub">Tell us about yourself and your home.</p>
+            <h2>Get a free quote</h2>
+            <p class="modal-sub">Tell us a little about your home. We'll reply with a firm price.</p>
           </div>
           <div class="form-row">
             <div class="form-group floating">
@@ -1141,8 +1148,8 @@
         <!-- RIGHT COLUMN: Service & Pricing -->
         <div class="qf-col qf-col-right">
           <div class="qf-col-header">
-            <h3>Customize Your Clean</h3>
-            <p class="modal-sub">Select your service and options below.</p>
+            <h3>Customize your clean</h3>
+            <p class="modal-sub">Pick your service and any add-ons. Price updates as you choose.</p>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -1214,12 +1221,12 @@
           <!-- Price Estimate Bar -->
           <div class="price-estimate-bar" id="priceEstimateBar" role="status" aria-live="polite">
             <div class="estimate-content">
-              <span class="estimate-label">Estimated Price:</span>
+              <span class="estimate-label">Estimated range</span>
               <span class="estimate-range">$0</span>
             </div>
             <span class="estimate-savings" style="display:none"></span>
           </div>
-          <button type="submit" class="btn btn-submit btn-pill btn-block">Submit Quote Request</button>
+          <button type="submit" class="btn btn-submit btn-pill btn-block">Send quote request</button>
         </div>
 
       </form>
@@ -1232,7 +1239,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       <span>(470) 240-0645</span>
     </a>
-    <button class="mobile-cta-quote btn btn-accent btn-pill" onclick="openQuoteModal()">Free Quote</button>
+    <button class="mobile-cta-quote btn btn-accent btn-pill" onclick="openQuoteModal()">Free quote</button>
   </div>
 
   <script>
@@ -1658,17 +1665,18 @@
     };
     window.checkZip = function() {
       var input = document.getElementById('zipInput');
-      var val = input.value.trim();
+      var val = (input && input.value || '').trim();
       var result = document.getElementById('zipResult');
+      if (!result) return;
       if (!/^\d{5}$/.test(val)) {
-        result.innerHTML = '<div class="zip-result zip-error">Please enter a valid 5-digit ZIP code.</div>';
+        result.innerHTML = '<div class="zip-result zip-error" role="alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Enter a 5-digit ZIP (numbers only).</div>';
+        if (input) input.focus();
         return;
       }
       var city = zipMap[val];
       if (city) {
-        result.innerHTML = '<div class="zip-result zip-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Great news! We serve <strong>' + city + '</strong>. <a href="#" onclick="openQuoteModal(); return false;">Get your free quote &rarr;</a></div>';
-        // Highlight matching marker on Leaflet map
-        if (window.serviceMapMarkers) {
+        result.innerHTML = '<div class="zip-result zip-success" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> We clean in <strong>' + city + '</strong>. <a href="#" onclick="openQuoteModal(); return false;">Get a free quote &rarr;</a></div>';
+        if (window.serviceMapMarkers && window.serviceLeafletMap) {
           window.serviceMapMarkers.forEach(function(m) {
             if (m.cityName === city) {
               m.marker.openPopup();
@@ -1677,7 +1685,7 @@
           });
         }
       } else {
-        result.innerHTML = '<div class="zip-result zip-miss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> We don\'t serve that area yet, but we\'re expanding! <a href="#contact">Contact us</a> to join our waitlist.</div>';
+        result.innerHTML = '<div class="zip-result zip-miss" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Not in our standard area yet. <a href="#contact">Ask us anyway</a> — we sometimes make exceptions.</div>';
       }
     };
 
@@ -2057,12 +2065,12 @@
       exit:       'YOUR_ZAPIER_EXIT_INTENT_WEBHOOK_URL'
     };
 
-    // Success messages per form
+    // Success messages per form — brief, specific, active voice
     var SUCCESS_MSG = {
-      quote:      'Thank you! Your quote request has been submitted. We\'ll get back to you within 24 hours.',
-      contact:    'Thank you! We\'ll be in touch shortly.',
-      newsletter: 'You\'re subscribed! Watch your inbox for cleaning tips and offers.',
-      exit:       'Discount code sent! Check your email for 10% off your first clean.'
+      quote:      'Got it — we\'ll send your quote within one business day. Keep an eye on your inbox (and spam folder, just in case).',
+      contact:    'Thanks — we\'ll reply within one business day.',
+      newsletter: 'You\'re in. Check your inbox to confirm.',
+      exit:       'Sent! Your 10%-off code is heading to your inbox now.'
     };
 
     window.submitToZapier = function(e, formType) {
