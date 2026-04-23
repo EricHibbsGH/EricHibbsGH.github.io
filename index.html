@@ -48,6 +48,8 @@
     <div class="nav-backdrop" id="navBackdrop"></div>
   </header>
 
+  <main id="content">
+
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-mesh"></div>
@@ -326,8 +328,10 @@
             </div>
           </div>
           <div class="service-body">
-            <h3>Standard Cleaning</h3>
-            <p class="service-price">Starting at <strong>$100</strong></p>
+            <div class="service-header">
+              <h3>Standard Cleaning</h3>
+              <p class="service-price">from <strong>$100</strong></p>
+            </div>
             <ul class="service-features">
               <li>Detailed dusting of all surfaces</li>
               <li>Kitchen sanitizing &amp; cleaning</li>
@@ -345,8 +349,10 @@
             </div>
           </div>
           <div class="service-body">
-            <h3>Deep Clean</h3>
-            <p class="service-price">Starting at <strong>$250</strong></p>
+            <div class="service-header">
+              <h3>Deep Clean</h3>
+              <p class="service-price">from <strong>$250</strong></p>
+            </div>
             <ul class="service-features">
               <li>Detailed appliance cleaning</li>
               <li>Kitchen surfaces deep cleaned</li>
@@ -364,8 +370,10 @@
             </div>
           </div>
           <div class="service-body">
-            <h3>Move In</h3>
-            <p class="service-price">Starting at <strong>$250</strong></p>
+            <div class="service-header">
+              <h3>Move In</h3>
+              <p class="service-price">from <strong>$250</strong></p>
+            </div>
             <ul class="service-features">
               <li>Baseboards &amp; trim cleaning</li>
               <li>Complete floor care</li>
@@ -383,8 +391,10 @@
             </div>
           </div>
           <div class="service-body">
-            <h3>Move Out</h3>
-            <p class="service-price">Starting at <strong>$250</strong></p>
+            <div class="service-header">
+              <h3>Move Out</h3>
+              <p class="service-price">from <strong>$250</strong></p>
+            </div>
             <ul class="service-features">
               <li>Cabinet &amp; drawer cleaning</li>
               <li>Appliance interior cleaning</li>
@@ -487,55 +497,46 @@
   </section>
 
   <!-- OUR PROMISE -->
-  <section class="section promise" id="promise">
+  <section class="section promise" id="promise" aria-labelledby="promise-heading">
     <div class="container">
-      <h2 class="section-heading">Our Promise</h2>
-      <p class="section-sub">What you can expect every time we clean your space.</p>
-      <div class="promise-grid">
-        <div class="promise-card reveal">
-          <div class="promise-icon">
-            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
-              <path d="M17 28l7 7 14-14" stroke="#0D7377" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>100% Satisfaction Guaranteed</h3>
-          <p>If something doesn't meet your expectations, we come back and make it right &mdash; no questions asked.</p>
-          <a href="#" class="policy-link" onclick="openPolicy('policySatisfaction'); return false;">Learn More &rarr;</a>
+      <div class="promise-layout">
+        <div class="reveal">
+          <p class="section-eyebrow">Our Promise</p>
+          <h2 class="promise-lead" id="promise-heading">Four things we <em>always</em> get right.</h2>
         </div>
-        <div class="promise-card reveal" style="transition-delay:0.1s">
-          <div class="promise-icon">
-            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
-              <text x="28" y="34" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="700" fill="#0D7377">$</text>
-            </svg>
+        <div class="promise-list">
+          <div class="promise-row reveal">
+            <span class="promise-num">01</span>
+            <div>
+              <h3>100% Satisfaction, Guaranteed</h3>
+              <p>If something doesn't meet your expectations, we come back and make it right &mdash; no questions asked.</p>
+              <a href="#" class="policy-link" onclick="openPolicy('policySatisfaction'); return false;">Read the guarantee &rarr;</a>
+            </div>
           </div>
-          <h3>Honest Pricing. No Hidden Fees</h3>
-          <p>What you see is what you pay. We provide transparent, upfront pricing with no surprise charges.</p>
-          <a href="#" class="policy-link" onclick="openPolicy('policyPricing'); return false;">Learn More &rarr;</a>
-        </div>
-        <div class="promise-card reveal" style="transition-delay:0.2s">
-          <div class="promise-icon">
-            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
-              <path d="M20 36l4-8h8l4 8" stroke="#0D7377" stroke-width="2" fill="none" stroke-linejoin="round"/>
-              <circle cx="28" cy="23" r="5" stroke="#0D7377" stroke-width="2" fill="none"/>
-            </svg>
+          <div class="promise-row reveal" style="transition-delay:0.1s">
+            <span class="promise-num">02</span>
+            <div>
+              <h3>Honest Pricing. No Hidden Fees</h3>
+              <p>What you see is what you pay. We provide transparent, upfront pricing with no surprise charges.</p>
+              <a href="#" class="policy-link" onclick="openPolicy('policyPricing'); return false;">See pricing details &rarr;</a>
+            </div>
           </div>
-          <h3>Consistent Quality</h3>
-          <p>Our standards are maintained across every single visit. You can count on the same excellent results every time.</p>
-          <a href="#" class="policy-link" onclick="openPolicy('policyQuality'); return false;">Learn More &rarr;</a>
-        </div>
-        <div class="promise-card reveal" style="transition-delay:0.3s">
-          <div class="promise-icon">
-            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="28" cy="28" r="26" fill="#e8f4f4" stroke="#0D7377" stroke-width="1.5"/>
-              <path d="M28 16 L32 24 L40 25 L34 31 L35.5 39 L28 35 L20.5 39 L22 31 L16 25 L24 24 Z" stroke="#0D7377" stroke-width="2" fill="none" stroke-linejoin="round"/>
-            </svg>
+          <div class="promise-row reveal" style="transition-delay:0.15s">
+            <span class="promise-num">03</span>
+            <div>
+              <h3>Consistent Quality</h3>
+              <p>Our standards are maintained across every single visit. You can count on the same excellent results every time.</p>
+              <a href="#" class="policy-link" onclick="openPolicy('policyQuality'); return false;">How we keep it consistent &rarr;</a>
+            </div>
           </div>
-          <h3>Trust on Every Visit</h3>
-          <p>Our team is background-checked and fully vetted, so you can feel safe and confident every time we arrive.</p>
-          <a href="#" class="policy-link" onclick="openPolicy('policyTrust'); return false;">Learn More &rarr;</a>
+          <div class="promise-row reveal" style="transition-delay:0.2s">
+            <span class="promise-num">04</span>
+            <div>
+              <h3>Trust on Every Visit</h3>
+              <p>Our team is background-checked and fully vetted, so you can feel safe and confident every time we arrive.</p>
+              <a href="#" class="policy-link" onclick="openPolicy('policyTrust'); return false;">Our trust &amp; safety process &rarr;</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -600,37 +601,45 @@
     </div>
   </div>
 
-  <!-- TRUST BADGES -->
-  <section class="section trust-badges" id="trust">
+  <!-- TRUST BADGES — compact horizontal strip -->
+  <section class="section-sm trust-badges" id="trust" aria-label="Trust and certifications">
     <div class="container">
       <div class="badges-grid">
         <div class="badge-item reveal">
-          <div class="badge-icon">
+          <div class="badge-icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none"><path d="M24 4L6 12v12c0 10.55 7.68 20.41 18 22.54C34.32 44.41 42 34.55 42 24V12L24 4z" stroke="#27ae60" stroke-width="2" fill="#e8f8ef"/><path d="M17 24l5 5 9-9" stroke="#27ae60" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h4>Insured &amp; Bonded</h4>
-          <p>Fully covered for your peace of mind</p>
+          <div class="badge-item-text">
+            <h4>Insured &amp; Bonded</h4>
+            <p>Fully covered for your peace of mind</p>
+          </div>
         </div>
         <div class="badge-item reveal" style="transition-delay:0.1s">
-          <div class="badge-icon">
+          <div class="badge-icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="8" stroke="#27ae60" stroke-width="2" fill="#e8f8ef"/><path d="M10 40c0-7.73 6.27-14 14-14s14 6.27 14 14" stroke="#27ae60" stroke-width="2" fill="none"/><path d="M20 18l3 3 6-6" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h4>Background-Checked</h4>
-          <p>Every team member vetted and verified</p>
+          <div class="badge-item-text">
+            <h4>Background-Checked</h4>
+            <p>Every team member vetted and verified</p>
+          </div>
         </div>
         <div class="badge-item reveal" style="transition-delay:0.2s">
-          <div class="badge-icon">
+          <div class="badge-icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="28" r="3" fill="#27ae60"/><path d="M24 6c-2 4-8 6-8 14a8 8 0 0016 0c0-8-6-10-8-14z" stroke="#27ae60" stroke-width="2" fill="#e8f8ef"/><path d="M18 36l6 8 6-8" stroke="#27ae60" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h4>Eco-Friendly Products</h4>
-          <p>Safe for your family and pets</p>
+          <div class="badge-item-text">
+            <h4>Eco-Friendly Products</h4>
+            <p>Safe for your family and pets</p>
+          </div>
         </div>
         <div class="badge-item reveal" style="transition-delay:0.3s">
-          <div class="badge-icon">
+          <div class="badge-icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none"><path d="M24 6l5.18 10.49L40.5 18.3l-8.25 8.04L34.36 38 24 32.49 13.64 38l2.11-11.66L7.5 18.3l11.32-1.81L24 6z" stroke="#27ae60" stroke-width="2" fill="#e8f8ef" stroke-linejoin="round"/></svg>
           </div>
-          <h4>5-Star Rated</h4>
-          <p>Consistently top-rated by clients</p>
+          <div class="badge-item-text">
+            <h4>5-Star Rated</h4>
+            <p>Consistently top-rated by clients</p>
+          </div>
         </div>
       </div>
     </div>
@@ -925,13 +934,15 @@
   </section>
 
   <!-- CTA BANNER -->
-  <section class="cta-banner">
+  <section class="cta-banner" aria-labelledby="cta-heading">
     <div class="container cta-inner">
-      <h2>Ready for a Sparkling Clean Home?</h2>
+      <h2 id="cta-heading">Ready for a sparkling clean home?</h2>
       <p>Book today and experience the Red Sky difference. Your satisfaction is guaranteed.</p>
       <button class="btn btn-accent btn-pill btn-lg" onclick="openQuoteModal()">Get a Free Quote</button>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
