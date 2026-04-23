@@ -282,14 +282,14 @@ body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
 /* ============================================
    BEFORE/AFTER HANDLE HINT (fires once per slider)
    ============================================ */
-.ba-slider.hinted .ba-handle {
-  animation: baHandleHint 1.4s var(--ease-out-expo) 0.3s both;
+.ba-slider.hinted:not(.is-touched) .ba-handle {
+  animation: baHandleHint 1.8s var(--ease-out-expo) 0.35s both;
 }
 @keyframes baHandleHint {
-  0%   { left: 50%; }
-  30%  { left: 30%; }
-  60%  { left: 70%; }
-  100% { left: 50%; }
+  0%   { left: 8%; }
+  40%  { left: 55%; }
+  70%  { left: 18%; }
+  100% { left: 8%; }
 }
 /* The handle animation moves left, but the after clip-path needs
    to sync. We'll drive that via JS for perf rather than CSS. */
@@ -1550,6 +1550,41 @@ body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
 }
 .ba-handle:hover .ba-handle-circle,
 .ba-handle:focus-visible .ba-handle-circle { transform: scale(1.05); }
+
+/* "Drag to clean →" badge — sits on the before-side at top, fades on first touch */
+.ba-drag-hint {
+  position: absolute;
+  top: var(--space-3);
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(26,26,46,0.92);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  pointer-events: none;
+  animation: baDragNudge 2.4s var(--ease-in-out) infinite;
+  transition: opacity 0.35s var(--ease-out-quart), transform 0.35s var(--ease-out-quart);
+}
+.ba-slider.is-touched .ba-drag-hint {
+  opacity: 0;
+  transform: translate(-50%, -6px);
+}
+@keyframes baDragNudge {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(calc(-50% + 4px), 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ba-drag-hint { animation: none !important; }
+}
 
 /* ============================================
    OUR PROMISE

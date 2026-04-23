@@ -520,8 +520,9 @@
   <!-- BEFORE / AFTER -->
   <section class="section before-after" id="gallery" aria-labelledby="gallery-heading">
     <div class="container">
-      <h2 class="section-heading" id="gallery-heading">See the difference</h2>
-      <p class="section-sub">Drag the slider to compare before and after.</p>
+      <p class="section-eyebrow" style="display:block; text-align:center;">Before &amp; after</p>
+      <h2 class="section-heading" id="gallery-heading">See the difference &mdash; drag to reveal</h2>
+      <p class="section-sub">Each photo starts on the <strong>before</strong> side. Grab the handle in the middle and slide right to uncover how the space looks after our clean.</p>
       <!-- Room type filter tabs -->
       <div class="ba-tabs" role="tablist" aria-label="Filter gallery by room">
         <button class="ba-tab active" role="tab" aria-selected="true" data-filter="all">All rooms</button>
@@ -541,13 +542,14 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
             <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
+          <span class="ba-drag-hint" aria-hidden="true">Drag to clean &rarr;</span>
         </div>
         <div class="ba-slider reveal" data-room="bathroom" style="transition-delay:0.15s" aria-label="Before and after bathroom cleaning comparison">
           <div class="ba-image ba-before">
@@ -558,13 +560,14 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
             <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
+          <span class="ba-drag-hint" aria-hidden="true">Drag to clean &rarr;</span>
         </div>
         <div class="ba-slider reveal" data-room="bedroom" style="transition-delay:0.3s" aria-label="Before and after bedroom cleaning comparison">
           <div class="ba-image ba-before">
@@ -575,13 +578,14 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
             <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
+          <span class="ba-drag-hint" aria-hidden="true">Drag to clean &rarr;</span>
         </div>
         <div class="ba-slider reveal" data-room="living" style="transition-delay:0.45s" aria-label="Before and after living room cleaning comparison">
           <div class="ba-image ba-before">
@@ -592,13 +596,14 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8">
             <div class="ba-handle-line" aria-hidden="true"></div>
             <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
             <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
+          <span class="ba-drag-hint" aria-hidden="true">Drag to clean &rarr;</span>
         </div>
       </div>
     </div>
@@ -1575,13 +1580,13 @@
           if (!after) return;
           // Sync the after-image clip-path with the CSS handle animation
           var keyframes = [
-            { offset: 0,    clipPath: 'inset(0 50% 0 0)' },
-            { offset: 0.30, clipPath: 'inset(0 70% 0 0)' },
-            { offset: 0.60, clipPath: 'inset(0 30% 0 0)' },
-            { offset: 1,    clipPath: 'inset(0 50% 0 0)' }
+            { offset: 0,    clipPath: 'inset(0 92% 0 0)' },
+            { offset: 0.40, clipPath: 'inset(0 45% 0 0)' },
+            { offset: 0.70, clipPath: 'inset(0 82% 0 0)' },
+            { offset: 1,    clipPath: 'inset(0 92% 0 0)' }
           ];
           try {
-            after.animate(keyframes, { duration: 1400, delay: 300, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+            after.animate(keyframes, { duration: 1800, delay: 350, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
           } catch (_) {}
           slider.classList.add('hinted');
           obs.unobserve(slider);
@@ -1663,7 +1668,9 @@
       var afterImg = slider.querySelector('.ba-after');
       if (!handle || !afterImg) return;
       var isDragging = false;
-      var percent = 50;
+      var percent = 8; // start on "before" — only a sliver of after peeks through
+
+      function markTouched() { slider.classList.add('is-touched'); }
 
       function setPercent(p) {
         percent = Math.max(0, Math.min(100, p));
@@ -1678,6 +1685,7 @@
 
       handle.addEventListener('pointerdown', function(e) {
         isDragging = true;
+        markTouched();
         try { handle.setPointerCapture(e.pointerId); } catch (_) {}
         e.preventDefault();
       });
@@ -1687,24 +1695,26 @@
       handle.addEventListener('pointerup', function() { isDragging = false; });
       handle.addEventListener('lostpointercapture', function() { isDragging = false; });
 
-      // Keyboard support — P0 a11y fix
       handle.addEventListener('keydown', function(e) {
         var step = e.shiftKey ? 10 : 5;
+        var handled = true;
         switch (e.key) {
-          case 'ArrowLeft':  setPercent(percent - step); e.preventDefault(); break;
-          case 'ArrowRight': setPercent(percent + step); e.preventDefault(); break;
-          case 'Home':       setPercent(0); e.preventDefault(); break;
-          case 'End':        setPercent(100); e.preventDefault(); break;
+          case 'ArrowLeft':  setPercent(percent - step); break;
+          case 'ArrowRight': setPercent(percent + step); break;
+          case 'Home':       setPercent(0); break;
+          case 'End':        setPercent(100); break;
+          default: handled = false;
         }
+        if (handled) { e.preventDefault(); markTouched(); }
       });
 
-      // Click anywhere on the track to jump to that spot
       slider.addEventListener('click', function(e) {
         if (e.target.closest('.ba-handle')) return;
         updateFromEvent(e.clientX);
+        markTouched();
       });
 
-      setPercent(50);
+      setPercent(8);
     });
 
     // ── Testimonial Carousel ──
