@@ -1271,6 +1271,10 @@ ul { list-style: none; }
   box-shadow: 0 0 6px rgba(0,0,0,0.3);
 }
 
+.ba-handle:focus-visible { outline: none; }
+.ba-handle:focus-visible .ba-handle-circle {
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 6px var(--teal);
+}
 .ba-handle-circle {
   width: 44px; height: 44px;
   border-radius: 50%;
@@ -1280,9 +1284,10 @@ ul { list-style: none; }
   justify-content: center;
   box-shadow: 0 2px 12px rgba(0,0,0,0.3);
   flex-shrink: 0;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.ba-handle-circle:hover { transform: scale(1.1); }
+.ba-handle:hover .ba-handle-circle,
+.ba-handle:focus-visible .ba-handle-circle { transform: scale(1.05); }
 
 /* ============================================
    OUR PROMISE
@@ -1993,6 +1998,34 @@ blockquote::before {
 }
 .form-row-3 {
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Inline field hint — sits under input */
+.field-hint {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: var(--weight-regular);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Inline field error (populated by JS) */
+.field-error {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--danger);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.08);
 }
 
 .contact-form .btn { margin-top: 6px; }

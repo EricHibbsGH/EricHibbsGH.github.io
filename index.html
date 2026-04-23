@@ -432,12 +432,12 @@
             <div class="ba-placeholder ba-placeholder-after" aria-hidden="true"></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" aria-label="Drag to compare">
-            <div class="ba-handle-line"></div>
-            <div class="ba-handle-circle">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="ba-handle-line" aria-hidden="true"></div>
+            <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
-            <div class="ba-handle-line"></div>
+            <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
         </div>
         <div class="ba-slider reveal" data-room="bathroom" style="transition-delay:0.15s" aria-label="Before and after bathroom cleaning comparison">
@@ -449,12 +449,12 @@
             <div class="ba-placeholder" style="background:#b5d5cd"><span>After Photo (Bathroom)</span></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" aria-label="Drag to compare">
-            <div class="ba-handle-line"></div>
-            <div class="ba-handle-circle">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="ba-handle-line" aria-hidden="true"></div>
+            <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
-            <div class="ba-handle-line"></div>
+            <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
         </div>
         <div class="ba-slider reveal" data-room="bedroom" style="transition-delay:0.3s" aria-label="Before and after bedroom cleaning comparison">
@@ -466,12 +466,12 @@
             <div class="ba-placeholder" style="background:#aed1c5"><span>After Photo (Bedroom)</span></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" aria-label="Drag to compare">
-            <div class="ba-handle-line"></div>
-            <div class="ba-handle-circle">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="ba-handle-line" aria-hidden="true"></div>
+            <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
-            <div class="ba-handle-line"></div>
+            <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
         </div>
         <div class="ba-slider reveal" data-room="living" style="transition-delay:0.45s" aria-label="Before and after living room cleaning comparison">
@@ -483,12 +483,12 @@
             <div class="ba-placeholder" style="background:#a8cfc2"><span>After Photo (Living Room)</span></div>
             <span class="ba-label ba-label-after">After</span>
           </div>
-          <div class="ba-handle" aria-label="Drag to compare">
-            <div class="ba-handle-line"></div>
-            <div class="ba-handle-circle">
+          <div class="ba-handle" role="slider" tabindex="0" aria-label="Before/after comparison slider — drag or use left/right arrow keys" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="ba-handle-line" aria-hidden="true"></div>
+            <div class="ba-handle-circle" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M8 4l-6 8 6 8"/><path d="M16 4l6 8-6 8"/></svg>
             </div>
-            <div class="ba-handle-line"></div>
+            <div class="ba-handle-line" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -904,22 +904,22 @@
         </div>
       </div>
       <div class="contact-form-wrap reveal" style="transition-delay:0.15s">
-        <form class="contact-form" id="contactForm" onsubmit="submitToZapier(event, 'contact')">
+        <form class="contact-form" id="contactForm" onsubmit="submitToZapier(event, 'contact')" novalidate>
           <div class="form-group floating">
-            <input type="text" id="c-name" name="name" placeholder=" " required>
+            <input type="text" id="c-name" name="name" autocomplete="name" placeholder=" " required>
             <label for="c-name">Name *</label>
           </div>
           <div class="form-group floating">
-            <input type="email" id="c-email" name="email" placeholder=" " required>
+            <input type="email" id="c-email" name="email" autocomplete="email" placeholder=" " required>
             <label for="c-email">Email *</label>
           </div>
           <div class="form-group floating">
-            <input type="tel" id="c-phone" name="phone" placeholder=" ">
-            <label for="c-phone">Phone</label>
+            <input type="tel" id="c-phone" name="phone" autocomplete="tel" placeholder=" ">
+            <label for="c-phone">Phone (optional)</label>
           </div>
           <div class="form-group floating">
             <textarea id="c-message" name="message" rows="5" placeholder=" " required></textarea>
-            <label for="c-message">Message *</label>
+            <label for="c-message">How can we help? *</label>
           </div>
           <button type="submit" class="btn btn-accent btn-pill btn-block">Send message</button>
         </form>
@@ -1032,7 +1032,7 @@
   <div class="modal-overlay" id="quoteModal" role="dialog" aria-modal="true">
     <div class="modal modal-wide">
       <button class="modal-close" onclick="closeQuoteModal()" aria-label="Close">&times;</button>
-      <form class="quote-form quote-form-grid" id="quoteForm" onsubmit="submitToZapier(event, 'quote')">
+      <form class="quote-form quote-form-grid" id="quoteForm" onsubmit="submitToZapier(event, 'quote')" novalidate>
 
         <!-- LEFT COLUMN: Contact & Address -->
         <div class="qf-col qf-col-left">
@@ -1042,40 +1042,41 @@
           </div>
           <div class="form-row">
             <div class="form-group floating">
-              <input type="text" id="q-fname" name="first_name" placeholder=" " required>
-              <label for="q-fname">First Name *</label>
+              <input type="text" id="q-fname" name="first_name" autocomplete="given-name" placeholder=" " required>
+              <label for="q-fname">First name *</label>
             </div>
             <div class="form-group floating">
-              <input type="text" id="q-lname" name="last_name" placeholder=" " required>
-              <label for="q-lname">Last Name *</label>
+              <input type="text" id="q-lname" name="last_name" autocomplete="family-name" placeholder=" " required>
+              <label for="q-lname">Last name *</label>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group floating">
-              <input type="tel" id="q-phone" name="phone" pattern="[0-9]{10}" placeholder=" " required>
+              <input type="tel" id="q-phone" name="phone" inputmode="tel" autocomplete="tel" pattern="[\d\s().+-]{10,20}" placeholder=" " required aria-describedby="q-phone-hint">
               <label for="q-phone">Phone *</label>
+              <small id="q-phone-hint" class="field-hint">e.g. (470) 240-0645</small>
             </div>
             <div class="form-group floating">
-              <input type="email" id="q-email" name="email" placeholder=" " required>
+              <input type="email" id="q-email" name="email" autocomplete="email" placeholder=" " required>
               <label for="q-email">Email *</label>
             </div>
           </div>
           <div class="form-group floating">
-            <input type="text" id="q-address" name="address" placeholder=" " required>
-            <label for="q-address">Address *</label>
+            <input type="text" id="q-address" name="address" autocomplete="street-address" placeholder=" " required>
+            <label for="q-address">Street address *</label>
           </div>
           <div class="form-row form-row-3">
             <div class="form-group floating">
-              <input type="text" id="q-city" name="city" placeholder=" " required>
+              <input type="text" id="q-city" name="city" autocomplete="address-level2" placeholder=" " required>
               <label for="q-city">City *</label>
             </div>
             <div class="form-group floating">
-              <input type="text" id="q-state" name="state" value="GA" placeholder=" " required>
+              <input type="text" id="q-state" name="state" value="GA" autocomplete="address-level1" maxlength="2" placeholder=" " required>
               <label for="q-state">State *</label>
             </div>
             <div class="form-group floating">
-              <input type="text" id="q-zip" name="zip" placeholder=" " required>
-              <label for="q-zip">Zip *</label>
+              <input type="text" id="q-zip" name="zip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder=" " required>
+              <label for="q-zip">ZIP *</label>
             </div>
           </div>
           <div class="form-row">
@@ -1087,8 +1088,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="q-date">Preferred Date</label>
-              <input type="date" id="q-date" name="preferred_date">
+              <label for="q-date">Preferred date</label>
+              <input type="date" id="q-date" name="preferred_date" aria-describedby="q-date-hint">
+              <small id="q-date-hint" class="field-hint">Today or later</small>
             </div>
           </div>
           <!-- Household Preferences -->
@@ -1248,9 +1250,11 @@
 
     // ── Header shrink on scroll ──
     var header = document.getElementById('header');
-    window.addEventListener('scroll', function() {
-      header.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    if (header) {
+      window.addEventListener('scroll', function() {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+      }, { passive: true });
+    }
 
     // ── Mobile nav (slide-from-right with backdrop) ──
     var mobileToggle = document.getElementById('mobileToggle');
@@ -1258,13 +1262,25 @@
     var navBackdrop = document.getElementById('navBackdrop');
 
     function toggleNav() {
+      if (!mainNav) return;
       var isOpen = mainNav.classList.toggle('open');
-      mobileToggle.classList.toggle('active', isOpen);
-      navBackdrop.classList.toggle('active', isOpen);
+      if (mobileToggle) {
+        mobileToggle.classList.toggle('active', isOpen);
+        mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+      if (navBackdrop) navBackdrop.classList.toggle('active', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     }
-    mobileToggle.addEventListener('click', toggleNav);
-    navBackdrop.addEventListener('click', toggleNav);
+    if (mobileToggle) {
+      mobileToggle.setAttribute('aria-controls', 'mainNav');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.addEventListener('click', toggleNav);
+    }
+    if (navBackdrop) navBackdrop.addEventListener('click', toggleNav);
+    // Close mobile nav on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mainNav && mainNav.classList.contains('open')) toggleNav();
+    });
 
     document.querySelectorAll('.main-nav a').forEach(function(link) {
       link.addEventListener('click', function() {
@@ -1385,33 +1401,54 @@
       statsObserver.observe(statsSection);
     }
 
-    // ── Before/After Sliders ──
+    // ── Before/After Sliders (pointer + keyboard) ──
     document.querySelectorAll('.ba-slider').forEach(function(slider) {
       var handle = slider.querySelector('.ba-handle');
       var afterImg = slider.querySelector('.ba-after');
+      if (!handle || !afterImg) return;
       var isDragging = false;
+      var percent = 50;
 
-      function updatePosition(x) {
-        var rect = slider.getBoundingClientRect();
-        var percent = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+      function setPercent(p) {
+        percent = Math.max(0, Math.min(100, p));
         afterImg.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
         handle.style.left = percent + '%';
+        handle.setAttribute('aria-valuenow', Math.round(percent));
+      }
+      function updateFromEvent(x) {
+        var rect = slider.getBoundingClientRect();
+        setPercent(((x - rect.left) / rect.width) * 100);
       }
 
       handle.addEventListener('pointerdown', function(e) {
         isDragging = true;
-        handle.setPointerCapture(e.pointerId);
+        try { handle.setPointerCapture(e.pointerId); } catch (_) {}
         e.preventDefault();
       });
       slider.addEventListener('pointermove', function(e) {
-        if (isDragging) updatePosition(e.clientX);
+        if (isDragging) updateFromEvent(e.clientX);
       });
       handle.addEventListener('pointerup', function() { isDragging = false; });
       handle.addEventListener('lostpointercapture', function() { isDragging = false; });
 
-      // Initialize at 50%
-      afterImg.style.clipPath = 'inset(0 50% 0 0)';
-      handle.style.left = '50%';
+      // Keyboard support — P0 a11y fix
+      handle.addEventListener('keydown', function(e) {
+        var step = e.shiftKey ? 10 : 5;
+        switch (e.key) {
+          case 'ArrowLeft':  setPercent(percent - step); e.preventDefault(); break;
+          case 'ArrowRight': setPercent(percent + step); e.preventDefault(); break;
+          case 'Home':       setPercent(0); e.preventDefault(); break;
+          case 'End':        setPercent(100); e.preventDefault(); break;
+        }
+      });
+
+      // Click anywhere on the track to jump to that spot
+      slider.addEventListener('click', function(e) {
+        if (e.target.closest('.ba-handle')) return;
+        updateFromEvent(e.clientX);
+      });
+
+      setPercent(50);
     });
 
     // ── Testimonial Carousel ──
@@ -1473,11 +1510,20 @@
 
     if (track) {
       buildDots();
-      startAutoPlay();
+      var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) startAutoPlay();
       var carouselEl = track.closest('.testimonial-carousel');
       if (carouselEl) {
         carouselEl.addEventListener('mouseenter', function() { clearInterval(autoPlayInterval); });
-        carouselEl.addEventListener('mouseleave', startAutoPlay);
+        carouselEl.addEventListener('mouseleave', function() { if (!prefersReducedMotion) startAutoPlay(); });
+        // Pause when anything inside receives keyboard focus
+        carouselEl.addEventListener('focusin', function() { clearInterval(autoPlayInterval); });
+        carouselEl.addEventListener('focusout', function() { if (!prefersReducedMotion) startAutoPlay(); });
+        // Pause when the tab is backgrounded
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) clearInterval(autoPlayInterval);
+          else if (!prefersReducedMotion) startAutoPlay();
+        });
       }
       // Touch swipe
       var startX = 0;
@@ -1525,27 +1571,26 @@
       var banner = document.getElementById('promoBanner');
       if (banner) { banner.classList.remove('active'); document.body.classList.remove('promo-active'); }
       document.documentElement.style.setProperty('--promo-height', '0px');
-      sessionStorage.setItem('promoHidden', 'true');
+      try { sessionStorage.setItem('promoHidden', 'true'); } catch (_) {}
     };
     (function initPromo() {
-      if (sessionStorage.getItem('promoHidden')) return;
+      try { if (sessionStorage.getItem('promoHidden')) return; } catch (_) {}
+      var banner = document.getElementById('promoBanner');
+      if (!banner) return;
       var month = new Date().getMonth() + 1;
       var promo = promoConfig.find(function(p) {
         if (p.startMonth <= p.endMonth) return month >= p.startMonth && month <= p.endMonth;
         return month >= p.startMonth || month <= p.endMonth;
       });
-      if (promo) {
-        var banner = document.getElementById('promoBanner');
-        var textEl = banner.querySelector('p');
-        textEl.innerHTML = promo.text + ' <a href="#" onclick="openQuoteModal(); return false;">Book Now &rarr;</a>';
-        banner.classList.add('active');
-        document.body.classList.add('promo-active');
-        // Measure actual banner height and set CSS variable
-        requestAnimationFrame(function() {
-          var h = banner.offsetHeight;
-          document.documentElement.style.setProperty('--promo-height', h + 'px');
-        });
-      }
+      if (!promo) return;
+      var textEl = banner.querySelector('p');
+      if (!textEl) return;
+      textEl.innerHTML = promo.text + ' <a href="#" onclick="openQuoteModal(); return false;">Book now &rarr;</a>';
+      banner.classList.add('active');
+      document.body.classList.add('promo-active');
+      requestAnimationFrame(function() {
+        document.documentElement.style.setProperty('--promo-height', banner.offsetHeight + 'px');
+      });
     })();
 
     // ── Next Available Slot ──
@@ -1598,13 +1643,20 @@
 
     // ── Exit-Intent Quote Rescue ──
     (function initExitIntent() {
-      if (sessionStorage.getItem('exitShown')) return;
+      var exitEl = document.getElementById('exitModal');
+      if (!exitEl) return;
+      try { if (sessionStorage.getItem('exitShown')) return; } catch (_) {}
+      // Skip on touch / mobile where mouseleave at top doesn't indicate intent
+      var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if (isTouch) return;
       document.documentElement.addEventListener('mouseleave', function(e) {
         if (e.clientY > 0) return;
-        if (document.getElementById('quoteModal').classList.contains('active')) return;
-        if (sessionStorage.getItem('exitShown')) return;
-        sessionStorage.setItem('exitShown', 'true');
-        var exitEl = document.getElementById('exitModal');
+        var quoteModal = document.getElementById('quoteModal');
+        if (quoteModal && quoteModal.classList.contains('active')) return;
+        try {
+          if (sessionStorage.getItem('exitShown')) return;
+          sessionStorage.setItem('exitShown', 'true');
+        } catch (_) {}
         exitEl.classList.add('active');
         document.body.style.overflow = 'hidden';
         var firstInput = exitEl.querySelector('input, button');
@@ -1641,6 +1693,7 @@
     });
 
     // ── ZIP Code Eligibility Checker ──
+    // Note: if a ZIP maps to multiple cities, the *first* one listed wins.
     var zipMap = {
       '30004':'Alpharetta','30005':'Alpharetta','30009':'Alpharetta','30022':'Alpharetta','30023':'Alpharetta',
       '30024':'Johns Creek','30097':'Johns Creek',
@@ -1653,15 +1706,14 @@
       '30680':'Winder',
       '30305':'Buckhead','30309':'Buckhead','30326':'Buckhead','30327':'Buckhead',
       '30301':'Atlanta','30302':'Atlanta','30303':'Atlanta','30306':'Atlanta','30307':'Atlanta','30308':'Atlanta',
-      '30310':'Atlanta','30311':'Atlanta','30312':'Atlanta','30313':'Atlanta','30314':'Atlanta','30315':'Atlanta','30316':'Atlanta','30317':'Atlanta','30318':'Atlanta','30319':'Atlanta','30320':'Atlanta','30324':'Atlanta','30328':'Atlanta','30329':'Atlanta','30331':'Atlanta','30332':'Atlanta','30334':'Atlanta','30336':'Atlanta','30337':'Atlanta','30338':'Atlanta','30339':'Atlanta','30340':'Atlanta','30341':'Atlanta','30342':'Atlanta','30344':'Atlanta','30345':'Atlanta','30346':'Atlanta','30349':'Atlanta','30350':'Atlanta','30354':'Atlanta','30360':'Atlanta',
+      '30310':'Atlanta','30311':'Atlanta','30312':'Atlanta','30313':'Atlanta','30314':'Atlanta','30315':'Atlanta','30316':'Atlanta','30317':'Atlanta','30318':'Atlanta','30319':'Atlanta','30320':'Atlanta','30324':'Atlanta','30328':'Atlanta','30329':'Atlanta','30331':'Atlanta','30332':'Atlanta','30334':'Atlanta','30336':'Atlanta','30337':'Atlanta','30338':'Atlanta','30339':'Atlanta','30340':'Atlanta','30341':'Atlanta','30342':'Atlanta','30344':'Atlanta','30345':'Atlanta','30346':'Atlanta','30349':'Atlanta','30350':'Atlanta','30354':'Atlanta',
       '30075':'Roswell','30076':'Roswell','30077':'Roswell',
       '30188':'Woodstock','30189':'Woodstock',
-      '30096':'Duluth','30095':'Duluth',
+      '30095':'Duluth','30096':'Duluth',
       '30071':'Norcross','30091':'Norcross','30093':'Norcross',
       '30092':'Peachtree Corners','30360':'Peachtree Corners',
-      '30019':'Dacula','30542':'Flowery Branch','30041':'Cumming','30040':'Cumming',
-      '30017':'Grayson','30078':'Snellville','30039':'Snellville',
-      '30028':'Cumming','30041':'Cumming'
+      '30019':'Dacula','30542':'Flowery Branch','30040':'Cumming','30041':'Cumming','30028':'Cumming',
+      '30017':'Grayson','30078':'Snellville','30039':'Snellville'
     };
     window.checkZip = function() {
       var input = document.getElementById('zipInput');
@@ -1938,6 +1990,103 @@
       };
     })();
 
+    // ── Form resilience ──
+    // Prevent past dates on the preferred-date field
+    (function lockPastDates() {
+      var d = document.getElementById('q-date');
+      if (!d) return;
+      var today = new Date();
+      var pad = function(n) { return n < 10 ? '0' + n : String(n); };
+      var iso = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+      d.min = iso;
+    })();
+
+    // Auto-format phone as the user types: (470) 240-0645
+    document.querySelectorAll('input[type="tel"]').forEach(function(input) {
+      input.addEventListener('input', function() {
+        var digits = this.value.replace(/\D/g, '').slice(0, 10);
+        var out = digits;
+        if (digits.length > 6) out = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+        else if (digits.length > 3) out = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+        else if (digits.length > 0) out = '(' + digits;
+        this.value = out;
+      });
+    });
+
+    // Lightweight inline validation — show field-level errors on blur / submit
+    function showFieldError(field, msg) {
+      var group = field.closest('.form-group');
+      if (!group) return;
+      group.classList.add('has-error');
+      var err = group.querySelector('.field-error');
+      if (!err) {
+        err = document.createElement('span');
+        err.className = 'field-error';
+        err.setAttribute('role', 'alert');
+        group.appendChild(err);
+      }
+      err.textContent = msg;
+      field.setAttribute('aria-invalid', 'true');
+    }
+    function clearFieldError(field) {
+      var group = field.closest('.form-group');
+      if (!group) return;
+      group.classList.remove('has-error');
+      var err = group.querySelector('.field-error');
+      if (err) err.remove();
+      field.removeAttribute('aria-invalid');
+    }
+    function validateField(field) {
+      var val = (field.value || '').trim();
+      if (field.hasAttribute('required') && !val) {
+        showFieldError(field, 'This field is required.');
+        return false;
+      }
+      if (field.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        showFieldError(field, 'Enter a valid email (e.g. you@example.com).');
+        return false;
+      }
+      if (field.type === 'tel' && val) {
+        var digits = val.replace(/\D/g, '');
+        if (digits.length < 10) {
+          showFieldError(field, 'Phone number needs 10 digits.');
+          return false;
+        }
+      }
+      if (field.id === 'q-zip' && val && !/^\d{5}$/.test(val)) {
+        showFieldError(field, 'ZIP must be 5 digits.');
+        return false;
+      }
+      clearFieldError(field);
+      return true;
+    }
+    // Attach blur listeners to all required fields in the quote/contact/newsletter/exit forms
+    document.querySelectorAll('#quoteForm, #contactForm, #newsletterForm, #exitForm').forEach(function(form) {
+      form.querySelectorAll('input, textarea').forEach(function(field) {
+        field.addEventListener('blur', function() { validateField(field); });
+        field.addEventListener('input', function() {
+          if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+        });
+      });
+    });
+
+    // Expose for submit-time use
+    window.__rscValidateForm = function(form) {
+      var ok = true;
+      form.querySelectorAll('input[required], textarea[required]').forEach(function(f) {
+        if (!validateField(f)) ok = false;
+      });
+      // non-required but typed fields (phone, email) should still pass format
+      form.querySelectorAll('input[type="email"], input[type="tel"]').forEach(function(f) {
+        if (f.value.trim() && !validateField(f)) ok = false;
+      });
+      if (!ok) {
+        var first = form.querySelector('.has-error input, .has-error textarea');
+        if (first) first.focus();
+      }
+      return ok;
+    };
+
   })();
   </script>
 
@@ -2078,24 +2227,44 @@
 
       var form = e.target;
       var btn = form.querySelector('button[type="submit"]');
-      var hookUrl = ZAPIER_HOOKS[formType];
+      if (!btn) return;
 
-      // Check if webhook URL is configured
-      if (!hookUrl || hookUrl.indexOf('YOUR_') === 0) {
-        showFormStatus(form, 'success', SUCCESS_MSG[formType]);
-        handlePostSubmit(form, formType);
+      // Guard against double-submit (fast clicks, Enter spam)
+      if (btn.disabled || form.dataset.submitting === '1') return;
+
+      // Validate (uses window.__rscValidateForm if present)
+      if (typeof window.__rscValidateForm === 'function' && !window.__rscValidateForm(form)) {
+        showFormStatus(form, 'error', 'Please check the highlighted fields.');
         return;
       }
 
-      // Disable button + show loading
+      form.dataset.submitting = '1';
+      var hookUrl = ZAPIER_HOOKS[formType];
+
+      // Demo mode (no real webhook configured yet) — show success and reset
+      if (!hookUrl || hookUrl.indexOf('YOUR_') === 0) {
+        showFormStatus(form, 'success', SUCCESS_MSG[formType]);
+        handlePostSubmit(form, formType);
+        form.dataset.submitting = '';
+        return;
+      }
+
       var originalText = btn.textContent;
       btn.disabled = true;
-      btn.textContent = 'Sending...';
+      btn.setAttribute('aria-busy', 'true');
+      btn.textContent = 'Sending…';
 
-      // Collect form data
+      var timeoutId = setTimeout(function() {
+        // Safety: if fetch stalls >15 s, release the button
+        showFormStatus(form, 'error', 'This is taking longer than usual. Please call us at (470) 240-0645 if it keeps failing.');
+        btn.disabled = false;
+        btn.textContent = originalText;
+        btn.removeAttribute('aria-busy');
+        form.dataset.submitting = '';
+      }, 15000);
+
       var data = collectFormData(form, formType);
 
-      // Send to Zapier
       fetch(hookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -2107,11 +2276,14 @@
         handlePostSubmit(form, formType);
       })
       .catch(function() {
-        showFormStatus(form, 'error', 'Something went wrong. Please call us at (470) 240-0645 or try again.');
+        showFormStatus(form, 'error', 'We couldn\'t send this. Please call (470) 240-0645 or try again in a moment.');
       })
       .finally(function() {
+        clearTimeout(timeoutId);
         btn.disabled = false;
         btn.textContent = originalText;
+        btn.removeAttribute('aria-busy');
+        form.dataset.submitting = '';
       });
     };
 
