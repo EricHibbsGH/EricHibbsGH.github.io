@@ -1435,6 +1435,20 @@
       var modal = document.getElementById('quoteModal');
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      // Pre-fill ZIP + city if the user previously ran the coverage checker
+      // (and hasn't already typed something into these fields).
+      try {
+        var hint = sessionStorage.getItem('rscZipHint');
+        if (hint) {
+          var h = JSON.parse(hint);
+          var zipEl = document.getElementById('q-zip');
+          var cityEl = document.getElementById('q-city');
+          if (zipEl && !zipEl.value && h.zip) zipEl.value = h.zip;
+          if (cityEl && !cityEl.value && h.city) cityEl.value = h.city;
+        }
+      } catch (_) {}
+
       var firstInput = modal.querySelector('input, select, button');
       if (firstInput) setTimeout(function() { firstInput.focus(); }, 100);
     };
@@ -1937,7 +1951,10 @@
 
     // ── ZIP Code Eligibility Checker ──
     // Note: if a ZIP maps to multiple cities, the *first* one listed wins.
-    var zipMap = {
+    // Exposed on window so the quote-modal autofill can reuse the same table.
+    window.zipMap = window.zipMap || {};
+    var zipMap = window.zipMap;
+    Object.assign(zipMap, {
       '30004':'Alpharetta','30005':'Alpharetta','30009':'Alpharetta','30022':'Alpharetta','30023':'Alpharetta',
       '30024':'Johns Creek','30097':'Johns Creek',
       '30043':'Lawrenceville','30044':'Lawrenceville','30045':'Lawrenceville','30046':'Lawrenceville',
@@ -1957,7 +1974,7 @@
       '30092':'Peachtree Corners','30360':'Peachtree Corners',
       '30019':'Dacula','30542':'Flowery Branch','30040':'Cumming','30041':'Cumming','30028':'Cumming',
       '30017':'Grayson','30078':'Snellville','30039':'Snellville'
-    };
+    });
     window.checkZip = function() {
       var input = document.getElementById('zipInput');
       var val = (input && input.value || '').trim();
@@ -1970,6 +1987,8 @@
       }
       var city = zipMap[val];
       if (city) {
+        // Remember the ZIP + city so the quote modal can pre-fill them
+        try { sessionStorage.setItem('rscZipHint', JSON.stringify({ zip: val, city: city })); } catch (_) {}
         result.innerHTML = '<div class="zip-result zip-success" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> We clean in <strong>' + city + '</strong>. <a href="#" onclick="openQuoteModal(); return false;">Get a free quote &rarr;</a></div>';
         if (window.serviceMapMarkers && window.serviceLeafletMap) {
           window.serviceMapMarkers.forEach(function(m) {
@@ -2372,6 +2391,40 @@
       var pad = function(n) { return n < 10 ? '0' + n : String(n); };
       var iso = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
       d.min = iso;
+    })();
+
+    // ── Address autofill (ZIP → City) ──
+    // As soon as the user types a recognized 5-digit ZIP in the quote modal,
+    // we fill in the City field (if empty) and ensure State stays GA.
+    // Works alongside browser-native autofill from saved contacts.
+    (function initZipToCity() {
+      var zipEl  = document.getElementById('q-zip');
+      var cityEl = document.getElementById('q-city');
+      var stateEl = document.getElementById('q-state');
+      if (!zipEl || !cityEl) return;
+      var lastFilledCity = '';
+
+      function maybeFill() {
+        var digits = (zipEl.value || '').replace(/\D/g, '').slice(0, 5);
+        if (digits.length !== 5) return;
+        var city = window.zipMap && window.zipMap[digits];
+        if (!city) return;
+        // Only overwrite city if it's empty or we set it ourselves last time
+        if (!cityEl.value || cityEl.value === lastFilledCity) {
+          cityEl.value = city;
+          lastFilledCity = city;
+          cityEl.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        if (stateEl && !stateEl.value) stateEl.value = 'GA';
+      }
+
+      zipEl.addEventListener('input', function() {
+        // Keep the ZIP field numeric only (helps mobile keyboards)
+        var cleaned = this.value.replace(/\D/g, '').slice(0, 5);
+        if (cleaned !== this.value) this.value = cleaned;
+        maybeFill();
+      });
+      zipEl.addEventListener('blur', maybeFill);
     })();
 
     // Auto-format phone as the user types: (470) 240-0645
