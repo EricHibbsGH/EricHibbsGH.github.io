@@ -2386,6 +2386,90 @@ blockquote::before {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+/* --- Address autocomplete (combobox) --- */
+.autocomplete-wrap { position: relative; }
+.addr-status {
+  position: absolute;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  border: 2px solid var(--border-subtle);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease-out-quart);
+}
+.autocomplete-wrap.is-loading .addr-status {
+  opacity: 1;
+  animation: addrSpin 0.7s linear infinite;
+}
+@keyframes addrSpin { to { transform: translateY(-50%) rotate(360deg); } }
+
+.addr-suggestions {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: var(--white);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(13,115,119,0.14), 0 4px 8px rgba(0,0,0,0.06);
+  list-style: none;
+  padding: 4px;
+  margin: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.addr-suggestions[hidden] { display: none; }
+.addr-suggestions li {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.12s var(--ease-out-quart);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.addr-suggestions li.is-active,
+.addr-suggestions li:hover { background: var(--surface-2); }
+.addr-suggestions li.is-empty {
+  color: var(--text-muted);
+  cursor: default;
+  font-style: italic;
+  font-size: var(--text-sm);
+  text-align: center;
+  padding: var(--space-4);
+}
+.addr-suggestions li.is-empty:hover { background: transparent; }
+.addr-line1 {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  color: var(--dark);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+.addr-line2 {
+  display: block;
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  margin-top: 2px;
+}
+.addr-credit {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: right;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 2px;
+}
+.addr-credit a { color: inherit; text-decoration: underline; }
+
 /* Inline field hint — sits under input */
 .field-hint {
   display: block;

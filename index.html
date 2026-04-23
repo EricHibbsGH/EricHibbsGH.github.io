@@ -1176,10 +1176,19 @@
               <label for="q-email">Email *</label>
             </div>
           </div>
-          <div class="form-group floating">
-            <input type="text" id="q-address" name="address" autocomplete="street-address" placeholder=" " required>
+          <div class="form-group floating autocomplete-wrap" id="addrCombobox">
+            <input type="text" id="q-address" name="address"
+              autocomplete="street-address"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-controls="addrSuggestions"
+              aria-activedescendant=""
+              placeholder=" " required>
             <label for="q-address">Street address *</label>
-            <small class="field-hint">Georgia only &mdash; we serve the greater Atlanta area.</small>
+            <span class="addr-status" id="addrStatus" aria-hidden="true"></span>
+            <ul class="addr-suggestions" id="addrSuggestions" role="listbox" aria-label="Address suggestions" hidden></ul>
+            <small class="field-hint">Start typing and pick from the list &mdash; we'll autofill city &amp; ZIP.</small>
           </div>
           <!-- State is implied (GA-only service area) — sent as hidden field -->
           <input type="hidden" id="q-state" name="state" value="GA">
@@ -2400,6 +2409,213 @@
       var pad = function(n) { return n < 10 ? '0' + n : String(n); };
       var iso = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
       d.min = iso;
+    })();
+
+    // ── Address autocomplete via Nominatim (OpenStreetMap) ──
+    // Free, no API key, CORS-enabled. Rate-limited to ~1 req/sec — we debounce
+    // at 500 ms and cache in-session so repeated lookups don't hit the network.
+    // Fair-use policy: https://operations.osmfoundation.org/policies/nominatim/
+    (function initAddressAutocomplete() {
+      var wrap = document.getElementById('addrCombobox');
+      var input = document.getElementById('q-address');
+      var list = document.getElementById('addrSuggestions');
+      var cityEl = document.getElementById('q-city');
+      var zipEl = document.getElementById('q-zip');
+      if (!wrap || !input || !list) return;
+
+      var ENDPOINT = 'https://nominatim.openstreetmap.org/search';
+      // Viewbox biases to North Atlanta; bounded=0 so it's a hint not a hard filter
+      var VIEWBOX = '-85.0,33.3,-83.6,34.7';
+      var MIN_CHARS = 4;
+      var DEBOUNCE = 500;
+
+      var cache = new Map();
+      var debounceTimer = null;
+      var currentController = null;
+      var results = [];
+      var activeIndex = -1;
+
+      function setLoading(on) { wrap.classList.toggle('is-loading', !!on); }
+
+      function close() {
+        list.hidden = true;
+        list.innerHTML = '';
+        input.setAttribute('aria-expanded', 'false');
+        input.setAttribute('aria-activedescendant', '');
+        activeIndex = -1;
+      }
+
+      function formatSuggestion(r) {
+        var a = r.address || {};
+        var house = a.house_number || '';
+        var road  = a.road || a.pedestrian || a.cycleway || '';
+        var line1 = [house, road].filter(Boolean).join(' ');
+        if (!line1) line1 = (r.display_name || '').split(',')[0];
+        var city = a.city || a.town || a.village || a.hamlet || a.suburb || a.county || '';
+        var state = a.state || '';
+        var zip = a.postcode || '';
+        var line2 = [city, state, zip].filter(Boolean).join(', ');
+        return { line1: line1, line2: line2 };
+      }
+
+      function render() {
+        list.innerHTML = '';
+        if (!results.length) {
+          var empty = document.createElement('li');
+          empty.className = 'is-empty';
+          empty.textContent = 'No matches — keep typing or enter manually.';
+          list.appendChild(empty);
+        } else {
+          results.forEach(function(r, i) {
+            var li = document.createElement('li');
+            li.id = 'addr-opt-' + i;
+            li.setAttribute('role', 'option');
+            li.dataset.index = String(i);
+            if (i === activeIndex) {
+              li.className = 'is-active';
+              li.setAttribute('aria-selected', 'true');
+              input.setAttribute('aria-activedescendant', li.id);
+            } else {
+              li.setAttribute('aria-selected', 'false');
+            }
+            var f = formatSuggestion(r);
+            var s1 = document.createElement('span');
+            s1.className = 'addr-line1';
+            s1.textContent = f.line1;
+            var s2 = document.createElement('span');
+            s2.className = 'addr-line2';
+            s2.textContent = f.line2;
+            li.appendChild(s1);
+            li.appendChild(s2);
+            // mousedown (not click) so it fires before the input's blur closes the list
+            li.addEventListener('mousedown', function(e) { e.preventDefault(); select(i); });
+            list.appendChild(li);
+          });
+          // OSM attribution — required by Nominatim fair-use policy
+          var cred = document.createElement('li');
+          cred.className = 'addr-credit';
+          cred.innerHTML = 'Results &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>';
+          list.appendChild(cred);
+        }
+        list.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+      }
+
+      function select(i) {
+        var r = results[i];
+        if (!r) return;
+        var a = r.address || {};
+        var house = a.house_number || '';
+        var road  = a.road || a.pedestrian || a.cycleway || '';
+        var street = [house, road].filter(Boolean).join(' ');
+        if (street) input.value = street;
+        var city = a.city || a.town || a.village || a.hamlet || a.suburb;
+        if (city && cityEl) cityEl.value = city;
+        if (a.postcode && zipEl) zipEl.value = a.postcode;
+        // Fire input events so any downstream validation / estimators update
+        [input, cityEl, zipEl].forEach(function(el) {
+          if (el) el.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        close();
+        // Move focus along to next logical field so keyboard users stay in flow
+        if (zipEl && !zipEl.value) zipEl.focus();
+        else if (cityEl && !cityEl.value) cityEl.focus();
+      }
+
+      function fetchSuggestions(q) {
+        // Normalize for cache key
+        var key = q.toLowerCase();
+        if (cache.has(key)) {
+          results = cache.get(key);
+          activeIndex = -1;
+          render();
+          return;
+        }
+
+        if (currentController) { try { currentController.abort(); } catch (_) {} }
+        currentController = ('AbortController' in window) ? new AbortController() : null;
+
+        var url = ENDPOINT +
+          '?format=json&addressdetails=1&countrycodes=us' +
+          '&limit=5&viewbox=' + VIEWBOX + '&bounded=0' +
+          '&q=' + encodeURIComponent(q);
+
+        setLoading(true);
+        fetch(url, {
+          headers: { 'Accept': 'application/json' },
+          signal: currentController ? currentController.signal : undefined
+        })
+        .then(function(res) {
+          if (!res.ok) throw new Error('Nominatim ' + res.status);
+          return res.json();
+        })
+        .then(function(data) {
+          if (!Array.isArray(data)) data = [];
+          cache.set(key, data);
+          results = data;
+          activeIndex = -1;
+          render();
+        })
+        .catch(function(err) {
+          if (err && err.name === 'AbortError') return;
+          // Graceful degradation — user can still type the address manually
+          results = [];
+          close();
+        })
+        .finally(function() { setLoading(false); });
+      }
+
+      input.addEventListener('input', function() {
+        var q = input.value.trim();
+        clearTimeout(debounceTimer);
+        if (q.length < MIN_CHARS) { close(); return; }
+        debounceTimer = setTimeout(function() { fetchSuggestions(q); }, DEBOUNCE);
+      });
+
+      input.addEventListener('keydown', function(e) {
+        if (list.hidden) {
+          if (e.key === 'ArrowDown' && input.value.trim().length >= MIN_CHARS) {
+            // Re-open with cached results if we have them
+            var cached = cache.get(input.value.trim().toLowerCase());
+            if (cached && cached.length) { results = cached; activeIndex = 0; render(); e.preventDefault(); }
+          }
+          return;
+        }
+        var max = results.length;
+        if (!max) return;
+        switch (e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            activeIndex = activeIndex < max - 1 ? activeIndex + 1 : 0;
+            render();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            activeIndex = activeIndex > 0 ? activeIndex - 1 : max - 1;
+            render();
+            break;
+          case 'Enter':
+            if (activeIndex >= 0) { e.preventDefault(); select(activeIndex); }
+            break;
+          case 'Escape':
+            e.preventDefault();
+            close();
+            break;
+          case 'Tab':
+            // Commit highlighted suggestion on Tab, but still let the tab move focus
+            if (activeIndex >= 0) select(activeIndex);
+            else close();
+            break;
+        }
+      });
+
+      // Close when focus leaves the combobox (small delay so mousedown fires first)
+      input.addEventListener('blur', function() { setTimeout(close, 180); });
+
+      // Also close on click outside
+      document.addEventListener('click', function(e) {
+        if (!wrap.contains(e.target)) close();
+      });
     })();
 
     // ── Address autofill (ZIP → City) ──
