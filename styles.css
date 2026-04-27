@@ -3260,6 +3260,343 @@ body.promo-active .hero { margin-top: calc(var(--header-height) + var(--promo-he
 .mobile-cta-quote { padding: 10px 20px; font-size: var(--text-sm); }
 
 /* ============================================
+   QUOTE MODAL — 3-STEP WIZARD
+   No scrollbar on the modal body; only the active
+   step scrolls internally if it ever overflows.
+   ============================================ */
+.modal-quote {
+  max-width: 720px;
+  width: 100%;
+  padding: 0;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  max-height: min(720px, 92vh);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+.modal-quote .modal-close {
+  z-index: 3;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+
+.quote-header {
+  padding: var(--space-6) var(--space-8) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.quote-header h2 {
+  font-size: var(--text-xl);
+  margin: 0 0 var(--space-1);
+}
+.quote-header .modal-sub {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.quote-progress {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-3) var(--space-8);
+  gap: var(--space-2);
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.qp-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  outline: none;
+  border-radius: var(--radius-sm);
+  padding: 4px 0;
+}
+.qp-item.done { cursor: pointer; color: var(--text-secondary); }
+.qp-item.active { color: var(--dark); font-weight: var(--weight-semibold); }
+.qp-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--border-subtle);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+  transition: background 0.2s var(--ease-out-quart), color 0.2s var(--ease-out-quart), box-shadow 0.2s var(--ease-out-quart);
+}
+.qp-item.active .qp-num {
+  background: var(--teal);
+  color: var(--white);
+  box-shadow: 0 0 0 4px rgba(13,115,119,0.15);
+}
+.qp-item.done .qp-num {
+  background: var(--teal);
+  color: var(--white);
+}
+.qp-item:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.qp-label { white-space: nowrap; }
+
+/* Step container — only the active step is rendered */
+.quote-stepper {
+  display: contents; /* let modal grid layout flow through */
+}
+.quote-step {
+  display: none;
+  grid-row: 3;
+  padding: var(--space-6) var(--space-8);
+  margin: 0;
+  border: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+.quote-step.active { display: block; animation: quoteStepIn 0.3s var(--ease-out-quart); }
+@keyframes quoteStepIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.quote-step-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--dark);
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  float: none;
+}
+.form-group-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+.label-soft {
+  font-weight: var(--weight-regular);
+  color: var(--text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--text-xs);
+  margin-left: 4px;
+}
+
+/* Service cards (radio buttons styled as cards) */
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+@media (min-width: 720px) {
+  .service-cards { grid-template-columns: repeat(4, 1fr); }
+}
+.service-card-radio {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.service-card-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+  pointer-events: none;
+}
+.scr-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-4);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  transition: border-color 0.18s var(--ease-out-quart), background 0.18s var(--ease-out-quart), box-shadow 0.18s var(--ease-out-quart);
+  height: 100%;
+}
+.service-card-radio:hover .scr-body {
+  border-color: rgba(13,115,119,0.4);
+}
+.service-card-radio input:checked + .scr-body {
+  border-color: var(--teal);
+  background: var(--surface-1);
+  box-shadow: 0 0 0 3px rgba(13,115,119,0.12);
+}
+.service-card-radio input:focus-visible + .scr-body {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+.scr-title {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  color: var(--dark);
+  letter-spacing: var(--tracking-tight);
+}
+.scr-desc {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+.scr-price {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.scr-price strong {
+  color: var(--teal);
+  font-weight: var(--weight-bold);
+  font-family: var(--font-heading);
+  font-variant-numeric: tabular-nums;
+}
+.service-cards.has-error .scr-body {
+  border-color: var(--danger);
+  animation: shake 0.4s var(--ease-out-quart);
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* Frequency cards */
+.freq-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+@media (min-width: 720px) {
+  .freq-cards { grid-template-columns: repeat(4, 1fr); }
+}
+.freq-card-radio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease-out-quart), background 0.18s var(--ease-out-quart), box-shadow 0.18s var(--ease-out-quart);
+  text-align: center;
+  align-items: center;
+}
+.freq-card-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+  pointer-events: none;
+}
+.freq-card-radio:hover { border-color: rgba(13,115,119,0.4); }
+.freq-card-radio:has(input:checked),
+.freq-card-radio.is-checked {
+  border-color: var(--teal);
+  background: var(--surface-1);
+  box-shadow: 0 0 0 3px rgba(13,115,119,0.12);
+}
+.fcr-title {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  color: var(--dark);
+  letter-spacing: var(--tracking-tight);
+}
+.fcr-desc {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+.fcr-tag {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.6rem;
+  font-weight: var(--weight-bold);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(250,92,8,0.3);
+}
+
+/* Footer: estimate + actions, sticky to bottom of modal */
+.quote-footer {
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-8);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--white);
+  position: relative;
+  z-index: 2;
+}
+.quote-footer .price-estimate-bar {
+  margin: 0;
+}
+.quote-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.quote-step-indicator {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  flex: 1;
+  text-align: center;
+}
+.quote-step-indicator span { font-weight: var(--weight-bold); color: var(--dark); }
+.quote-actions .btn { flex-shrink: 0; }
+.quote-actions .quote-back {
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+/* Mobile: full-screen modal */
+@media (max-width: 640px) {
+  .modal-quote {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+  .quote-header,
+  .quote-progress,
+  .quote-step,
+  .quote-footer {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+  .quote-header { padding-top: var(--space-5); padding-bottom: var(--space-3); }
+  .quote-step-title { font-size: var(--text-md); }
+  .qp-label { display: none; } /* keep just the numbered dots on small screens */
+  .quote-progress { grid-template-columns: repeat(3, auto); justify-content: center; gap: var(--space-4); }
+  .quote-step-indicator { display: none; }
+  .quote-actions .btn { flex: 1; }
+  .quote-actions .quote-back { flex: 0 0 auto; padding-left: var(--space-4); padding-right: var(--space-4); }
+}
+
+/* ============================================
    FEATURE: GUARANTEE POLICY MODALS
    ============================================ */
 .policy-modal-content {

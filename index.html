@@ -1365,17 +1365,200 @@
   </footer>
 
   <!-- QUOTE MODAL -->
-  <div class="modal-overlay" id="quoteModal" role="dialog" aria-modal="true">
-    <div class="modal modal-wide">
+  <div class="modal-overlay" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quote-title">
+    <div class="modal modal-quote">
       <button class="modal-close" onclick="closeQuoteModal()" aria-label="Close">&times;</button>
-      <form class="quote-form quote-form-grid" id="quoteForm" onsubmit="submitToZapier(event, 'quote')" novalidate>
 
-        <!-- LEFT COLUMN: Contact & Address -->
-        <div class="qf-col qf-col-left">
-          <div class="qf-col-header">
-            <h2>Get a free quote</h2>
-            <p class="modal-sub">Tell us a little about your home. We'll reply with a firm price.</p>
+      <header class="quote-header">
+        <h2 id="quote-title">Get a free quote</h2>
+        <p class="modal-sub">Takes about a minute. No spam, no upsell calls.</p>
+      </header>
+
+      <ol class="quote-progress" aria-label="Quote steps">
+        <li class="qp-item active" data-step="1"><span class="qp-num" aria-hidden="true">1</span><span class="qp-label">Your clean</span></li>
+        <li class="qp-item" data-step="2"><span class="qp-num" aria-hidden="true">2</span><span class="qp-label">Customize</span></li>
+        <li class="qp-item" data-step="3"><span class="qp-num" aria-hidden="true">3</span><span class="qp-label">Contact</span></li>
+      </ol>
+
+      <form class="quote-form quote-stepper" id="quoteForm" onsubmit="submitToZapier(event, 'quote')" novalidate>
+
+        <!-- ============================================
+             STEP 1 — Service, size, frequency (no PII)
+             ============================================ -->
+        <fieldset class="quote-step active" data-step="1">
+          <legend class="quote-step-title">What kind of clean do you need?</legend>
+
+          <div class="service-cards" role="radiogroup" aria-label="Service type" aria-required="true">
+            <label class="service-card-radio">
+              <input type="radio" name="service" value="standard" required>
+              <span class="scr-body">
+                <span class="scr-title">Standard</span>
+                <span class="scr-desc">Routine upkeep</span>
+                <span class="scr-price">From <strong>$100</strong></span>
+              </span>
+            </label>
+            <label class="service-card-radio">
+              <input type="radio" name="service" value="deep" required>
+              <span class="scr-body">
+                <span class="scr-title">Deep clean</span>
+                <span class="scr-desc">Top-to-bottom</span>
+                <span class="scr-price">From <strong>$250</strong></span>
+              </span>
+            </label>
+            <label class="service-card-radio">
+              <input type="radio" name="service" value="movein" required>
+              <span class="scr-body">
+                <span class="scr-title">Move in</span>
+                <span class="scr-desc">Spotless start</span>
+                <span class="scr-price">From <strong>$250</strong></span>
+              </span>
+            </label>
+            <label class="service-card-radio">
+              <input type="radio" name="service" value="moveout" required>
+              <span class="scr-body">
+                <span class="scr-title">Move out</span>
+                <span class="scr-desc">Inspection-ready</span>
+                <span class="scr-price">From <strong>$250</strong></span>
+              </span>
+            </label>
           </div>
+
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label for="q-sqft">Home size</label>
+              <select id="q-sqft" name="sqft">
+                <option value="">Select size</option>
+                <option value="0-1000">Under 1,000 sq ft</option>
+                <option value="1000-2000">1,000 &ndash; 2,000 sq ft</option>
+                <option value="2000-3000">2,000 &ndash; 3,000 sq ft</option>
+                <option value="3000+">3,000+ sq ft</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="q-bed">Bedrooms</label>
+              <select id="q-bed" name="bedrooms">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="q-bath">Bathrooms</label>
+              <select id="q-bath" name="bathrooms">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <span class="form-group-label">How often?</span>
+            <div class="freq-cards" role="radiogroup" aria-label="Frequency">
+              <label class="freq-card-radio">
+                <input type="radio" name="frequency" value="one-time" checked>
+                <span class="fcr-title">One-time</span>
+                <span class="fcr-desc">No commitment</span>
+              </label>
+              <label class="freq-card-radio is-popular">
+                <input type="radio" name="frequency" value="bi-weekly">
+                <span class="fcr-tag">Most popular</span>
+                <span class="fcr-title">Bi-weekly</span>
+                <span class="fcr-desc">Save 10%</span>
+              </label>
+              <label class="freq-card-radio">
+                <input type="radio" name="frequency" value="weekly">
+                <span class="fcr-title">Weekly</span>
+                <span class="fcr-desc">Save 15%</span>
+              </label>
+              <label class="freq-card-radio">
+                <input type="radio" name="frequency" value="monthly">
+                <span class="fcr-title">Monthly</span>
+                <span class="fcr-desc">Save 5%</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ============================================
+             STEP 2 — Add-ons + preferences (optional)
+             ============================================ -->
+        <fieldset class="quote-step" data-step="2">
+          <legend class="quote-step-title">Make it just right (optional)</legend>
+
+          <div class="form-group">
+            <span class="form-group-label">Add-on services</span>
+            <div class="checkbox-grid">
+              <label class="checkbox-label"><input type="checkbox" id="addon-walls" name="addon_walls" class="addon-check"> Walls <span class="addon-price">+$30</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-windows" name="addon_windows" class="addon-check"> Windows <span class="addon-price">+$40</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-fridge" name="addon_fridge" class="addon-check"> Fridge <span class="addon-price">+$25</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-oven" name="addon_oven" class="addon-check"> Oven <span class="addon-price">+$25</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-laundry" name="addon_laundry" class="addon-check"> Laundry <span class="addon-price">+$35</span></label>
+              <label class="checkbox-label"><input type="checkbox" id="addon-organizing" name="addon_organizing" class="addon-check"> Organizing <span class="addon-price">+$50</span></label>
+            </div>
+          </div>
+
+          <div class="form-group pref-section">
+            <span class="form-group-label">Household preferences</span>
+            <div class="pref-toggles">
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-pets">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">I have pets <span class="pref-price">+$15</span></span>
+                    <span class="toggle-text-desc">Pet-safe, non-toxic products</span>
+                  </span>
+                  <input type="checkbox" id="pref-pets" name="pref_pets" class="pref-toggle pref-priced" data-price="15" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-allergy">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">Allergy-sensitive <span class="pref-price">+$20</span></span>
+                    <span class="toggle-text-desc">HEPA-filtered &amp; hypoallergenic</span>
+                  </span>
+                  <input type="checkbox" id="pref-allergy" name="pref_allergy" class="pref-toggle pref-priced" data-price="20" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-eco">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">Eco-friendly only <span class="pref-price">+$10</span></span>
+                    <span class="toggle-text-desc">EPA Safer Choice certified</span>
+                  </span>
+                  <input type="checkbox" id="pref-eco" name="pref_eco" class="pref-toggle pref-priced" data-price="10" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="pref-row">
+                <label class="toggle-label" for="pref-fragrance">
+                  <span class="toggle-text">
+                    <span class="toggle-text-title">Fragrance-free <span class="pref-price">+$5</span></span>
+                    <span class="toggle-text-desc">No artificial scents</span>
+                  </span>
+                  <input type="checkbox" id="pref-fragrance" name="pref_fragrance" class="pref-toggle pref-priced" data-price="5" role="switch" aria-checked="false">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group floating">
+            <textarea id="q-details" name="details" rows="2" placeholder=" "></textarea>
+            <label for="q-details">Anything else? (gate code, parking, allergies, special requests)</label>
+          </div>
+        </fieldset>
+
+        <!-- ============================================
+             STEP 3 — Contact + address (PII collected last)
+             ============================================ -->
+        <fieldset class="quote-step" data-step="3">
+          <legend class="quote-step-title">Where do we send your quote?</legend>
+
           <div class="form-row">
             <div class="form-group floating">
               <input type="text" id="q-fname" name="first_name" autocomplete="given-name" placeholder=" " required>
@@ -1409,9 +1592,8 @@
             <label for="q-address">Street address *</label>
             <span class="addr-status" id="addrStatus" aria-hidden="true"></span>
             <ul class="addr-suggestions" id="addrSuggestions" role="listbox" aria-label="Address suggestions" hidden></ul>
-            <small class="field-hint">Start typing and pick from the list &mdash; we'll autofill city &amp; ZIP.</small>
+            <small class="field-hint">Start typing &mdash; we'll autofill city &amp; ZIP.</small>
           </div>
-          <!-- State is implied (GA-only service area) — sent as hidden field -->
           <input type="hidden" id="q-state" name="state" value="GA">
           <div class="form-row">
             <div class="form-group floating">
@@ -1423,159 +1605,31 @@
               <label for="q-zip">ZIP *</label>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pets?</label>
-              <div class="radio-group">
-                <label class="radio-label"><input type="radio" name="pets" value="no" checked> No</label>
-                <label class="radio-label"><input type="radio" name="pets" value="yes"> Yes</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="q-date">Preferred date</label>
-              <input type="date" id="q-date" name="preferred_date" aria-describedby="q-date-hint">
-              <small id="q-date-hint" class="field-hint">Today or later</small>
-            </div>
-          </div>
-          <!-- Household Preferences -->
-          <div class="form-group pref-section">
-            <div class="pref-header">Household Preferences</div>
-            <div class="pref-toggles">
-              <div class="pref-row">
-                <label class="toggle-label" for="pref-pets">
-                  <span class="toggle-text">
-                    <span class="toggle-text-title">I have pets <span class="pref-price">+$15</span></span>
-                    <span class="toggle-text-desc">Pet-safe, non-toxic products</span>
-                  </span>
-                  <input type="checkbox" id="pref-pets" name="pref_pets" class="pref-toggle pref-priced" data-price="15" data-panel="prefPetsPanel" role="switch" aria-checked="false">
-                  <span class="toggle-switch" aria-hidden="true"></span>
-                </label>
-                <div class="pref-sub-panel" id="prefPetsPanel">
-                  <p class="pref-note">We pay special attention to pet hair removal and use only products safe for dogs, cats, and other pets.</p>
-                </div>
-              </div>
-              <div class="pref-row">
-                <label class="toggle-label" for="pref-allergy">
-                  <span class="toggle-text">
-                    <span class="toggle-text-title">Allergy-sensitive <span class="pref-price">+$20</span></span>
-                    <span class="toggle-text-desc">HEPA-filtered &amp; hypoallergenic</span>
-                  </span>
-                  <input type="checkbox" id="pref-allergy" name="pref_allergy" class="pref-toggle pref-priced" data-price="20" data-panel="prefAllergyPanel" role="switch" aria-checked="false">
-                  <span class="toggle-switch" aria-hidden="true"></span>
-                </label>
-                <div class="pref-sub-panel" id="prefAllergyPanel">
-                  <p class="pref-note">We'll use HEPA-filtered equipment and hypoallergenic, fragrance-free products throughout your home.</p>
-                </div>
-              </div>
-              <div class="pref-row">
-                <label class="toggle-label" for="pref-eco">
-                  <span class="toggle-text">
-                    <span class="toggle-text-title">Eco-friendly only <span class="pref-price">+$10</span></span>
-                    <span class="toggle-text-desc">EPA Safer Choice certified</span>
-                  </span>
-                  <input type="checkbox" id="pref-eco" name="pref_eco" class="pref-toggle pref-priced" data-price="10" role="switch" aria-checked="false">
-                  <span class="toggle-switch" aria-hidden="true"></span>
-                </label>
-              </div>
-              <div class="pref-row">
-                <label class="toggle-label" for="pref-fragrance">
-                  <span class="toggle-text">
-                    <span class="toggle-text-title">Fragrance-free <span class="pref-price">+$5</span></span>
-                    <span class="toggle-text-desc">No artificial scents</span>
-                  </span>
-                  <input type="checkbox" id="pref-fragrance" name="pref_fragrance" class="pref-toggle pref-priced" data-price="5" role="switch" aria-checked="false">
-                  <span class="toggle-switch" aria-hidden="true"></span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: Service & Pricing -->
-        <div class="qf-col qf-col-right">
-          <div class="qf-col-header">
-            <h3>Customize your clean</h3>
-            <p class="modal-sub">Pick your service and any add-ons. Price updates as you choose.</p>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="q-service">Service Type *</label>
-              <select id="q-service" name="service" required>
-                <option value="">Select a service</option>
-                <option value="standard">Standard Cleaning</option>
-                <option value="deep">Deep Clean</option>
-                <option value="movein">Move In</option>
-                <option value="moveout">Move Out</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="q-sqft">Square Footage</label>
-              <select id="q-sqft" name="sqft">
-                <option value="">Select range</option>
-                <option value="0-1000">Under 1,000 sq ft</option>
-                <option value="1000-2000">1,000 - 2,000 sq ft</option>
-                <option value="2000-3000">2,000 - 3,000 sq ft</option>
-                <option value="3000+">3,000+ sq ft</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row form-row-4">
-            <div class="form-group">
-              <label for="q-bed">Beds</label>
-              <select id="q-bed" name="bedrooms">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3" selected>3</option>
-                <option value="4">4</option>
-                <option value="5+">5+</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="q-bath">Baths</label>
-              <select id="q-bath" name="bathrooms">
-                <option value="1">1</option>
-                <option value="2" selected>2</option>
-                <option value="3">3</option>
-                <option value="4+">4+</option>
-              </select>
-            </div>
-            <div class="form-group" style="grid-column: span 2">
-              <label for="q-recurring">Frequency</label>
-              <select id="q-recurring" name="frequency">
-                <option value="one-time">One-time</option>
-                <option value="weekly">Weekly</option>
-                <option value="bi-weekly">Bi-weekly</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </div>
-          </div>
           <div class="form-group">
-            <label>Add-on Services</label>
-            <div class="checkbox-grid">
-              <label class="checkbox-label"><input type="checkbox" id="addon-walls" name="addon_walls" class="addon-check"> Walls <span class="addon-price">+$30</span></label>
-              <label class="checkbox-label"><input type="checkbox" id="addon-windows" name="addon_windows" class="addon-check"> Windows <span class="addon-price">+$40</span></label>
-              <label class="checkbox-label"><input type="checkbox" id="addon-fridge" name="addon_fridge" class="addon-check"> Fridge <span class="addon-price">+$25</span></label>
-              <label class="checkbox-label"><input type="checkbox" id="addon-oven" name="addon_oven" class="addon-check"> Oven <span class="addon-price">+$25</span></label>
-              <label class="checkbox-label"><input type="checkbox" id="addon-laundry" name="addon_laundry" class="addon-check"> Laundry <span class="addon-price">+$35</span></label>
-              <label class="checkbox-label"><input type="checkbox" id="addon-organizing" name="addon_organizing" class="addon-check"> Organizing <span class="addon-price">+$50</span></label>
-            </div>
+            <label for="q-date">Preferred date <span class="label-soft">(optional)</span></label>
+            <input type="date" id="q-date" name="preferred_date" aria-describedby="q-date-hint">
+            <small id="q-date-hint" class="field-hint">We'll confirm availability within 24 hrs.</small>
           </div>
-          <div class="form-group floating">
-            <textarea id="q-details" name="details" rows="2" placeholder=" "></textarea>
-            <label for="q-details">Additional Details</label>
-          </div>
-          <!-- Price Estimate Bar -->
-          <div class="price-estimate-bar" id="priceEstimateBar" role="status" aria-live="polite">
-            <div class="estimate-content">
-              <span class="estimate-label">Estimated range</span>
-              <span class="estimate-range">$0</span>
-            </div>
-            <span class="estimate-savings" style="display:none"></span>
-          </div>
-          <button type="submit" class="btn btn-submit btn-pill btn-block">Send quote request</button>
-        </div>
+        </fieldset>
 
       </form>
+
+      <footer class="quote-footer">
+        <div class="price-estimate-bar" id="priceEstimateBar" role="status" aria-live="polite">
+          <div class="estimate-content">
+            <span class="estimate-label">Estimated range</span>
+            <span class="estimate-range">Pick a service to see your price</span>
+          </div>
+          <span class="estimate-savings" style="display:none"></span>
+        </div>
+        <div class="quote-actions">
+          <button type="button" class="btn btn-outline btn-pill quote-back" id="quoteBack" hidden>&larr; Back</button>
+          <span class="quote-step-indicator" aria-hidden="true">Step <span id="quoteStepNum">1</span> of 3</span>
+          <button type="button" class="btn btn-accent btn-pill quote-next" id="quoteNext">Continue &rarr;</button>
+          <button type="submit" class="btn btn-submit btn-pill quote-submit" id="quoteSubmit" form="quoteForm" hidden>Send my quote request</button>
+        </div>
+      </footer>
+
     </div>
   </div>
 
@@ -2252,10 +2306,11 @@
       discount: { '': 0, 'one-time': 0, 'monthly': 0.05, 'bi-weekly': 0.10, 'weekly': 0.15 }
     };
     function calcEstimate() {
-      var svc = document.getElementById('q-service');
       var bar = document.getElementById('priceEstimateBar');
-      if (!svc || !bar) return;
-      var svcVal = svc.value;
+      if (!bar) return;
+      // Service is now a radio group (was a <select>)
+      var serviceRadio = document.querySelector('input[name="service"]:checked');
+      var svcVal = serviceRadio ? serviceRadio.value : '';
       if (!svcVal) { bar.classList.remove('visible'); return; }
       var base = priceConfig.base[svcVal] || 100;
       var sqftSel = document.getElementById('q-sqft');
@@ -2272,8 +2327,10 @@
       document.querySelectorAll('.pref-priced').forEach(function(cb) {
         if (cb.checked) prefsTotal += parseInt(cb.getAttribute('data-price')) || 0;
       });
-      var freqSel = document.getElementById('q-recurring');
-      var disc = priceConfig.discount[freqSel ? freqSel.value : ''] || 0;
+      // Frequency is now a radio group (was a <select>)
+      var freqRadio = document.querySelector('input[name="frequency"]:checked');
+      var freqVal = freqRadio ? freqRadio.value : 'one-time';
+      var disc = priceConfig.discount[freqVal] || 0;
       var subtotal = (base * mult) + ((beds - 1) * priceConfig.bedroomExtra) + ((baths - 1) * priceConfig.bathroomExtra) + addonsTotal + prefsTotal;
       var discounted = subtotal * (1 - disc);
       var low = Math.round(discounted * 0.85);
@@ -2284,20 +2341,125 @@
       var savingsEl = bar.querySelector('.estimate-savings');
       if (disc > 0) {
         var saved = Math.round(subtotal * disc);
-        savingsEl.textContent = 'Save $' + saved + ' with ' + (freqSel ? freqSel.value : '') + ' service';
+        savingsEl.textContent = 'Save $' + saved + ' with ' + freqVal + ' service';
         savingsEl.style.display = '';
       } else {
         savingsEl.style.display = 'none';
       }
     }
-    // Attach listeners to quote form fields
-    ['q-service','q-sqft','q-bed','q-bath','q-recurring'].forEach(function(id) {
+    // Attach listeners \u2014 selects (sqft, beds, baths) + radio groups (service, frequency)
+    ['q-sqft','q-bed','q-bath'].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.addEventListener('change', calcEstimate);
+    });
+    document.querySelectorAll('input[name="service"], input[name="frequency"]').forEach(function(r) {
+      r.addEventListener('change', calcEstimate);
     });
     document.querySelectorAll('.addon-check').forEach(function(cb) {
       cb.addEventListener('change', calcEstimate);
     });
+
+    // \u2500\u2500 Quote Modal Stepper \u2500\u2500
+    (function initQuoteStepper() {
+      var form = document.getElementById('quoteForm');
+      if (!form) return;
+      var steps = form.querySelectorAll('.quote-step');
+      var progressItems = document.querySelectorAll('.quote-progress .qp-item');
+      var nextBtn = document.getElementById('quoteNext');
+      var backBtn = document.getElementById('quoteBack');
+      var submitBtn = document.getElementById('quoteSubmit');
+      var stepNumEl = document.getElementById('quoteStepNum');
+      var maxStep = steps.length;
+      var current = 1;
+
+      function showStep(n) {
+        n = Math.max(1, Math.min(maxStep, n));
+        current = n;
+        steps.forEach(function(s) {
+          s.classList.toggle('active', parseInt(s.dataset.step, 10) === n);
+        });
+        progressItems.forEach(function(item) {
+          var step = parseInt(item.dataset.step, 10);
+          item.classList.toggle('active', step === n);
+          item.classList.toggle('done', step < n);
+          item.setAttribute('aria-current', step === n ? 'step' : 'false');
+        });
+        if (backBtn) backBtn.hidden = n === 1;
+        if (nextBtn) nextBtn.hidden = n === maxStep;
+        if (submitBtn) submitBtn.hidden = n !== maxStep;
+        if (stepNumEl) stepNumEl.textContent = String(n);
+
+        // Move focus to first focusable in the new step (a11y)
+        var firstFocusable = form.querySelector('.quote-step.active input:not([type="hidden"]):not([type="radio"]), .quote-step.active select, .quote-step.active textarea');
+        if (firstFocusable) setTimeout(function() { try { firstFocusable.focus({ preventScroll: true }); } catch (_) { firstFocusable.focus(); } }, 60);
+      }
+
+      function validateStep(n) {
+        var step = form.querySelector('.quote-step[data-step="' + n + '"]');
+        if (!step) return true;
+        var ok = true;
+        // Standard required-field check (uses validateField from form-resilience phase if available)
+        var fields = step.querySelectorAll('input[required]:not([type="radio"]), select[required], textarea[required]');
+        fields.forEach(function(f) {
+          if (typeof window.__rscValidateField === 'function') {
+            if (!window.__rscValidateField(f)) ok = false;
+          } else if (f.hasAttribute('required') && !(f.value || '').trim()) {
+            ok = false;
+          }
+        });
+        // Service radio \u2014 required on step 1
+        if (n === 1) {
+          var serviceChecked = step.querySelector('input[name="service"]:checked');
+          if (!serviceChecked) {
+            ok = false;
+            var cards = step.querySelector('.service-cards');
+            if (cards) {
+              cards.classList.add('has-error');
+              cards.setAttribute('aria-invalid', 'true');
+              setTimeout(function() { cards.classList.remove('has-error'); }, 2000);
+            }
+          }
+        }
+        return ok;
+      }
+
+      if (nextBtn) nextBtn.addEventListener('click', function() {
+        if (validateStep(current)) showStep(current + 1);
+      });
+      if (backBtn) backBtn.addEventListener('click', function() { showStep(current - 1); });
+
+      // Allow clicking a previous step in the progress bar to jump back
+      progressItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          var step = parseInt(item.dataset.step, 10);
+          if (step < current) showStep(step);
+        });
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            var step = parseInt(item.dataset.step, 10);
+            if (step < current) { e.preventDefault(); showStep(step); }
+          }
+        });
+        item.tabIndex = 0;
+      });
+
+      // Reset to step 1 each time the modal opens
+      var origOpen = window.openQuoteModal;
+      window.openQuoteModal = function() {
+        if (typeof origOpen === 'function') origOpen();
+        showStep(1);
+      };
+
+      // Submit gate \u2014 make sure step 3 validates before posting to Zapier
+      form.addEventListener('submit', function(e) {
+        if (current !== maxStep || !validateStep(maxStep)) {
+          e.preventDefault();
+          if (current !== maxStep) showStep(maxStep);
+        }
+      }, true);
+
+      showStep(1);
+    })();
 
     // ── Before/After Room Tabs ──
     document.querySelectorAll('.ba-tab').forEach(function(tab) {
@@ -2942,7 +3104,8 @@
       });
     });
 
-    // Expose for submit-time use
+    // Expose for submit-time + step-gate use
+    window.__rscValidateField = validateField;
     window.__rscValidateForm = function(form) {
       var ok = true;
       form.querySelectorAll('input[required], textarea[required]').forEach(function(f) {
