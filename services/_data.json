@@ -1,0 +1,191 @@
+{
+  "_about": "Source of truth for /services/[slug]/ pages. Consumed by scripts/build-service-pages.mjs which emits index.html per slug. Owner edits this file, runs the build script, page output regenerates.",
+  "version": "1.0.0",
+
+  "standard": {
+    "slug": "standard",
+    "title": "Standard House Cleaning Atlanta GA | Red Sky Cleaning",
+    "metaDescription": "Standard house cleaning in Atlanta — routine upkeep with detailed dust, sanitize, vacuum, and mop. From $100. Background-checked, insured.",
+    "h1": "Standard cleaning",
+    "lede": "Routine upkeep that keeps a maintained Atlanta home maintained. Dust, sanitize, vacuum, mop — every visit, with the same crew, on the same checklist.",
+    "priceFrom": 100,
+    "drawerService": "standard",
+    "schemaServiceName": "Standard House Cleaning",
+    "schemaServiceType": "House cleaning",
+    "schemaDescription": "Routine house cleaning service for the greater Atlanta area: detailed dusting, kitchen sanitize, bathroom freshen, vacuum and mop.",
+    "includes": [
+      { "room": "Kitchen", "items": ["Dust + wipe all surfaces","Sanitize counters + sink","Wipe stove top + microwave exterior","Wipe outside of major appliances","Empty trash + reline","Sweep + mop floor","Spot-clean cabinet fronts"] },
+      { "room": "Bathrooms", "items": ["Disinfect counters, sink, faucets","Scrub toilet inside + out","Clean tub + shower","Streak-free mirrors + glass","Sweep + mop floor","Empty trash + replace liner","Restock if guest soap/towels in place"] },
+      { "room": "Bedrooms", "items": ["Dust all flat surfaces","Make beds (linens stay)","Vacuum carpet / dust hardwood","Wipe baseboards (visible)","Empty trash"] },
+      { "room": "Living areas", "items": ["Dust all surfaces + electronics","Vacuum carpet + furniture","Mop hardwood / tile","Sanitize light switches + door handles","Wipe inside windows (sills + ledges)"] }
+    ],
+    "notIncluded": [
+      "Inside oven, fridge, or cabinets (add as add-on)",
+      "Wall washing or scuff removal (add-on)",
+      "Window exteriors or 2nd-story windows",
+      "Heavy-duty tile/grout deep-scrub (deep clean only)",
+      "Laundry, dishes, or pet waste"
+    ],
+    "addons": ["inside_fridge","inside_oven","laundry_load","dishes","baseboards_detailed"],
+    "timeEstimate": [
+      { "size": "Under 1,500 sq ft", "time": "1.5 – 2 hrs" },
+      { "size": "1,500 – 2,500 sq ft", "time": "2 – 3 hrs" },
+      { "size": "2,500 – 3,500 sq ft", "time": "3 – 4 hrs" },
+      { "size": "3,500+ sq ft", "time": "4+ hrs · 2-cleaner crew" }
+    ],
+    "faqs": [
+      { "q": "How often should I book a standard clean?", "a": "Most Atlanta customers run bi-weekly — it keeps the house even and saves 15% off the one-time rate. Weekly is the sweet spot for families with kids or pets and saves 20%." },
+      { "q": "Do I need to be home?", "a": "No. Most customers leave a key, garage code, or lockbox. We always confirm arrival and departure with a photo of the finished home." },
+      { "q": "What if a room is messier than usual?", "a": "We text you. If a one-time deep clean is the better fit for that visit, we'll quote it before starting work — never a surprise charge." }
+    ]
+  },
+
+  "deep": {
+    "slug": "deep",
+    "title": "Deep House Cleaning Atlanta GA | Red Sky Cleaning",
+    "metaDescription": "Deep house cleaning in Atlanta — top-to-bottom detail including baseboards, trim, appliance exteriors, and detailed bathroom scrub. From $250.",
+    "h1": "Deep clean",
+    "lede": "First-time clean? Long-overdue clean? Pre-event clean? This is the one. Top-to-bottom detail — baseboards, trim, appliance exteriors, the deep bathroom scrub.",
+    "priceFrom": 250,
+    "drawerService": "deep",
+    "schemaServiceName": "Deep House Cleaning",
+    "schemaServiceType": "Deep cleaning",
+    "schemaDescription": "Detailed top-to-bottom house cleaning in Atlanta including baseboards, trim, appliance exteriors, and detailed bathroom and kitchen scrub.",
+    "includes": [
+      { "room": "Kitchen", "items": ["Everything in standard, plus:","Detailed appliance exteriors (front, sides, top)","Inside microwave + handle","Polish stainless steel grain-direction","Edge-clean tile grout","Hand-wipe cabinet fronts (top + bottom)","Wipe range hood + filter","Behind small countertop appliances"] },
+      { "room": "Bathrooms", "items": ["Everything in standard, plus:","Detailed tile grout scrub","Hard-water removal (faucets, glass)","Wipe baseboards + trim","Hand-wash inside cabinet doors","Wipe vent fan covers","Polish chrome / brushed nickel","Spot-treat tub caulking"] },
+      { "room": "Bedrooms", "items": ["Everything in standard, plus:","Wipe baseboards + door frames","Dust ceiling fans + light fixtures","Wipe inside windowsills + tracks","Vacuum under bed (where reachable)","Spot-clean upholstery (no shampoo)"] },
+      { "room": "Living areas", "items": ["Everything in standard, plus:","Detailed baseboards + trim","Hand-wipe ceiling fans + light fixtures","Vacuum upholstery","Wipe inside windows + sills","Detailed cobweb removal (corners, ceilings)"] }
+    ],
+    "notIncluded": [
+      "Inside oven or inside fridge (add as add-on or pick move-in/out)",
+      "Wall washing (add-on per room)",
+      "Window exteriors / 2nd-story",
+      "Carpet shampooing / steam cleaning",
+      "Pet waste, hoarding situations, biohazard"
+    ],
+    "addons": ["inside_fridge","inside_oven","inside_cabinets_per_room","wall_scuff_per_room","blinds_per_room","baseboards_detailed"],
+    "timeEstimate": [
+      { "size": "Under 1,500 sq ft", "time": "3 – 4 hrs" },
+      { "size": "1,500 – 2,500 sq ft", "time": "4 – 6 hrs" },
+      { "size": "2,500 – 3,500 sq ft", "time": "6 – 8 hrs" },
+      { "size": "3,500+ sq ft", "time": "Full day · 2-cleaner crew" }
+    ],
+    "faqs": [
+      { "q": "Do I need a deep clean for my first visit?", "a": "Most first-time customers do — it gets the house to a baseline that standard cleans can then maintain. If your home is already maintained, you can skip straight to standard and save." },
+      { "q": "How often should I deep-clean?", "a": "In humid Atlanta summers, every 3–6 months is reasonable. Customers on bi-weekly standard service usually deep-clean once or twice a year for refresh." },
+      { "q": "What's the difference between deep and move-in cleaning?", "a": "Deep cleans an occupied home. Move-in cleans an empty home and includes inside cabinets, fridge, oven — places we can't safely deep-clean while you're living there." }
+    ]
+  },
+
+  "move-in": {
+    "slug": "move-in",
+    "title": "Move-In Cleaning Atlanta GA | Red Sky Cleaning",
+    "metaDescription": "Move-in cleaning in Atlanta GA — spotless start before your boxes arrive. Inside cabinets, every floor, every fixture. From $250. Background-checked.",
+    "h1": "Move-in cleaning",
+    "lede": "Walk into a home that smells new. We clean every cabinet interior, every floor, every fixture — before your first box hits the kitchen counter.",
+    "priceFrom": 250,
+    "drawerService": "move_in",
+    "schemaServiceName": "Move-In House Cleaning",
+    "schemaServiceType": "Move-in cleaning",
+    "schemaDescription": "Move-in cleaning service in Atlanta for empty homes: inside cabinets, drawers, fridge, oven, every floor and fixture.",
+    "includes": [
+      { "room": "Kitchen", "items": ["Inside + outside ALL cabinets + drawers","Inside oven (degrease + scrub)","Inside fridge + freezer (defrosted ok)","Inside dishwasher","Inside microwave","Polish all appliances","Sanitize counters + backsplash","Detailed sink + faucet","Sweep + mop floor","Hand-wipe baseboards"] },
+      { "room": "Bathrooms", "items": ["Inside + outside vanity drawers","Inside medicine cabinet","Disinfect tub, shower, toilet","Detailed tile grout","Polish chrome + glass","Detailed sink + faucet","Sweep + mop","Hand-wipe baseboards"] },
+      { "room": "Bedrooms", "items": ["Inside + outside closet shelves","Wipe inside drawers (built-ins)","Wipe windowsills + tracks","Vacuum / mop floor","Hand-wipe baseboards","Dust ceiling fans + fixtures"] },
+      { "room": "Whole home", "items": ["Sanitize every light switch + door handle","Wipe interior doors","Detailed cobweb removal","Inside-window glass + sills","Vacuum / mop ALL floors","Wipe baseboards every room","Empty + wipe any built-in storage"] }
+    ],
+    "notIncluded": [
+      "Carpet shampoo / steam (recommend separate carpet service)",
+      "Window exteriors / 2nd-story windows",
+      "Wall washing (add-on per room)",
+      "Garage, attic, basement crawl space",
+      "Painting, repairs, hauling"
+    ],
+    "addons": ["inside_windows_per_room","wall_scuff_per_room","blinds_per_room","baseboards_detailed"],
+    "timeEstimate": [
+      { "size": "Under 1,500 sq ft", "time": "4 – 5 hrs" },
+      { "size": "1,500 – 2,500 sq ft", "time": "5 – 7 hrs" },
+      { "size": "2,500 – 3,500 sq ft", "time": "7 – 9 hrs" },
+      { "size": "3,500+ sq ft", "time": "Full day · 2-cleaner crew" }
+    ],
+    "faqs": [
+      { "q": "When should I schedule the clean?", "a": "After the previous occupants are out, before your movers arrive. Typically the day before move-in, or the day of, before furniture comes in." },
+      { "q": "Should the home be empty?", "a": "Yes — completely. We can't safely clean inside cabinets and around floors with boxes or furniture in the way. If anything's left behind, we hand-clean around it." },
+      { "q": "Do you handle apartments + condos?", "a": "Yes. Our move-in pricing scales by square footage so a one-bedroom is much less than a 3,000 sq ft house." }
+    ]
+  },
+
+  "move-out": {
+    "slug": "move-out",
+    "title": "Move-Out Cleaning Atlanta GA | Red Sky Cleaning",
+    "metaDescription": "Move-out cleaning in Atlanta — inspection-ready, security-deposit-grade. Inside fridge + oven, cabinet wipe-down, every fixture. From $250.",
+    "h1": "Move-out cleaning",
+    "lede": "Get your security deposit back. Or hand the keys to a buyer who can't find a single thing to complain about. Either way: every inch, every fixture, every cabinet.",
+    "priceFrom": 250,
+    "drawerService": "move_out",
+    "schemaServiceName": "Move-Out House Cleaning",
+    "schemaServiceType": "Move-out cleaning",
+    "schemaDescription": "Move-out cleaning service in Atlanta for empty homes: inspection-ready clean with inside fridge, oven, cabinets, and detailed fixtures for security-deposit return or sale.",
+    "includes": [
+      { "room": "Kitchen", "items": ["Inside oven (degrease + scrub)","Inside fridge + freezer","Inside dishwasher","Inside + outside ALL cabinets + drawers","Inside microwave","Polish all appliances","Sanitize counters + backsplash","Sink + faucet detail","Sweep + mop","Hand-wipe baseboards"] },
+      { "room": "Bathrooms", "items": ["Inside + outside vanity, drawers, medicine cabinet","Tub, shower, toilet — detailed disinfect","Tile grout scrub","Polish chrome + glass","Sink + faucet detail","Sweep + mop","Hand-wipe baseboards"] },
+      { "room": "Bedrooms", "items": ["Inside + outside closets (every shelf, every rod)","Inside any built-in drawers","Vacuum / mop floor","Hand-wipe baseboards","Wipe windowsills + tracks","Dust ceiling fans + light fixtures"] },
+      { "room": "Whole home", "items": ["Sanitize every switch + door handle","Wipe interior doors + frames","Detailed cobweb removal","Inside-window glass + sills","Vacuum / mop ALL floors","Wipe baseboards every room","Empty + wipe inside any built-in storage","Inspect for missed items + final walk-through"] }
+    ],
+    "notIncluded": [
+      "Carpet shampoo / steam (separate carpet service if needed)",
+      "Wall washing (add-on per room)",
+      "Window exteriors / 2nd-story",
+      "Hauling left-behind items",
+      "Repair work or painting"
+    ],
+    "addons": ["inside_windows_per_room","wall_scuff_per_room","blinds_per_room","baseboards_detailed"],
+    "timeEstimate": [
+      { "size": "Under 1,500 sq ft", "time": "4 – 5 hrs" },
+      { "size": "1,500 – 2,500 sq ft", "time": "5 – 7 hrs" },
+      { "size": "2,500 – 3,500 sq ft", "time": "7 – 9 hrs" },
+      { "size": "3,500+ sq ft", "time": "Full day · 2-cleaner crew" }
+    ],
+    "faqs": [
+      { "q": "Will this satisfy my landlord's security-deposit checklist?", "a": "Most yes — our move-out checklist mirrors what Atlanta-area landlords inspect. Send your move-out checklist before the visit and we'll cross-check it." },
+      { "q": "When should I schedule?", "a": "After all your stuff is out, before your final walk-through. We can usually book the day-of or day-before with 48 hours' notice." },
+      { "q": "What if my landlord's still not satisfied?", "a": "We come back within 24 hours and re-clean whatever they flagged at no additional charge — that's our re-clean guarantee." }
+    ]
+  },
+
+  "recurring": {
+    "slug": "recurring",
+    "title": "Recurring Cleaning Plans Atlanta | Save up to 20% | Red Sky Cleaning",
+    "metaDescription": "Weekly, bi-weekly, or monthly cleaning plans in Atlanta — save up to 20%. Same crew every visit. No contract, cancel any time. Background-checked, insured.",
+    "h1": "Recurring plans",
+    "lede": "Same crew, same checklist, every visit — and you save more the more often we come. No contract. Cancel any time.",
+    "priceFrom": 80,
+    "drawerService": "standard",
+    "schemaServiceName": "Recurring House Cleaning",
+    "schemaServiceType": "Recurring cleaning",
+    "schemaDescription": "Recurring cleaning subscription plans in Atlanta — weekly, bi-weekly, or monthly — with discounts up to 20% off the one-time rate.",
+    "isRecurring": true,
+    "tiers": [
+      { "name": "Weekly",     "discount": 20, "for": "Busy families, pets, kids", "features": ["Same crew every week","Save 20% off one-time rate","Priority scheduling","Skip a week any time"] },
+      { "name": "Bi-weekly",  "discount": 15, "popular": true, "for": "Most popular among Atlanta homes", "features": ["Same crew every 2 weeks","Save 15% off one-time rate","Priority scheduling","Skip a week any time"] },
+      { "name": "Monthly",    "discount": 10, "for": "Light upkeep, smaller homes", "features": ["Same crew every month","Save 10% off one-time rate","Priority scheduling","Skip a month any time"] }
+    ],
+    "savingsExample": {
+      "oneTimePrice": 180,
+      "weeklyPrice": 144,
+      "biweeklyPrice": 153,
+      "monthlyPrice": 162,
+      "weeklyAnnual": 1872,
+      "biweeklyAnnual": 1989,
+      "monthlyAnnual": 1944,
+      "oneTimeAnnualEquivalent": 2340
+    },
+    "faqs": [
+      { "q": "Do I have to sign a contract?", "a": "No. There's no contract, no cancellation fee, and no minimum number of visits. Skip a week or cancel entirely whenever you want." },
+      { "q": "Can I switch plans?", "a": "Yes — move from weekly to bi-weekly or monthly at any time. The new rate kicks in on your next visit." },
+      { "q": "Will I get the same cleaner every time?", "a": "We aim for the same crew on every recurring visit. If your usual cleaner is out, we send someone trained to your home's checklist with a heads-up text." },
+      { "q": "What if I need to skip a week?", "a": "Just text or email us 24 hours ahead. No fee. Your discount carries over to the next visit." }
+    ]
+  }
+}
