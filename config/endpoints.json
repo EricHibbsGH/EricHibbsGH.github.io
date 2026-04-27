@@ -1,0 +1,21 @@
+{
+  "_about": "Form-submission webhooks + spam-protection keys. Owner replaces YOUR_*_HERE placeholders before launch (see CONTENT-NEEDS.md). The JS detects unfilled placeholders and fails safe — shows a 'we got it' confirmation but skips the actual POST to avoid leaking sample submissions to a real endpoint.",
+  "version": "1.0.0",
+
+  "quote_webhook":       "YOUR_QUOTE_WEBHOOK_URL_HERE",
+  "contact_webhook":     "YOUR_CONTACT_WEBHOOK_URL_HERE",
+  "newsletter_webhook":  "YOUR_NEWSLETTER_WEBHOOK_URL_HERE",
+  "exit_intent_webhook": "YOUR_EXIT_INTENT_WEBHOOK_URL_HERE",
+
+  "owner_email": "support@redskycleaning.com",
+
+  "turnstile_site_key": "YOUR_TURNSTILE_SITE_KEY_HERE",
+
+  "options": {
+    "post_method": "POST",
+    "post_mode": "no-cors",
+    "post_content_type": "application/json",
+    "include_referrer": true,
+    "include_utm": true
+  }
+}

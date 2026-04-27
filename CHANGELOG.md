@@ -6,6 +6,47 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased] — branch `feat/atl-domination`
 
+### Phase 3 — 2026-04-27 — `feat(quote): instant calculator + drawer`
+
+**Added**
+
+- `config/pricing.json` — full pricing seed values per spec §7.2 (base, per_bedroom, per_bathroom, sqft_tier_multiplier, addons w/ unit modes, frequency_discount, service_labels, time_window_radios, service_area_zips). Owner can tune any number without code changes.
+- `config/endpoints.json` — webhook URLs (`quote_webhook`, `contact_webhook`, `newsletter_webhook`, `exit_intent_webhook`) + `turnstile_site_key`. All values default to `YOUR_*_HERE` placeholders that the JS detects and fails-safe on.
+- `js/pricing.js` — vanilla ES module. Loads config once with embedded fallback, exposes `computePrice()`, `serviceLabel()`, `serviceStartingAt()`, `zipInServiceArea()`, `formatUSD()`, `summarize()`. Per-room and per-load addon unit handling. Returns `{ low, high, mid, breakdown[], savings }` with ±10% range around the anchor price.
+- `js/quote-drawer.js` — slide-in 5-step drawer (spec §7.1):
+  - Native `<dialog>` + ::backdrop + focus trap (browser-native)
+  - Step 1: service-card radio grid
+  - Step 2: bedroom + bathroom steppers, sqft tier select
+  - Step 3: frequency cards with "Most popular" badge on bi-weekly
+  - Step 4: addon chip multi-select, date picker, time-window radios, pets toggle
+  - Step 5: contact details (name, email, phone, address, city, ZIP) with inline blur validation, hidden honeypot, hidden GA state field
+  - Live price tween (`requestAnimationFrame`, ease-out-quart, reduced-motion-safe)
+  - localStorage draft state under key `rsc_draft_v1` — auto-saves every input change
+  - Submit posts JSON to `quote_webhook` (skips silently if placeholder), pushes `submit_quote` to `dataLayer` for Phase-9 GTM
+  - Success screen with Add-to-Google-Calendar link + downloadable `.ics`
+  - `[data-rs-open-quote]` auto-binds any element on the page; programmatic open via `window.RSQuoteDrawer.open(prefill)`
+- `js/inline-calc.js` — 3-input mini-calculator (ZIP + bedrooms + frequency) per spec §6. Real-time price update, ZIP coverage check (✓ / "outside core area"), "Continue Booking" forwards prefill into the drawer (or `/quote/?…` query-string fallback).
+- `quote/index.html` — `/quote/` deep-link landing page with hero, inline mini-calc, "How it works" 5-step grid, trust strip. Deep-link prefill from `?service=…&zip=…` auto-opens the drawer. Service + Offer + AggregateOffer JSON-LD.
+- styles.css: appended `.rs-quote-drawer`, `.rs-qd__*` (head/progress/title/body/sub/row/svc-grid/svc-card/freq-grid/freq-card/addons/addon-chip/windows/tw/pets/contact-grid/foot/estimate/actions/success/etc.), and `.rs-mini-calc` styles. Reduced-motion overrides included.
+
+**Changed**
+
+- No production HTML touched (legacy `index.html`, `services/`, `areas/` etc. still untouched per spec — those pages rebuild in Phases 4–7).
+
+**Decisions logged this phase**
+
+- D-004: pricing engine in `js/pricing.js` reading `config/pricing.json`
+- D-005: quote drawer = native `<dialog>` with focus-trap fallback
+- D-006: webhook submission, owner picks endpoint
+- D-016: placeholder content marked in CONTENT-NEEDS.md (here: webhook URLs default to `YOUR_*_HERE`, fail safe)
+
+**Honest note** — submissions silently fail-success until the owner pastes a real webhook URL into `config/endpoints.json`. The JS still:
+- Pushes `start_quote` and `submit_quote` to `window.dataLayer` (so Phase 9 GTM picks them up)
+- Saves the draft to localStorage so the user's data isn't lost on refresh
+- Shows the success screen + Add-to-Calendar links
+
+**Lighthouse:** still no formal capture. First baseline at Phase 4 homepage rebuild.
+
 ### Phase 2 — 2026-04-27 — `feat(design): tokens + base components`
 
 **Added**

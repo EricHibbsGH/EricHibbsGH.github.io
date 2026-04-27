@@ -1,0 +1,87 @@
+{
+  "_about": "Pricing seed values per spec §7.2. Loaded by js/pricing.js. Owner may tune any number here without touching code.",
+  "version": "1.0.0",
+  "currency": "USD",
+
+  "base": {
+    "standard": 100,
+    "deep": 250,
+    "move_in": 250,
+    "move_out": 250
+  },
+
+  "per_bedroom": {
+    "standard": 25,
+    "deep": 45,
+    "move_in": 45,
+    "move_out": 45
+  },
+
+  "per_bathroom": {
+    "standard": 20,
+    "deep": 40,
+    "move_in": 40,
+    "move_out": 40
+  },
+
+  "sqft_tier_multiplier": {
+    "<1500":     1.00,
+    "1500-2000": 1.10,
+    "2000-2500": 1.20,
+    "2500-3000": 1.32,
+    "3000-3500": 1.45,
+    "3500-4000": 1.58,
+    "4000+":     1.72
+  },
+
+  "addons": {
+    "inside_fridge":            { "label": "Inside fridge",       "price": 35, "unit": "flat" },
+    "inside_oven":              { "label": "Inside oven",         "price": 35, "unit": "flat" },
+    "inside_cabinets_per_room": { "label": "Inside cabinets",     "price": 25, "unit": "per_room" },
+    "inside_windows_per_room":  { "label": "Inside windows",      "price": 20, "unit": "per_room" },
+    "laundry_load":             { "label": "Laundry load",        "price": 15, "unit": "per_load" },
+    "wall_scuff_per_room":      { "label": "Wall scuff removal",  "price": 20, "unit": "per_room" },
+    "blinds_per_room":          { "label": "Blinds",              "price": 15, "unit": "per_room" },
+    "dishes":                   { "label": "Dishes",              "price": 20, "unit": "flat" },
+    "baseboards_detailed":      { "label": "Detailed baseboards", "price": 40, "unit": "flat" }
+  },
+
+  "frequency_discount": {
+    "one_time": 0.00,
+    "weekly":   0.20,
+    "biweekly": 0.15,
+    "monthly":  0.10
+  },
+
+  "service_labels": {
+    "standard": "Standard cleaning",
+    "deep":     "Deep clean",
+    "move_in":  "Move-in cleaning",
+    "move_out": "Move-out cleaning"
+  },
+
+  "service_starting_at": {
+    "standard": 100,
+    "deep":     250,
+    "move_in":  250,
+    "move_out": 250
+  },
+
+  "time_window_radios": [
+    { "value": "8-11",  "label": "8 am – 11 am" },
+    { "value": "11-2",  "label": "11 am – 2 pm" },
+    { "value": "2-5",   "label": "2 pm – 5 pm" }
+  ],
+
+  "service_area_zips": [
+    "30004","30005","30009","30022","30023","30024","30097",
+    "30043","30044","30045","30046",
+    "30060","30061","30062","30063","30064","30066","30067","30068",
+    "30518","30519",
+    "30501","30503","30504","30506","30507",
+    "30114","30115",
+    "30534",
+    "30680",
+    "30305","30309","30326","30327"
+  ]
+}
