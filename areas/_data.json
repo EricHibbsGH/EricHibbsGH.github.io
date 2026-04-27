@@ -1,0 +1,177 @@
+{
+  "_about": "Source of truth for /areas/[slug]/ pages. Consumed by scripts/build-area-pages.mjs. Neighborhood lists are verbatim from spec §9; ZIPs from config/pricing.json service_area_zips; lat/lng from earlier Leaflet integration.",
+  "version": "1.0.0",
+
+  "cities": [
+    {
+      "slug": "alpharetta",
+      "name": "Alpharetta",
+      "zips": ["30004","30005","30009","30022","30023"],
+      "neighborhoods": ["Avalon area","Downtown Alpharetta","Windward","Crabapple"],
+      "lat": 34.075,
+      "lng": -84.294,
+      "driveMin": 30,
+      "homeTypes": "planned swim-and-tennis communities, newer townhomes near Avalon, established homes in Crabapple",
+      "landmark": "Avalon mixed-use district",
+      "intro": "Alpharetta is one of our most-served cities — we run weekly and bi-weekly cleans across Avalon, Windward, Crabapple, and the Downtown Alpharetta area. The mix is heavy on planned swim-and-tennis communities (3–5 bedrooms, 2,500–4,000 sq ft) plus newer townhomes near Avalon. About 30 minutes from our Atlanta base, so same-week scheduling is easy and we keep the same crew on each home for recurring service.",
+      "faqs": [
+        { "q": "Do you serve homes near the Country Club of the South area on the Alpharetta side?", "a": "Yes — the boundary with Johns Creek is fluid. If you're on the Alpharetta side of the line we dispatch from this service area at the same rate." },
+        { "q": "Are crews familiar with Avalon townhome layouts?", "a": "Yes. We clean 20+ Avalon-area townhomes regularly. Tile-grout, hardwood maintenance, and stainless-steel appliance care are part of every visit there." },
+        { "q": "Can you accommodate gate codes for Windward or Crabapple HOAs?", "a": "Yes. Add the gate code in the booking notes — we never share it with anyone outside the assigned crew, and we delete it after your last visit." }
+      ]
+    },
+    {
+      "slug": "johns-creek",
+      "name": "Johns Creek",
+      "zips": ["30024","30097"],
+      "neighborhoods": ["Country Club of the South","St Ives","Doublegate","Seven Oaks"],
+      "lat": 34.029,
+      "lng": -84.198,
+      "driveMin": 30,
+      "homeTypes": "golf-course estates, gated communities, larger family homes",
+      "landmark": "Newtown Park + Chattahoochee River frontage",
+      "intro": "Johns Creek is a sweet spot for our recurring-cleaning roster. Country Club of the South, St Ives, Doublegate, and Seven Oaks are gated communities with larger 4–6 bedroom homes that benefit from a 2-cleaner crew on a bi-weekly cadence. About 30 minutes from our Atlanta base. We're familiar with the major HOAs and gate-code protocols, and a meaningful share of our 5-star Google reviews come from this ZIP.",
+      "faqs": [
+        { "q": "Can you handle a 5,000+ sq ft home in Country Club of the South?", "a": "Yes — homes that size get a 2-cleaner crew and finish in 4–5 hours. The instant-quote calculator scales the price for 4,000+ sq ft automatically." },
+        { "q": "Do you clean the lake-side estates near St Ives?", "a": "Yes. Lake-adjacent homes sometimes have specialty floors (slate, polished concrete) — let us know in the booking notes and the crew brings the appropriate care kit." },
+        { "q": "How do you handle gate codes at Doublegate and Seven Oaks?", "a": "Add it in the booking notes; we use it once and never share it. For monthly recurring, we coordinate with the gatehouse so the same crew is pre-cleared for each visit." }
+      ]
+    },
+    {
+      "slug": "marietta",
+      "name": "Marietta",
+      "zips": ["30060","30061","30062","30063","30064","30066","30067","30068"],
+      "neighborhoods": ["East Cobb","West Cobb","Kennesaw line","Marietta Square"],
+      "lat": 33.953,
+      "lng": -84.550,
+      "driveMin": 25,
+      "homeTypes": "established suburbia, historic homes near the Square, larger East Cobb subdivisions",
+      "landmark": "Marietta Square + Kennesaw Mountain",
+      "intro": "Marietta covers a wide area — we serve East Cobb (a heavy concentration of bi-weekly customers), West Cobb, the Kennesaw line, and the historic homes around Marietta Square. About 25 minutes from our Atlanta base. Older homes near the Square sometimes need extra care for hardwood and original-tile bathrooms; we send crews trained on those finishes. The newer East Cobb subdivisions are a much faster routine clean.",
+      "faqs": [
+        { "q": "Do you clean historic homes near Marietta Square?", "a": "Yes — and we know the difference between a maintained 1920s hardwood and a contemporary engineered floor. The crew uses pH-neutral cleaners on original surfaces by default." },
+        { "q": "Can you do a Saturday clean before a wedding at the Square?", "a": "Sat/Sun appointments are limited — call us for special-event scheduling, especially around peak Marietta Square wedding season." },
+        { "q": "Is East Cobb pricing different from West Cobb?", "a": "No — both are inside our standard service area at the same rates. The instant-quote calculator scales by your home size, not the ZIP." }
+      ]
+    },
+    {
+      "slug": "buckhead",
+      "name": "Buckhead",
+      "zips": ["30305","30309","30326","30327"],
+      "neighborhoods": ["Tuxedo Park","Garden Hills","Peachtree Heights","Chastain Park"],
+      "lat": 33.838,
+      "lng": -84.379,
+      "driveMin": 10,
+      "homeTypes": "high-end estates, mid-century walk-ups, condos in mixed-use towers",
+      "landmark": "Atlanta History Center + Phipps Plaza",
+      "intro": "Buckhead is our closest-in service area — about 10 minutes from base, so we handle same-day requests when we have capacity. The mix is varied: estates in Tuxedo Park (where a 2-cleaner crew is the norm), mid-century walk-ups in Garden Hills, walkable streets in Peachtree Heights, and the Chastain Park neighborhoods near the amphitheater. We also clean condos in the major Buckhead towers — concierge protocols supported.",
+      "faqs": [
+        { "q": "Can you access the major Buckhead condo towers?", "a": "Yes — we work with concierge desks at most Buckhead high-rises. Add your tower name and unit number to the booking notes; we coordinate access ahead of time." },
+        { "q": "Do you clean the larger Tuxedo Park estates?", "a": "Yes. Estates over 5,000 sq ft get a 2- or 3-cleaner crew so the visit finishes in a single workday." },
+        { "q": "What's your fastest available slot in 30305?", "a": "Buckhead is our shortest dispatch — we often have day-of slots Monday through Friday before noon. Use the instant-quote tool and pick a same-week date to see live availability." }
+      ]
+    },
+    {
+      "slug": "lawrenceville",
+      "name": "Lawrenceville",
+      "zips": ["30043","30044","30045","30046"],
+      "neighborhoods": ["Sugarloaf","Hamilton Mill border","Downtown Lawrenceville"],
+      "lat": 33.956,
+      "lng": -83.988,
+      "driveMin": 35,
+      "homeTypes": "traditional suburbia, newer subdivisions, downtown loft conversions",
+      "landmark": "Aurora Theatre + Lawrenceville Lawn",
+      "intro": "Lawrenceville is a strong recurring market for us — Sugarloaf, the Hamilton Mill border, and Downtown Lawrenceville. About 35 minutes from our Atlanta base. The neighborhoods range from traditional 1990s subdivisions (3-bed/2-bath standard cleans) to newer build-to-rent communities and the loft conversions near the Aurora Theatre. We also serve a number of recurring small offices in the downtown area.",
+      "faqs": [
+        { "q": "Do you serve the Hamilton Mill side of Lawrenceville?", "a": "Yes — and we serve the Buford side from the same crew, so families with homes on either side of the line don't have to switch services." },
+        { "q": "Can you clean a downtown Lawrenceville loft above retail?", "a": "Yes. Loft conversions often have polished concrete floors and exposed brick — both are part of our standard kit. Mention the loft type in the notes." },
+        { "q": "Is Sugarloaf swim-and-tennis cleaning typical for you?", "a": "Yes — Sugarloaf is one of our most-served subdivisions in 30045. Several recurring customers there." }
+      ]
+    },
+    {
+      "slug": "buford",
+      "name": "Buford",
+      "zips": ["30518","30519"],
+      "neighborhoods": ["Hamilton Mill","Lake Lanier side","Mall of GA area"],
+      "lat": 34.120,
+      "lng": -84.004,
+      "driveMin": 40,
+      "homeTypes": "lake homes, planned subdivisions, townhomes near the Mall of GA",
+      "landmark": "Mall of Georgia + Lake Lanier",
+      "intro": "Buford spans planned subdivisions like Hamilton Mill, lake-adjacent homes on the Lake Lanier side, and the townhome clusters near the Mall of Georgia. About 40 minutes from our Atlanta base. Lake homes often have specialty surfaces (cedar walls, slate entries) and we send crews equipped accordingly. Most customers run bi-weekly given the 30518/30519 commute.",
+      "faqs": [
+        { "q": "Can you handle a Lake Lanier dock-house clean?", "a": "Yes — we clean the main residence and the dock-house if it's accessible from the property without watercraft. Sand/water tracking is expected; we plan for it." },
+        { "q": "Do you serve homes in the Mall of GA townhome clusters?", "a": "Yes. Townhomes are typically faster than single-family — the instant-quote calculator prices them at the lower end of the standard scale." },
+        { "q": "How does Buford compare to Atlanta core for pricing?", "a": "Same flat pricing — your home size and service type drive the price, not the ZIP. The 40-minute drive is built into our schedule, not an upcharge." }
+      ]
+    },
+    {
+      "slug": "canton",
+      "name": "Canton",
+      "zips": ["30114","30115"],
+      "neighborhoods": ["Bridgemill","Hickory Flat","Soleil Laurel Canyon"],
+      "lat": 34.237,
+      "lng": -84.491,
+      "driveMin": 40,
+      "homeTypes": "country-club homes, mountain-view residential, active-adult communities",
+      "landmark": "Sequoyah Park + Etowah River",
+      "intro": "Canton is one of our farther-out recurring markets — Bridgemill (golf-course homes), Hickory Flat (active suburbia), and Soleil Laurel Canyon (active-adult). About 40 minutes from our Atlanta base. The 30114/30115 mix is mostly 3–4 bedroom homes on quarter-acre+ lots; tile and hardwood floors dominate. We send the same crew on recurring visits to keep familiarity with each home's quirks.",
+      "faqs": [
+        { "q": "Do you clean active-adult homes at Soleil Laurel Canyon?", "a": "Yes — and we coordinate with the community's HOA on visitor passes when needed. Many residents schedule monthly cleans as a routine." },
+        { "q": "Can you handle the larger Bridgemill golf-course homes?", "a": "Yes. Homes 4,000+ sq ft get a 2-cleaner crew so the visit fits a normal workday window." },
+        { "q": "What about the Etowah River-front homes?", "a": "Yes. River-adjacent homes sometimes have specialty stone or composite decking — we ask about exterior add-ons (porches, patios) when scoping the clean." }
+      ]
+    },
+    {
+      "slug": "gainesville",
+      "name": "Gainesville",
+      "zips": ["30501","30503","30504","30506","30507"],
+      "neighborhoods": ["Lake Lanier","Chestnut Mountain","Chicopee"],
+      "lat": 34.298,
+      "lng": -83.824,
+      "driveMin": 55,
+      "homeTypes": "lake homes, in-town historic homes, mid-century ranches",
+      "landmark": "Lake Lanier + the historic Gainesville square",
+      "intro": "Gainesville is our farthest regular-service area — about 55 minutes from our Atlanta base. We focus on monthly and bi-weekly recurring rather than one-time cleans here, simply because the drive makes one-offs harder to fit. Lake Lanier homes (Chestnut Mountain area) are our biggest customer concentration — typically larger second homes or vacation rentals that need a thorough refresh between visitors.",
+      "faqs": [
+        { "q": "Can you handle vacation rentals on Lake Lanier?", "a": "Yes. We do turnover cleans between guests — laundry, dishes, fridge wipe, full reset. Mention 'STR turnover' in your booking notes for our specialized checklist." },
+        { "q": "Are one-time cleans available in Gainesville?", "a": "Yes, with a 7-day lead time. Recurring is easier to schedule given the drive." },
+        { "q": "Do you clean the historic homes near the Gainesville square?", "a": "Yes — and we have crews experienced with original 1920s–1940s finishes (heart-pine floors, plaster walls)." }
+      ]
+    },
+    {
+      "slug": "dawsonville",
+      "name": "Dawsonville",
+      "zips": ["30534"],
+      "neighborhoods": ["Crown Mountain","Dawson Forest area"],
+      "lat": 34.421,
+      "lng": -84.119,
+      "driveMin": 55,
+      "homeTypes": "rural-residential, mountain-style homes, newer subdivisions near the outlets",
+      "landmark": "North Georgia Premium Outlets",
+      "intro": "Dawsonville is our northernmost regular-service area, about 55 minutes from our Atlanta base. The 30534 mix is heavy on rural-residential and mountain-style homes, plus newer subdivisions clustered near the North Georgia Premium Outlets. We focus on monthly and bi-weekly recurring service — one-time cleans are available with a week's lead time.",
+      "faqs": [
+        { "q": "Do you clean the Crown Mountain area?", "a": "Yes — we run monthly recurring service in Crown Mountain. Cabin-style homes with stone fireplaces and timber finishes are common; we have a separate care protocol for those surfaces." },
+        { "q": "Is there a minimum job size for Dawsonville?", "a": "Standard cleans on small homes are doable on recurring; for one-time, we ask for at least a 3-bedroom home or a deep-clean tier so the drive is justified." },
+        { "q": "What about the Dawson Forest properties?", "a": "Yes — and we coordinate larger seasonal deep-cleans for many of those homes (the woods produce more dust than typical suburbia)." }
+      ]
+    },
+    {
+      "slug": "winder",
+      "name": "Winder",
+      "zips": ["30680"],
+      "neighborhoods": ["Bethlehem","Fort Yargo area"],
+      "lat": 33.993,
+      "lng": -83.720,
+      "driveMin": 50,
+      "homeTypes": "small-town residential, newer subdivisions, larger lots near Fort Yargo",
+      "landmark": "Fort Yargo State Park",
+      "intro": "Winder rounds out our 10-city service area — about 50 minutes from our Atlanta base. The 30680 service area focuses on Bethlehem and the Fort Yargo park area. Most homes are 3-bedroom standard layouts on larger lots; recurring bi-weekly is the most common rhythm. As with our other farther-out areas, we focus on recurring service over one-offs to make the drive economical.",
+      "faqs": [
+        { "q": "Are you available for one-time cleans in Winder?", "a": "Yes, with a week's lead time. If you're planning recurring service, we can usually fit you faster." },
+        { "q": "How does the Fort Yargo neighborhood compare to Bethlehem?", "a": "Both are inside our service area at the same rates. Fort Yargo homes tend to be larger lots; Bethlehem has more newer subdivisions with similar floor plans." },
+        { "q": "Can you do a deep clean before an event at Fort Yargo State Park?", "a": "Yes — we coordinate around park weekends for nearby Airbnbs and event-prep cleans." }
+      ]
+    }
+  ]
+}
