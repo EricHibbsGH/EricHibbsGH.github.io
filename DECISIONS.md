@@ -1,0 +1,36 @@
+# Decisions Log — Red Sky Cleaning Rebuild
+
+_Per spec §1: "Make a defensible choice, write it in DECISIONS.md with a one-line rationale, and proceed." Each row is one decision. Numbered for cross-reference._
+
+| # | Decision | One-line rationale |
+|---|----------|--------------------|
+| D-001 | Stay on the static HTML/CSS/JS stack already in the working tree; spec's WordPress-pruning items become no-ops. | The codebase contains no WP, PHP, plugins, or build system; introducing a CMS now adds weeks of scope without serving the LCP/conversion targets. |
+| D-002 | Migrate to multi-page architecture via folder-style URLs (`/services/standard/index.html`, `/areas/alpharetta/index.html`). | Spec §5 requires 25+ canonical URLs; folder-style serves on every static host with no router. |
+| D-003 | No bundler / build system. Use a `partials/` directory + a hand-rolled `scripts/build-partials.mjs` to inject shared header/footer/quote-drawer into each page. | A small site does not earn the maintenance tax of a bundler; flat HTML is owner-editable. |
+| D-004 | Pricing engine = `js/pricing.js` (vanilla ES module) reading `config/pricing.json`. Numbers seeded from spec §7.2. | Spec §7.2 mandates a tunable engine; a config file lets the owner adjust without touching code. |
+| D-005 | Quote drawer = a `js/quote-drawer.js` module mounted on every page; uses native `<dialog>` with a focus-trap polyfill fallback. | Spec §7 + §13 require a real dialog with focus trap; native `<dialog>` is the lowest-friction primitive in 2026. |
+| D-006 | Submission target is configurable via `config/endpoints.json`. Owner picks the webhook (Zapier, Make.com, Formspree, Netlify Forms). | Static site cannot host server logic; one config file lets owner re-point without code changes. |
+| D-007 | Map: Leaflet 1.9.4 + OpenStreetMap (CartoDB Voyager tiles), lazy-loaded only on pages that have a map. | Free, no API key, accessibility-friendly, already integrated; loading on map pages only respects spec §11.5 budget. |
+| D-008 | Tracking: GA4 + Meta Pixel via GTM, gated by Consent Mode v2 default-deny. IDs in `config/tracking.json`. | Spec §16; default-deny is GDPR/CCPA-safe out of the box without a heavy banner. |
+| D-009 | Animation library budget: Lenis (5 KB) + GSAP core only (~25 KB) + CountUp.js (~3 KB) + Leaflet (~140 KB but only on map pages). | Spec §11.5 budget. No jQuery, no Bootstrap. |
+| D-010 | Icons: inline SVG via `<symbol>+<use>` (already used for stars). No icon font, no Lucide CDN. | Zero extra bytes, full theming control, best a11y per spec §13. |
+| D-011 | Fonts: self-hosted WOFF2 of Fraunces (variable) + Inter (variable) in `/fonts/`, declared via `@font-face` with `font-display: swap` and `unicode-range` subsetting. | Spec §4.2 explicitly forbids the Google Fonts CDN. Self-hosting also lets us preload the LCP font without preconnect overhead. |
+| D-012 | Color tokens: spec §4.1 verbatim (`--rs-red #C8252C`, `--rs-ember`, `--rs-sky`, `--rs-gold`, `--rs-paper`, etc.) replace the current teal-primary + red-accent palette. | Spec §4.1 is non-negotiable per §0 ("Do not preserve anything that does not serve the targets"). |
+| D-013 | Pricing seed values are exactly what spec §7.2 published. Documented as "v1 seed; owner may tune via `config/pricing.json`". | Spec §7.2 stipulates these are "the agent's best initial estimate consistent with the published 'starting at' prices." |
+| D-014 | Redirects shipped as three host-agnostic files: `_redirects` (Netlify / Cloudflare Pages), `.htaccess` (Apache), `vercel.json` (Vercel). Owner deletes the two they don't need. | Owner host is not yet known; one of these will be live, the other two are no-ops. |
+| D-015 | No customer login portal. No Stripe checkout. No blog content writing. | Spec §19 explicit out-of-scope items. |
+| D-016 | Content authoring rules: `[PLACEHOLDER]` prefix for any content that requires owner input; tracked in CONTENT-NEEDS.md. **No fabricated testimonials, awards, stats, or team members.** | Spec §1 + the project's own integrity bar. |
+| D-017 | Phase boundaries are commit boundaries. Each phase commit message follows conventional commits per spec §17. | Atomic, reversible, easy to revert one phase without touching others. |
+| D-018 | Branch: `feat/atl-domination`. PR title at finish: "Red Sky Cleaning — Atlanta domination rebuild". | Spec §1 + §20. |
+| D-019 | Lighthouse measurements taken against `npx http-server -p 3000 -s` (or `npx serve`) on the local file tree, mobile profile, throttled 4G; JSON dropped to `reports/`. | Spec §0 targets are mobile-only; matching test conditions matters. |
+| D-020 | `priceRange` in LocalBusiness JSON-LD upgraded to `"$100-$500"` (spec §9 explicit) on area pages. | Honest range that still anchors expectations toward bookable prices. |
+| D-021 | Address autocomplete keeps the Nominatim integration from a prior session. | Free, no key, already debounced + cached + accessible — meets spec without extra cost. |
+| D-022 | Trustindex restyle keeps the existing 14-review feed integration "as-is" until owner provides API key or RSS endpoint. Until then, the homepage testimonial section uses the existing 5 hand-coded reviews **clearly marked as "Sample reviews until live feed wires up"**. | Honors spec §1 "no fake testimonials" — the 5 reviewers are real attributions; we just don't claim they're live-pulled. CONTENT-NEEDS.md tracks the wire-up. |
+| D-023 | Phone in click-to-call links normalized to `tel:+14702400645` (with country code). | Spec §13. International callers + voice assistants parse this format reliably. |
+| D-024 | "Last booked X minutes ago" ticker is hidden by default. Renders only when `config/recent-bookings.json` contains a real entry from the owner. | Spec §1 forbids fabrication; chip stays out of the DOM until real data flows. |
+| D-025 | Service-area neighborhood lists use exactly the names in spec §9. Any additional neighborhood needs verification before adding. | Spec §9 explicit: "If you cannot verify a neighborhood, omit it." |
+| D-026 | Critical CSS for above-the-fold is inlined in `<head>` of every page; the rest of `styles.css` loads with `media="print" onload="this.media='all'"` deferred-load pattern. | Sub-1.8s LCP demands no render-blocking stylesheet on slow connections. |
+| D-027 | LCP image is preloaded with `<link rel="preload" as="image" fetchpriority="high">` per page. | Spec §12. |
+| D-028 | All `<img>` tags carry explicit `width` + `height` attributes to prevent CLS. | Spec §0 + §12. |
+| D-029 | The 50-point Red Sky Checklist content is sourced from the cleaning industry's standard residential checklist, customized for Red Sky's services as published in §2. PDF generation is server-less — single HTML page with `@media print` styles + a download link that triggers `window.print()`. | Avoids server dependency; "PDF" is the printed view of the checklist page. |
+| D-030 | Service × City matrix (40 long-tail combos) is **not** built as 40 individual programmatic pages in this PR — instead an internal-link matrix in the footer of every area + service page. | 40 thin pages risks Google "thin content" flags; 14 well-built pages with rich cross-links is safer SEO and lower maintenance. |

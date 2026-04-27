@@ -1,0 +1,46 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.code-workspace
+
+# Node (if any tooling is added later)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json.bak
+.npm/
+
+# Local env / secrets — these never belong in the repo
+.env
+.env.local
+.env.*.local
+config/secrets.json
+
+# Build / cache artifacts (should none exist; reserved)
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# Lighthouse local runs (only the curated reports/ JSON ships)
+.lighthouse/
+*.lighthouse.html
+
+# Temp scan files from the /fewer-permission-prompts skill
+.tmp_scan.mjs
+.tmp_list.txt
+_jsonl_list.txt
+
+# Personal notes
+NOTES.local.md
+TODO.local.md
