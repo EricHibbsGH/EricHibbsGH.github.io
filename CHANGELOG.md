@@ -6,6 +6,47 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased] — branch `feat/atl-domination`
 
+### Phase 4 — 2026-04-27 — `feat(home): full homepage rebuild`
+
+**Replaced**
+
+- `index.html` — full rebuild against the design system. Old single-page sprawl (3,300 lines, multiple inline JS modules, Bricolage+Figtree, teal+red palette, modal quote form) replaced with a clean, sectioned homepage (~580 lines) using the new `.rs-*` primitives + the Phase-3 quote drawer + Phase-3 inline calc. New page is built on:
+  - Sticky `.rs-hdr` with shrink-on-scroll, mobile slide-in nav, click-to-call `(470) 240-0645` always present
+  - `.rs-hero` with H1 *"Atlanta's cleanest homes start here."* + lede + dual CTA (drawer + tel link) + 4-pill trust strip + photo placeholder (gradient wash until owner supplies hero photo)
+  - `.rs-ticker` (hidden by default — surfaces only when `config/recent-bookings.json` has real data per D-024)
+  - 3-step "How it works" (Book → We clean → Relax)
+  - 4-card service grid (each opens drawer pre-filled with that service via `data-rs-prefill-service`)
+  - Inline 3-input mini-calc teaser (mounted via `[data-rs-inline-calc]`)
+  - 4-pillar Red Sky Promise grid (gradient top-strip per spec §4.1 thin-border treatment)
+  - 50-point checklist preview (8 sample items in a horizontal scroller with mouse drag-scroll + touch-native scroll, links to `/checklist/`)
+  - Reviews carousel (5 sample cards, marked as samples per D-022 until Trustindex feed wires up — links to `/checklist/` and to the Google reviews permalink)
+  - Service-area map: Leaflet 1.9.4 lazy-loaded via `IntersectionObserver` only when the section enters viewport (spec §11.5 budget) — 11 cities pinned in brand red, 65 km coverage circle, click pin → city page
+  - 5-Q FAQ accordion + FAQPage JSON-LD
+  - Final CTA band (`--rs-ink` background with `--rs-gradient` halo)
+  - 5-column footer (Brand · Services · Areas · Company · Contact) + bottom bar with copyright + privacy/terms
+
+**Added**
+
+- Homepage layout CSS: `.rs-skip`, `.rs-container`, `.rs-hdr*`, `.rs-hero*`, `.rs-ticker`, `.rs-section*`, `.rs-how-step`, `.rs-svc-grid`, `.rs-promise-card` (with brand-gradient top strip), `.rs-check-scroller` + `.rs-check-card`, `.rs-reviews`, `.rs-disclosure`, `.rs-service-map`, `.rs-area-grid`, `.rs-map-pin`, `.rs-cta-band`, `.rs-footer*` (~470 lines appended to `styles.css`)
+- 3 SVG `<symbol>` reused via `<use>` (star, shield, check, leaf, phone, arrow-right, chevron) — single declaration shared across the page
+- `sitemap.xml` updated with `/quote/` URL + 2026-04-27 lastmod
+
+**JSON-LD preserved/refreshed**
+
+- `LocalBusiness` + `CleaningService` (HouseCleaning extension) — added `sameAs` for Facebook + Instagram
+- `FAQPage` — refreshed to 5 most-asked Qs that match the on-page accordion
+- `WebSite` — added `SearchAction` for sitelinks-search-box eligibility
+
+**Honest notes**
+
+- **Hero photo + service photos + before/after photos still owner-supplied.** Until they land, the hero shows a brand-gradient wash and service cards have a gradient placeholder media area.
+- **Trustindex feed not yet live** — 5 sample reviews shown with disclosure note.
+- **`config/recent-bookings.json` not present** — booking ticker stays hidden per D-024.
+- **Header `(470) 240-0645` is now in EVERY page header** including mobile (spec §18 requirement met).
+- **Quote drawer mounts on every CTA button site-wide** via `[data-rs-open-quote]`.
+
+**Lighthouse:** baseline still pending. Target ≥95/98/100/95 mobile.
+
 ### Phase 3 — 2026-04-27 — `feat(quote): instant calculator + drawer`
 
 **Added**
