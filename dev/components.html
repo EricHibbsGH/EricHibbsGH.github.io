@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Components — Red Sky Cleaning Design System v1</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Page-only chrome for the preview gallery */
+    body { background: var(--rs-paper); }
+    .gallery {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-12) var(--space-6);
+    }
+    .gallery > h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      letter-spacing: var(--tracking-tight);
+      line-height: var(--leading-tight);
+      color: var(--rs-ink);
+      margin-bottom: var(--space-2);
+    }
+    .gallery > .lede {
+      font-size: var(--text-md);
+      color: var(--rs-ink-soft);
+      max-width: 60ch;
+      margin-bottom: var(--space-12);
+    }
+    .section {
+      margin: var(--space-16) 0 0;
+      scroll-margin-top: var(--space-8);
+    }
+    .section > h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      letter-spacing: var(--tracking-tight);
+      color: var(--rs-ink);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--rs-line);
+      margin-bottom: var(--space-6);
+    }
+    .specimen {
+      background: var(--white);
+      border: 1px solid var(--rs-line);
+      border-radius: var(--r-md);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+    .specimen + .specimen-code {
+      margin-top: -8px;
+      margin-bottom: var(--space-6);
+      background: var(--rs-cloud);
+      border: 1px solid var(--rs-line);
+      border-top: 0;
+      border-radius: 0 0 var(--r-md) var(--r-md);
+      padding: var(--space-3) var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--rs-ink-soft);
+      overflow-x: auto;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+    .row-stretch { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: stretch; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
+    .swatch {
+      display: flex; flex-direction: column; gap: var(--space-1);
+      padding: var(--space-3); border-radius: var(--r-md);
+      border: 1px solid var(--rs-line); background: var(--white);
+      font-size: var(--text-xs);
+    }
+    .swatch__chip {
+      width: 100%; aspect-ratio: 4 / 1;
+      border-radius: var(--r-sm); margin-bottom: var(--space-2);
+      border: 1px solid var(--rs-line);
+    }
+    .swatch__name { font-weight: var(--weight-semibold); color: var(--rs-ink); font-family: var(--font-mono); }
+    .swatch__hex  { color: var(--rs-ink-soft); font-family: var(--font-mono); }
+    .type-row { display: flex; align-items: baseline; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px dashed var(--rs-line); }
+    .type-row:last-child { border-bottom: 0; }
+    .type-row > .type-name { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--rs-ink-soft); width: 8ch; flex-shrink: 0; }
+    .type-row > .type-sample { color: var(--rs-ink); }
+    .nav-toc {
+      position: sticky; top: var(--space-3); align-self: flex-start;
+      background: var(--white); border: 1px solid var(--rs-line);
+      border-radius: var(--r-md); padding: var(--space-4);
+      font-size: var(--text-sm);
+    }
+    .nav-toc h4 { font-family: var(--font-display); font-size: var(--text-sm); margin-bottom: var(--space-2); letter-spacing: var(--tracking-tight); }
+    .nav-toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+    .nav-toc a { color: var(--rs-ink-soft); text-decoration: none; }
+    .nav-toc a:hover { color: var(--rs-red); }
+    .layout { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-10); }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } .nav-toc { position: static; } }
+  </style>
+</head>
+<body>
+
+<div class="gallery">
+  <h1>Red Sky Design System <span style="font-size:var(--text-base); color:var(--rs-ink-soft); font-family:var(--font-mono); font-weight:400;">v1</span></h1>
+  <p class="lede">Component primitives + tokens for the Atlanta-domination rebuild. Not for indexing — gated <code>noindex,nofollow</code>. Authoritative styles live in <code>/styles.css</code> under the <code>.rs-*</code> namespace.</p>
+
+  <div class="layout">
+    <nav class="nav-toc" aria-label="Component sections">
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#color">Color</a></li>
+        <li><a href="#type">Typography</a></li>
+        <li><a href="#radius">Radius &amp; shadow</a></li>
+        <li><a href="#button">Button</a></li>
+        <li><a href="#input">Input</a></li>
+        <li><a href="#stepper">Stepper</a></li>
+        <li><a href="#badge">Badge</a></li>
+        <li><a href="#card">Card</a></li>
+        <li><a href="#service-card">Service card</a></li>
+        <li><a href="#area-card">Area card</a></li>
+        <li><a href="#review-card">Review card</a></li>
+        <li><a href="#accordion">Accordion / FAQ</a></li>
+        <li><a href="#tabs">Tabs</a></li>
+        <li><a href="#toast">Toast</a></li>
+        <li><a href="#trust">Trust bar</a></li>
+        <li><a href="#drawer">Drawer</a></li>
+      </ul>
+    </nav>
+
+    <main>
+
+      <section id="color" class="section">
+        <h2>Color tokens (§4.1)</h2>
+        <div class="grid-3">
+          <div class="swatch"><div class="swatch__chip" style="background:#0B1220"></div><span class="swatch__name">--rs-ink</span><span class="swatch__hex">#0B1220</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#2A3344"></div><span class="swatch__name">--rs-ink-soft</span><span class="swatch__hex">#2A3344</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#FAFAF7"></div><span class="swatch__name">--rs-paper</span><span class="swatch__hex">#FAFAF7</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#F1F4F8"></div><span class="swatch__name">--rs-cloud</span><span class="swatch__hex">#F1F4F8</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#E3E7EE"></div><span class="swatch__name">--rs-line</span><span class="swatch__hex">#E3E7EE</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#C8252C"></div><span class="swatch__name">--rs-red</span><span class="swatch__hex">#C8252C</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#971C22"></div><span class="swatch__name">--rs-red-deep</span><span class="swatch__hex">#971C22</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#F25C3A"></div><span class="swatch__name">--rs-ember</span><span class="swatch__hex">#F25C3A</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#2E6FB8"></div><span class="swatch__name">--rs-sky</span><span class="swatch__hex">#2E6FB8</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#BBD4EE"></div><span class="swatch__name">--rs-sky-soft</span><span class="swatch__hex">#BBD4EE</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#E0A458"></div><span class="swatch__name">--rs-gold</span><span class="swatch__hex">#E0A458</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#1E8E5C"></div><span class="swatch__name">--rs-success</span><span class="swatch__hex">#1E8E5C</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#B45309"></div><span class="swatch__name">--rs-warn</span><span class="swatch__hex">#B45309</span></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#B91C1C"></div><span class="swatch__name">--rs-danger</span><span class="swatch__hex">#B91C1C</span></div>
+        </div>
+        <p style="margin-top:var(--space-4); font-size:var(--text-sm); color:var(--rs-ink-soft);">Brand gradient (use sparingly per spec §4.1):</p>
+        <div style="height:48px; border-radius:var(--r-md); background:var(--rs-gradient); margin-top:var(--space-2);"></div>
+      </section>
+
+      <section id="type" class="section">
+        <h2>Typography (§4.2)</h2>
+        <div class="specimen">
+          <div class="type-row"><span class="type-name">--text-6xl</span><span class="type-sample" style="font-family:var(--font-display); font-size:var(--text-6xl); font-weight:700; letter-spacing:var(--tracking-tight);">Atlanta's cleanest</span></div>
+          <div class="type-row"><span class="type-name">--text-5xl</span><span class="type-sample" style="font-family:var(--font-display); font-size:var(--text-5xl); font-weight:700;">Cleaner. Faster.</span></div>
+          <div class="type-row"><span class="type-name">--text-4xl</span><span class="type-sample" style="font-family:var(--font-display); font-size:var(--text-4xl); font-weight:700;">House cleaning, done right.</span></div>
+          <div class="type-row"><span class="type-name">--text-3xl</span><span class="type-sample" style="font-family:var(--font-display); font-size:var(--text-3xl); font-weight:700;">A local team that sweats the details.</span></div>
+          <div class="type-row"><span class="type-name">--text-2xl</span><span class="type-sample" style="font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700;">How it works</span></div>
+          <div class="type-row"><span class="type-name">--text-xl</span><span class="type-sample" style="font-family:var(--font-display); font-size:var(--text-xl); font-weight:600;">What's included</span></div>
+          <div class="type-row"><span class="type-name">--text-lg</span><span class="type-sample" style="font-size:var(--text-lg); font-weight:600;">Standard cleaning</span></div>
+          <div class="type-row"><span class="type-name">--text-md</span><span class="type-sample" style="font-size:var(--text-md);">Most popular among bi-weekly customers in Alpharetta.</span></div>
+          <div class="type-row"><span class="type-name">--text-base</span><span class="type-sample" style="font-size:var(--text-base);">Body text — Inter, 1rem, line-height 1.5. The baseline for prose, form labels, and most UI.</span></div>
+          <div class="type-row"><span class="type-name">--text-sm</span><span class="type-sample" style="font-size:var(--text-sm); color:var(--rs-ink-soft);">Captions, metadata, secondary actions.</span></div>
+          <div class="type-row"><span class="type-name">--text-xs</span><span class="type-sample" style="font-size:var(--text-xs); color:var(--rs-ink-soft); text-transform:uppercase; letter-spacing:var(--tracking-wide);">Micro labels &amp; eyebrows</span></div>
+        </div>
+        <p style="font-size:var(--text-sm); color:var(--rs-ink-soft);"><strong>Display:</strong> Fraunces (variable, optical-size axis active). <strong>Body:</strong> Inter. <strong>Mono:</strong> JetBrains Mono — pricing receipts only. All self-hosted from <code>/fonts/</code>; no Google Fonts CDN.</p>
+      </section>
+
+      <section id="radius" class="section">
+        <h2>Radius &amp; shadow (§4.3)</h2>
+        <div class="row-stretch">
+          <div style="background:var(--white); border:1px solid var(--rs-line); border-radius:var(--r-sm); padding:var(--space-4); min-width:120px; text-align:center; box-shadow:var(--sh-1);"><span class="swatch__name">--r-sm</span><br><span class="swatch__hex">6px</span></div>
+          <div style="background:var(--white); border:1px solid var(--rs-line); border-radius:var(--r-md); padding:var(--space-4); min-width:120px; text-align:center; box-shadow:var(--sh-1);"><span class="swatch__name">--r-md</span><br><span class="swatch__hex">12px</span></div>
+          <div style="background:var(--white); border:1px solid var(--rs-line); border-radius:var(--r-lg); padding:var(--space-4); min-width:120px; text-align:center; box-shadow:var(--sh-2);"><span class="swatch__name">--r-lg</span><br><span class="swatch__hex">20px</span></div>
+          <div style="background:var(--white); border:1px solid var(--rs-line); border-radius:var(--r-xl); padding:var(--space-4); min-width:120px; text-align:center; box-shadow:var(--sh-2);"><span class="swatch__name">--r-xl</span><br><span class="swatch__hex">28px</span></div>
+          <div style="background:var(--white); border:1px solid var(--rs-line); border-radius:var(--r-pill); padding:var(--space-4) var(--space-6); text-align:center; box-shadow:var(--sh-1);"><span class="swatch__name">--r-pill</span></div>
+        </div>
+        <div class="row-stretch" style="margin-top:var(--space-4);">
+          <div style="background:var(--white); border-radius:var(--r-md); padding:var(--space-5); flex:1; min-width:200px; box-shadow:var(--sh-1);"><span class="swatch__name">--sh-1</span><br><span class="swatch__hex">resting cards</span></div>
+          <div style="background:var(--white); border-radius:var(--r-md); padding:var(--space-5); flex:1; min-width:200px; box-shadow:var(--sh-2);"><span class="swatch__name">--sh-2</span><br><span class="swatch__hex">hover lift, popovers</span></div>
+          <div style="background:var(--white); border-radius:var(--r-md); padding:var(--space-5); flex:1; min-width:200px; box-shadow:var(--sh-3);"><span class="swatch__name">--sh-3</span><br><span class="swatch__hex">drawers, modals</span></div>
+        </div>
+      </section>
+
+      <section id="button" class="section">
+        <h2>Button</h2>
+        <div class="specimen">
+          <div class="row">
+            <button class="rs-btn rs-btn--primary">Primary</button>
+            <button class="rs-btn rs-btn--secondary">Secondary</button>
+            <button class="rs-btn rs-btn--ghost">Ghost</button>
+            <a href="#" class="rs-btn rs-btn--link">Inline link</a>
+            <button class="rs-btn rs-btn--primary rs-btn--sm">Small</button>
+            <button class="rs-btn rs-btn--primary rs-btn--lg">Large</button>
+            <button class="rs-btn rs-btn--cta">CTA glow</button>
+            <button class="rs-btn rs-btn--primary" disabled>Disabled</button>
+          </div>
+          <div style="margin-top:var(--space-4); max-width:320px;">
+            <button class="rs-btn rs-btn--primary rs-btn--block">Block / full-width</button>
+          </div>
+        </div>
+        <div class="specimen-code">&lt;button class="rs-btn rs-btn--primary"&gt;Get a free quote&lt;/button&gt;</div>
+      </section>
+
+      <section id="input" class="section">
+        <h2>Input / Select / Textarea</h2>
+        <div class="specimen" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4);">
+          <div>
+            <label class="rs-label" for="d-name">Full name</label>
+            <input id="d-name" class="rs-input" type="text" placeholder="Sarah Mitchell">
+            <span class="rs-field-hint">Used only on the booking confirmation.</span>
+          </div>
+          <div>
+            <label class="rs-label" for="d-email">Email</label>
+            <input id="d-email" class="rs-input" type="email" placeholder="you@example.com" aria-invalid="true">
+            <span class="rs-field-error">Enter a valid email.</span>
+          </div>
+          <div>
+            <label class="rs-label" for="d-svc">Service type</label>
+            <select id="d-svc" class="rs-select">
+              <option>Standard cleaning</option>
+              <option>Deep clean</option>
+              <option>Move-in</option>
+              <option>Move-out</option>
+            </select>
+          </div>
+          <div>
+            <label class="rs-label" for="d-msg">Notes</label>
+            <textarea id="d-msg" class="rs-textarea" placeholder="Gate code, parking, allergies&hellip;"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section id="stepper" class="section">
+        <h2>Stepper</h2>
+        <div class="specimen">
+          <div class="row">
+            <span class="rs-label" style="margin:0;">Bedrooms</span>
+            <div class="rs-stepper" role="group" aria-label="Bedrooms">
+              <button class="rs-stepper__btn" type="button" aria-label="Decrease">&minus;</button>
+              <span class="rs-stepper__value" aria-live="polite">3</span>
+              <button class="rs-stepper__btn" type="button" aria-label="Increase">+</button>
+            </div>
+            <span class="rs-label" style="margin:0;">Bathrooms</span>
+            <div class="rs-stepper" role="group" aria-label="Bathrooms">
+              <button class="rs-stepper__btn" type="button" aria-label="Decrease" disabled>&minus;</button>
+              <span class="rs-stepper__value" aria-live="polite">1</span>
+              <button class="rs-stepper__btn" type="button" aria-label="Increase">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="badge" class="section">
+        <h2>Badge</h2>
+        <div class="specimen">
+          <div class="row">
+            <span class="rs-badge">Default</span>
+            <span class="rs-badge rs-badge--red">Most popular</span>
+            <span class="rs-badge rs-badge--sky">New</span>
+            <span class="rs-badge rs-badge--gold">Limited</span>
+            <span class="rs-badge rs-badge--success">Available</span>
+            <span class="rs-badge rs-badge--ink">Pro tier</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="card" class="section">
+        <h2>Card</h2>
+        <div class="specimen">
+          <div class="grid-3">
+            <article class="rs-card rs-card--hoverable">
+              <h3 class="rs-card__title">Hoverable card</h3>
+              <p class="rs-card__body">Lifts 2 px and gains shadow on hover. Good for clickable surfaces.</p>
+            </article>
+            <article class="rs-card">
+              <span class="rs-eyebrow">Eyebrow</span>
+              <h3 class="rs-card__title">Static card</h3>
+              <p class="rs-card__body">No hover. Use for static content blocks.</p>
+            </article>
+            <article class="rs-card rs-card--feature">
+              <h3 class="rs-card__title">Feature card</h3>
+              <p class="rs-card__body">Larger padding + radius for hero/feature surfaces.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="service-card" class="section">
+        <h2>Service card</h2>
+        <div class="specimen">
+          <div class="grid-3">
+            <article class="rs-service-card">
+              <div class="rs-service-card__media" aria-hidden="true"></div>
+              <div class="rs-service-card__body">
+                <div class="rs-service-card__head">
+                  <h3 class="rs-service-card__title">Standard</h3>
+                  <span class="rs-service-card__price">from <strong>$100</strong></span>
+                </div>
+                <ul class="rs-service-card__features">
+                  <li>Detailed dust + surface wipe</li>
+                  <li>Kitchen sanitize</li>
+                  <li>Bathroom freshen</li>
+                </ul>
+                <a href="#" class="rs-btn rs-btn--secondary rs-btn--sm rs-service-card__cta">See what's included &rarr;</a>
+              </div>
+            </article>
+            <article class="rs-service-card">
+              <div class="rs-service-card__media" aria-hidden="true"></div>
+              <div class="rs-service-card__body">
+                <div class="rs-service-card__head">
+                  <h3 class="rs-service-card__title">Deep clean</h3>
+                  <span class="rs-service-card__price">from <strong>$250</strong></span>
+                </div>
+                <ul class="rs-service-card__features">
+                  <li>Baseboards + trim</li>
+                  <li>Appliance exteriors</li>
+                  <li>Detailed bathroom scrub</li>
+                </ul>
+                <a href="#" class="rs-btn rs-btn--secondary rs-btn--sm rs-service-card__cta">See what's included &rarr;</a>
+              </div>
+            </article>
+            <article class="rs-service-card">
+              <div class="rs-service-card__media" aria-hidden="true"></div>
+              <div class="rs-service-card__body">
+                <div class="rs-service-card__head">
+                  <h3 class="rs-service-card__title">Move-in</h3>
+                  <span class="rs-service-card__price">from <strong>$250</strong></span>
+                </div>
+                <ul class="rs-service-card__features">
+                  <li>Empty-home top-to-bottom</li>
+                  <li>Cabinet interiors</li>
+                  <li>Floor care</li>
+                </ul>
+                <a href="#" class="rs-btn rs-btn--secondary rs-btn--sm rs-service-card__cta">See what's included &rarr;</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="area-card" class="section">
+        <h2>Area card</h2>
+        <div class="specimen">
+          <div class="grid-3">
+            <a href="#" class="rs-area-card">
+              <span class="rs-area-card__city">Alpharetta</span>
+              <span class="rs-area-card__zips">30004 · 30005 · 30009 · 30022</span>
+              <span class="rs-area-card__cta">House cleaning in Alpharetta &rarr;</span>
+            </a>
+            <a href="#" class="rs-area-card">
+              <span class="rs-area-card__city">Johns Creek</span>
+              <span class="rs-area-card__zips">30024 · 30097</span>
+              <span class="rs-area-card__cta">House cleaning in Johns Creek &rarr;</span>
+            </a>
+            <a href="#" class="rs-area-card">
+              <span class="rs-area-card__city">Marietta</span>
+              <span class="rs-area-card__zips">30060 — 30068</span>
+              <span class="rs-area-card__cta">House cleaning in Marietta &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="review-card" class="section">
+        <h2>Review card</h2>
+        <div class="specimen">
+          <div class="grid-3">
+            <article class="rs-review-card">
+              <span class="rs-review-card__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <p class="rs-review-card__quote">Red Sky transformed our home. Every room sparkling.</p>
+              <div class="rs-review-card__author">
+                <div class="rs-review-card__avatar" aria-hidden="true">SM</div>
+                <div>
+                  <div class="rs-review-card__name">Sarah M.</div>
+                  <div class="rs-review-card__city">Johns Creek, GA</div>
+                </div>
+              </div>
+            </article>
+            <article class="rs-review-card">
+              <span class="rs-review-card__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <p class="rs-review-card__quote">Same crew every visit, on time, never a surprise charge.</p>
+              <div class="rs-review-card__author">
+                <div class="rs-review-card__avatar" aria-hidden="true">JR</div>
+                <div>
+                  <div class="rs-review-card__name">James R.</div>
+                  <div class="rs-review-card__city">Alpharetta, GA</div>
+                </div>
+              </div>
+            </article>
+            <article class="rs-review-card">
+              <span class="rs-review-card__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <p class="rs-review-card__quote">Move-in clean was inspection-ready. Worth every dollar.</p>
+              <div class="rs-review-card__author">
+                <div class="rs-review-card__avatar" aria-hidden="true">LP</div>
+                <div>
+                  <div class="rs-review-card__name">Lisa P.</div>
+                  <div class="rs-review-card__city">Marietta, GA</div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="accordion" class="section">
+        <h2>Accordion / FAQ</h2>
+        <div class="specimen">
+          <div class="rs-accordion">
+            <div class="rs-accordion__item is-open">
+              <button class="rs-accordion__trigger" type="button" aria-expanded="true">
+                <span>What's included in a standard cleaning?</span>
+                <svg class="rs-accordion__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="rs-accordion__panel">
+                <div class="rs-accordion__body">Detailed dusting, kitchen sanitize, bathroom clean, vacuuming, mopping. Perfect for routine upkeep.</div>
+              </div>
+            </div>
+            <div class="rs-accordion__item">
+              <button class="rs-accordion__trigger" type="button" aria-expanded="false">
+                <span>How do I book a cleaning?</span>
+                <svg class="rs-accordion__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="rs-accordion__panel">
+                <div class="rs-accordion__body">Click <em>Get instant quote</em> at the top of any page. The drawer walks you through it in under a minute.</div>
+              </div>
+            </div>
+            <div class="rs-accordion__item">
+              <button class="rs-accordion__trigger" type="button" aria-expanded="false">
+                <span>Are your cleaners background-checked?</span>
+                <svg class="rs-accordion__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="rs-accordion__panel">
+                <div class="rs-accordion__body">Yes — every team member completes a background check, employment verification, and reference check before their first job.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tabs" class="section">
+        <h2>Tabs</h2>
+        <div class="specimen">
+          <div class="rs-tabs" role="tablist" aria-label="Filter">
+            <button class="rs-tab" role="tab" aria-selected="true">All rooms</button>
+            <button class="rs-tab" role="tab" aria-selected="false">Kitchen</button>
+            <button class="rs-tab" role="tab" aria-selected="false">Bathroom</button>
+            <button class="rs-tab" role="tab" aria-selected="false">Bedroom</button>
+            <button class="rs-tab" role="tab" aria-selected="false">Living</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="toast" class="section">
+        <h2>Toast</h2>
+        <div class="specimen" style="display:flex; flex-direction:column; gap:var(--space-3);">
+          <div class="rs-toast rs-toast--info" role="status">
+            <svg class="rs-toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <div><div class="rs-toast__title">Pick up where you left off?</div>Your last quote draft is saved.</div>
+          </div>
+          <div class="rs-toast rs-toast--success" role="status">
+            <svg class="rs-toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><div class="rs-toast__title">Quote sent.</div>Confirmation arrives within 5 minutes.</div>
+          </div>
+          <div class="rs-toast rs-toast--warn" role="status">
+            <svg class="rs-toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+            <div><div class="rs-toast__title">Outside our usual range.</div>We may still be able to help — we'll route to manual review.</div>
+          </div>
+          <div class="rs-toast rs-toast--danger" role="alert">
+            <svg class="rs-toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <div><div class="rs-toast__title">Couldn't send.</div>Try again, or call (470) 240-0645.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="trust" class="section">
+        <h2>Trust bar</h2>
+        <div class="specimen">
+          <div class="rs-trust-bar">
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.85 1.42 8.4L12 19.875l-7.42 4.125L6 15.6 0 9.75l8.332-1.595z"/></svg>5.0 on Google</span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Insured &amp; bonded</span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 7-7"/><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c1.5 0 3 .4 4.2 1"/></svg>Eco-safe products</span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>100% re-clean guarantee</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="drawer" class="section">
+        <h2>Drawer (preview only)</h2>
+        <p style="color:var(--rs-ink-soft); font-size:var(--text-sm);">Slide-in from right on desktop, full-screen sheet on mobile. Phase 3 wires the quote calculator into this primitive.</p>
+        <div style="position:relative; height:480px; border:1px dashed var(--rs-line); border-radius:var(--r-md); overflow:hidden;">
+          <div style="position:absolute; top:0; right:0; bottom:0; width:min(420px, 100%); background:var(--rs-paper); box-shadow:var(--sh-3); padding:var(--space-6); display:flex; flex-direction:column; gap:var(--space-4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3 style="font-family:var(--font-display); font-size:var(--text-xl); margin:0;">Get instant quote</h3>
+              <button class="rs-btn rs-btn--ghost rs-btn--sm" aria-label="Close" type="button">&times;</button>
+            </div>
+            <div class="rs-trust-bar" style="font-size:var(--text-xs); padding:0;">
+              <span>Step 1 of 5</span>
+            </div>
+            <p style="font-size:var(--text-sm); color:var(--rs-ink-soft); margin:0;">Pick a service to start. Price updates live as you go.</p>
+            <button class="rs-btn rs-btn--primary rs-btn--block">Continue &rarr;</button>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rs-rule">
+      <p style="font-size:var(--text-xs); color:var(--rs-ink-soft); text-align:center;">
+        Built against spec §4. Tokens in <code>:root</code> of <code>/styles.css</code>. Components in the <code>.rs-*</code> namespace, appended at the bottom of <code>/styles.css</code>.<br>
+        Last updated: 2026-04-27.
+      </p>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

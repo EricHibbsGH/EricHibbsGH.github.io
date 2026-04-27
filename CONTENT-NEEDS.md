@@ -29,6 +29,24 @@ This list captures everything the rebuild needs that **only the owner can supply
 - [ ] **Insurance carrier name + policy limit** — `/guarantee/` insurance & bonding statement. E.g., "Insured to $1M general liability via Hiscox." Without this, the page says "fully insured and bonded" without specifics.
 - [ ] **A 60–90 second founder video** — homepage about section. Big trust unlock if available.
 
+## Phase 2 — font binaries (self-hosted, spec §4.2)
+
+Phase 2 added `@font-face` declarations in `styles.css` pointing to `/fonts/`. Until the WOFF2 binaries land in that folder, the browser falls back to system fonts. Steps to bring fonts in:
+
+1. Visit each font on Google Fonts (catalog only — we do **not** load from the CDN at runtime per spec §4.2):
+   - [Fraunces](https://fonts.google.com/specimen/Fraunces) — click **Get font** → **Download all**
+   - [Inter](https://fonts.google.com/specimen/Inter) — click **Get font** → **Download all**
+   - [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — click **Get font** → **Download all**
+2. Inside each downloaded zip, find the `*-VariableFont_*.ttf` files and convert them to WOFF2 (e.g. via [woff2-converter](https://github.com/google/woff2) or any modern font tool — the result is ~70% smaller).
+3. Drop the WOFF2 files into `/fonts/` with these exact names so the `@font-face` declarations resolve:
+   - `Fraunces[opsz,wght].woff2`
+   - `Fraunces-Italic[opsz,wght].woff2`
+   - `Inter[wght].woff2`
+   - `JetBrainsMono[wght].woff2`
+4. (Optional) Subset the fonts to Latin only via [glyphhanger](https://github.com/zachleat/glyphhanger) — drops file size another 60% if you don't need extended character sets.
+
+**Verification:** open `dev/components.html` after dropping the files in. Headings should switch from the system serif fallback to Fraunces; body should switch to Inter.
+
 ## Phase 9 — social card images
 
 Phase 9 will render 1200×630 OG images per page using a simple Sharp/Resvg script that overlays the page H1 + logo on a brand-gradient background. **Owner can override any of these** by dropping a manually-designed PNG into `assets/og/` with the matching slug filename — the script skips pages where a custom OG already exists.

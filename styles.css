@@ -1,9 +1,50 @@
 /* ============================================
-   RED SKY CLEANING — Modern Redesign
-   Teal + Orange | Bricolage Grotesque + Figtree
+   RED SKY CLEANING — Atlanta Domination Rebuild
+   Spec §4.1 palette | Fraunces + Inter (self-hosted)
+   Token names follow spec §4 verbatim. Legacy aliases
+   below preserve compat with prior CSS during migration.
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Figtree:wght@400;500;600;700&display=swap');
+/* ----------------------------------------------------------------
+   Self-hosted variable fonts (spec §4.2 — no Google Fonts CDN).
+   Binary WOFF2 files sit in /fonts/ and are downloaded by the
+   owner per CONTENT-NEEDS.md. Until present, the browser falls
+   back to the system stack defined in --font-body / --font-display.
+   ---------------------------------------------------------------- */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Fraunces[opsz,wght].woff2") format("woff2-variations"),
+       url("/fonts/Fraunces-VariableFont_opsz,wght.woff2") format("woff2");
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Fraunces-Italic[opsz,wght].woff2") format("woff2-variations"),
+       url("/fonts/Fraunces-Italic-VariableFont_opsz,wght.woff2") format("woff2");
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Inter[wght].woff2") format("woff2-variations"),
+       url("/fonts/Inter-VariableFont_wght.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/JetBrainsMono[wght].woff2") format("woff2-variations"),
+       url("/fonts/JetBrainsMono-VariableFont_wght.woff2") format("woff2");
+}
 
 /* --- Reset & Base --- */
 *, *::before, *::after {
@@ -13,131 +54,241 @@
 }
 
 :root {
-  /* Brand palette (locked) */
-  --teal: #0D7377;
-  --teal-dark: #095c5f;
-  --teal-light: #0f8a8e;
-  /* Brand red — matches the "RED SKY" lettering in the logo */
-  --accent: #E11D29;
-  --accent-hover: #C81620;
-  --accent-dark: #B0121C;
-  --dark: #1a1a2e;
-  --text: #2d3436;
-  --text-secondary: #636e72;
-  --text-muted: #8a9494;
-  --white: #ffffff;
-  --off-white: #f8fffe;
-  --light-bg: #f0faf9;
-  --surface-1: #f6fbfa;
-  --surface-2: #edf5f4;
-  --border-subtle: #e3edec;
-  --footer-bg: #1a1a2e;
-  --success: #27ae60;
-  --danger: #c0392b;
+  /* ============================================================
+     §4.1 — Color tokens (canonical names per spec)
+     ============================================================ */
+  --rs-ink:        #0B1220;
+  --rs-ink-soft:   #2A3344;
+  --rs-paper:      #FAFAF7;
+  --rs-cloud:      #F1F4F8;
+  --rs-line:       #E3E7EE;
 
-  /* Typography — two-family pairing */
-  --font-body: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Bricolage Grotesque', 'Figtree', Georgia, serif;
+  --rs-red:        #C8252C;
+  --rs-red-deep:   #971C22;
+  --rs-ember:      #F25C3A;
+  --rs-sky:        #2E6FB8;
+  --rs-sky-soft:   #BBD4EE;
+  --rs-gold:       #E0A458;
 
-  /* Modular type scale (1.25 ratio, fixed rem; only hero uses clamp) */
-  --text-xs:   0.75rem;    /* 12px — micro labels */
-  --text-sm:   0.875rem;   /* 14px — captions, metadata */
-  --text-base: 1rem;       /* 16px — body (minimum) */
-  --text-md:   1.125rem;   /* 18px — lead body, subheads */
-  --text-lg:   1.375rem;   /* 22px — card titles */
-  --text-xl:   1.75rem;    /* 28px — section subheads */
-  --text-2xl:  2.25rem;    /* 36px — section headings */
-  --text-3xl:  2.75rem;    /* 44px — about/contact h2 */
-  --text-hero: clamp(2.25rem, 4.2vw + 1rem, 3.75rem); /* hero h1 only */
+  --rs-success:    #1E8E5C;
+  --rs-warn:       #B45309;
+  --rs-danger:     #B91C1C;
 
-  /* Line-height */
-  --leading-tight:  1.15;
-  --leading-snug:   1.25;
-  --leading-normal: 1.55;
-  --leading-loose:  1.7;
+  /* §4.1 — Hero gradient accent (use sparingly: thin top border, button glow, behind-card halo). Never a full bg wash. */
+  --rs-gradient: linear-gradient(135deg, var(--rs-red) 0%, var(--rs-ember) 55%, var(--rs-gold) 100%);
+
+  /* ============================================================
+     Legacy aliases — keep existing styles.css rules working
+     while pages are progressively rebuilt. Phase 10 cleanup
+     removes any aliases no longer referenced.
+     ============================================================ */
+  /* Legacy --teal aliases now map to ink, NOT to --rs-sky.
+     Spec's blue is reserved for narrow "trust accent / links" use;
+     the existing CSS uses --teal for big surfaces (promo banner,
+     CTA band, scrollspy underline). Mapping to --rs-sky made all
+     of those bright blue and clashed with the red CTA. Ink reads
+     as near-black, pairs cleanly with red, and matches the
+     premium-local identity spec §4 calls for. */
+  --teal:           var(--rs-ink);
+  --teal-dark:      #050912;
+  --teal-light:     #1A243A;
+  --accent:         var(--rs-red);
+  --accent-hover:   var(--rs-red-deep);
+  --accent-dark:    var(--rs-red-deep);
+  --dark:           var(--rs-ink);
+  --text:           var(--rs-ink);
+  --text-secondary: var(--rs-ink-soft);
+  --text-muted:     #6B7588;
+  --white:          #ffffff;
+  --off-white:      var(--rs-paper);
+  --light-bg:       var(--rs-cloud);
+  --surface-1:      var(--rs-paper);
+  --surface-2:      var(--rs-cloud);
+  --border-subtle:  var(--rs-line);
+  --footer-bg:      var(--rs-ink);
+  --success:        var(--rs-success);
+  --danger:         var(--rs-danger);
+
+  /* ============================================================
+     §4.2 — Typography
+     Display: Fraunces (variable, optical size, semibold 600–700)
+     Body:    Inter (variable, 400/500/600)
+     Mono:    JetBrains Mono (sparingly — pricing receipts only)
+     ============================================================ */
+  --font-display: "Fraunces", "Iowan Old Style", "Apple Garamond",
+                  Georgia, "Times New Roman", serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                  Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+                  "Liberation Mono", monospace;
+  /* Legacy alias: prior CSS uses --font-heading. Map to new display. */
+  --font-heading: var(--font-display);
+
+  /* ============================================================
+     §4.2 — Type scale (rem)
+     0.75 / 0.875 / 1 / 1.125 / 1.25 / 1.5 / 1.875 / 2.25 / 3 / 3.75 / 4.5
+     ============================================================ */
+  --text-xs:    0.75rem;    /* 12px — micro labels */
+  --text-sm:    0.875rem;   /* 14px — captions, metadata */
+  --text-base:  1rem;       /* 16px — body baseline */
+  --text-md:    1.125rem;   /* 18px — lead paragraph */
+  --text-lg:    1.25rem;    /* 20px — card titles */
+  --text-xl:    1.5rem;     /* 24px — h3 / step titles */
+  --text-2xl:   1.875rem;   /* 30px — h2 / section heads */
+  --text-3xl:   2.25rem;    /* 36px — large h2 / about, contact */
+  --text-4xl:   3rem;       /* 48px — page h1 (interior pages) */
+  --text-5xl:   3.75rem;    /* 60px — homepage h1 desktop */
+  --text-6xl:   4.5rem;     /* 72px — display/hero on landing */
+  --text-hero:  clamp(2.25rem, 5vw + 1rem, 4.5rem); /* fluid hero clamp */
+
+  /* §4.2 — Line-heights */
+  --leading-display: 1.05;   /* 4xl+ display type */
+  --leading-tight:   1.15;   /* h1/h2 (spec: 1.15 display) */
+  --leading-snug:    1.3;    /* h3/h4 + tight UI */
+  --leading-normal:  1.5;    /* body baseline (spec: 1.5 body) */
+  --leading-loose:   1.7;    /* long prose */
 
   /* Weight roles */
   --weight-regular:  400;
   --weight-medium:   500;
   --weight-semibold: 600;
   --weight-bold:     700;
+  --weight-display:  650;    /* Fraunces sweet spot */
 
   /* Tracking */
-  --tracking-tight: -0.015em;
+  --tracking-tight:  -0.02em;
   --tracking-normal: 0;
-  --tracking-wide: 0.08em;
+  --tracking-wide:   0.08em;
 
-  /* 4pt spacing scale — semantic names, not pixel names */
-  --space-1:  0.25rem;  /*  4px */
-  --space-2:  0.5rem;   /*  8px */
-  --space-3:  0.75rem;  /* 12px */
-  --space-4:  1rem;     /* 16px */
-  --space-5:  1.25rem;  /* 20px */
-  --space-6:  1.5rem;   /* 24px */
-  --space-7:  1.75rem;  /* 28px */
-  --space-8:  2rem;     /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-14: 3.5rem;   /* 56px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-  --space-24: 6rem;     /* 96px */
+  /* ============================================================
+     §4.3 — 4px spacing scale (4, 8, 12, 16, 24, 32, 48, 64, 96, 128)
+     ============================================================ */
+  --space-1:  0.25rem;   /*   4 */
+  --space-2:  0.5rem;    /*   8 */
+  --space-3:  0.75rem;   /*  12 */
+  --space-4:  1rem;      /*  16 */
+  --space-5:  1.25rem;   /*  20 (extension) */
+  --space-6:  1.5rem;    /*  24 */
+  --space-7:  1.75rem;   /*  28 (extension) */
+  --space-8:  2rem;      /*  32 */
+  --space-10: 2.5rem;    /*  40 (extension) */
+  --space-12: 3rem;      /*  48 */
+  --space-14: 3.5rem;    /*  56 (extension) */
+  --space-16: 4rem;      /*  64 */
+  --space-20: 5rem;      /*  80 (extension) */
+  --space-24: 6rem;      /*  96 */
+  --space-32: 8rem;      /* 128 */
 
   /* Section rhythm — fluid vertical breathing room */
-  --section-py:   clamp(3rem, 6vw + 1rem, 6rem);    /* default section */
-  --section-py-lg: clamp(4rem, 8vw + 1rem, 8rem);   /* marquee sections */
-  --section-py-sm: clamp(2rem, 4vw, 3.5rem);        /* trust strip, CTA */
+  --section-py:    clamp(3rem, 6vw + 1rem, 6rem);
+  --section-py-lg: clamp(4rem, 8vw + 1rem, 8rem);
+  --section-py-sm: clamp(2rem, 4vw, 3.5rem);
 
-  /* Radius scale */
-  --radius-sm:   0.5rem;   /*  8px — inputs, chips */
-  --radius-md:   0.75rem;  /* 12px — pills, labels */
-  --radius-lg:   1rem;     /* 16px — cards */
-  --radius-xl:   1.25rem;  /* 20px — large cards, modals */
-  --radius-2xl:  1.75rem;  /* 28px — feature panels */
-  --radius-full: 9999px;
+  /* ============================================================
+     §4.3 — Radius (canonical names per spec)
+     ============================================================ */
+  --r-sm:   6px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-pill: 9999px;
+  /* Legacy aliases */
+  --radius-sm:   var(--r-sm);
+  --radius-md:   var(--r-md);
+  --radius-lg:   var(--r-lg);
+  --radius-xl:   var(--r-xl);
+  --radius-2xl:  var(--r-xl);
+  --radius-full: var(--r-pill);
+
+  /* ============================================================
+     §4.3 — Shadow (layered, soft, ink-tinted; no hard drop-shadows)
+     ============================================================ */
+  --sh-1: 0 1px 2px rgba(11,18,32,.04), 0 2px 8px rgba(11,18,32,.05);
+  --sh-2: 0 6px 24px rgba(11,18,32,.08);
+  --sh-3: 0 24px 60px rgba(11,18,32,.12);
+  /* Legacy aliases (now ink-tinted instead of teal-tinted) */
+  --shadow-sm:    var(--sh-1);
+  --shadow-md:    var(--sh-2);
+  --shadow-lg:    var(--sh-3);
+  --shadow-hover: 0 16px 48px rgba(11,18,32,.18);
 
   /* Semantic z-index scale */
   --z-nav-backdrop: 998;
   --z-header:       1000;
   --z-promo:        1001;
+  --z-drawer:       1500;
   --z-modal:        2000;
   --z-toast:        3000;
 
-  --header-height: 90px;
-  --header-height-scrolled: 64px;
+  --header-height:          76px;
+  --header-height-scrolled: 60px;
 
-  /* Easing — confident, decelerating curves. No bounce/elastic (dated). */
+  /* Easing — confident, decelerating curves; no bounce/elastic */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:    cubic-bezier(0.6, 0, 0.4, 1);
 
-  /* Default transitions use the ease-out-quart curve for natural deceleration */
-  --transition: 0.22s var(--ease-out-quart);
-  --transition-slow: 0.6s var(--ease-out-quint);
-  --shadow-sm: 0 2px 8px rgba(13,115,119,0.08);
-  --shadow-md: 0 4px 20px rgba(13,115,119,0.12);
-  --shadow-lg: 0 12px 40px rgba(13,115,119,0.16);
-  --shadow-hover: 0 16px 48px rgba(13,115,119,0.18);
+  --transition:      0.22s var(--ease-out-quart);
+  --transition-slow: 0.6s  var(--ease-out-quint);
+
+  /* Focus ring — spec §13: --rs-sky 2px + 2px offset */
+  --focus-ring: 0 0 0 2px var(--rs-sky), 0 0 0 4px var(--white);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Avoid the "double-smooth-scroll" jank with JS-driven scroll-to */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
-/* Branded text selection — a small touch of personality */
-::selection { background: rgba(13,115,119,0.2); color: var(--dark); }
-::-moz-selection { background: rgba(13,115,119,0.2); color: var(--dark); }
+/* Branded text selection — single brand red touch */
+::selection { background: color-mix(in oklab, var(--rs-red) 22%, transparent); color: var(--rs-ink); }
+::-moz-selection { background: color-mix(in oklab, var(--rs-red) 22%, transparent); color: var(--rs-ink); }
 
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: var(--weight-regular);
-  color: var(--text);
+  color: var(--rs-ink);
   line-height: var(--leading-normal);
-  background: var(--white);
+  background: var(--rs-paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+/* Headings default to the display family + tighter leading */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--rs-ink);
+}
+h1 { line-height: var(--leading-display); }
+
+/* Long-form prose readability */
+p { max-width: 65ch; }
+.lede { font-size: var(--text-md); color: var(--rs-ink-soft); max-width: 60ch; }
+
+/* Mono for pricing receipts (sparingly per spec §4.2) */
+.mono, code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Universal focus ring — single source per spec §13 */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 4px;
 }
 
 img { max-width: 100%; display: block; }
@@ -223,11 +374,11 @@ body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
    SCROLLSPY NAV (active link indicator)
    ============================================ */
 .main-nav a.is-current {
-  color: var(--teal);
+  color: var(--rs-red);
 }
 .main-nav a.is-current::after {
   width: 100%;
-  background: var(--teal);
+  background: var(--rs-red);
 }
 
 /* ============================================
@@ -561,11 +712,11 @@ body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
   position: absolute;
   bottom: -2px; left: 0;
   width: 0; height: 2px;
-  background: var(--teal);
+  background: var(--rs-red);
   transition: width var(--transition);
 }
 @media (hover: hover) {
-  .main-nav a:hover { color: var(--teal); }
+  .main-nav a:hover { color: var(--rs-red); }
   .main-nav a:hover::after { width: 100%; }
 }
 
@@ -3808,6 +3959,609 @@ label.toggle-label {
   line-height: var(--leading-snug);
   margin-top: 2px;
 }
+/* ============================================================
+   RS-DESIGN-SYSTEM v1 — Phase 2 component primitives.
+   Components live under the .rs-* namespace. Pages built in
+   Phase 4+ use these directly; legacy classes coexist until
+   their rebuild phase, then are removed in Phase 10.
+   ============================================================ */
+
+/* === BUTTON === */
+.rs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 12px var(--space-6);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.005em;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease-out-quart),
+              box-shadow 0.18s var(--ease-out-quart),
+              background-color 0.18s var(--ease-out-quart),
+              border-color 0.18s var(--ease-out-quart);
+  white-space: nowrap;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  text-decoration: none;
+}
+.rs-btn:disabled,
+.rs-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.rs-btn--primary {
+  background: var(--rs-red);
+  color: var(--white);
+  box-shadow: var(--sh-1);
+}
+.rs-btn--primary:hover {
+  background: var(--rs-red-deep);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-2);
+}
+.rs-btn--primary:active { transform: translateY(0); box-shadow: var(--sh-1); }
+.rs-btn--secondary {
+  background: var(--white);
+  color: var(--rs-ink);
+  border-color: var(--rs-line);
+}
+.rs-btn--secondary:hover {
+  border-color: var(--rs-ink);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-1);
+}
+.rs-btn--ghost {
+  background: transparent;
+  color: var(--rs-ink);
+  border-color: transparent;
+}
+.rs-btn--ghost:hover { background: var(--rs-cloud); }
+.rs-btn--link {
+  background: transparent;
+  color: var(--rs-sky);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+.rs-btn--link:hover { color: var(--rs-red); }
+.rs-btn--sm { padding: 8px var(--space-4); font-size: var(--text-sm); }
+.rs-btn--lg { padding: 16px var(--space-7); font-size: var(--text-md); }
+.rs-btn--block { display: flex; width: 100%; }
+.rs-btn--cta {
+  /* Primary + the brand gradient-glow halo on hover for highest-stakes CTAs */
+  background: var(--rs-red);
+  color: var(--white);
+  box-shadow: var(--sh-1);
+}
+.rs-btn--cta::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: var(--rs-gradient);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.25s var(--ease-out-quart);
+  filter: blur(12px);
+}
+.rs-btn--cta:hover { transform: translateY(-1px); }
+.rs-btn--cta:hover::before { opacity: 0.55; }
+
+/* === CARD === */
+.rs-card {
+  background: var(--white);
+  border: 1px solid var(--rs-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  padding: var(--space-6);
+  transition: transform 0.2s var(--ease-out-quart),
+              box-shadow 0.2s var(--ease-out-quart),
+              border-color 0.2s var(--ease-out-quart);
+}
+.rs-card--hoverable:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: var(--sh-2);
+}
+.rs-card--feature { padding: var(--space-8); border-radius: var(--r-xl); }
+.rs-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-3);
+}
+.rs-card__body {
+  color: var(--rs-ink-soft);
+  line-height: var(--leading-normal);
+}
+
+/* === INPUT === */
+.rs-input,
+.rs-select,
+.rs-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.4;
+  color: var(--rs-ink);
+  background: var(--white);
+  border: 1.5px solid var(--rs-line);
+  border-radius: var(--r-md);
+  transition: border-color 0.18s var(--ease-out-quart),
+              box-shadow 0.18s var(--ease-out-quart);
+  min-height: 44px;
+  font-feature-settings: inherit;
+}
+.rs-input:focus,
+.rs-select:focus,
+.rs-textarea:focus {
+  outline: none;
+  border-color: var(--rs-sky);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--rs-sky) 22%, transparent);
+}
+.rs-input[aria-invalid="true"],
+.rs-select[aria-invalid="true"],
+.rs-textarea[aria-invalid="true"] {
+  border-color: var(--rs-danger);
+}
+.rs-input[aria-invalid="true"]:focus,
+.rs-select[aria-invalid="true"]:focus,
+.rs-textarea[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--rs-danger) 22%, transparent);
+}
+.rs-textarea { resize: vertical; min-height: 88px; }
+.rs-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--rs-ink-soft);
+  margin-bottom: var(--space-2);
+}
+.rs-field-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--rs-ink-soft);
+}
+.rs-field-error {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--rs-danger);
+  font-weight: var(--weight-medium);
+}
+
+/* === STEPPER (number ± buttons) === */
+.rs-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--rs-line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  overflow: hidden;
+}
+.rs-stepper__btn {
+  width: 44px; height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--text-md);
+  color: var(--rs-ink);
+  transition: background 0.15s var(--ease-out-quart);
+}
+.rs-stepper__btn:hover { background: var(--rs-cloud); }
+.rs-stepper__btn:active { transform: scale(0.96); }
+.rs-stepper__btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.rs-stepper__value {
+  min-width: 56px;
+  text-align: center;
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--rs-ink);
+}
+
+/* === BADGE === */
+.rs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  background: var(--rs-cloud);
+  color: var(--rs-ink-soft);
+  white-space: nowrap;
+}
+.rs-badge--red    { background: color-mix(in oklab, var(--rs-red) 12%, var(--white)); color: var(--rs-red-deep); }
+.rs-badge--sky    { background: var(--rs-sky-soft); color: #1F4F8A; }
+.rs-badge--gold   { background: color-mix(in oklab, var(--rs-gold) 25%, var(--white)); color: #8A5C1A; }
+.rs-badge--success{ background: color-mix(in oklab, var(--rs-success) 14%, var(--white)); color: #145C3D; }
+.rs-badge--ink    { background: var(--rs-ink); color: var(--white); }
+
+/* === ACCORDION === */
+.rs-accordion {
+  border: 1px solid var(--rs-line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  overflow: hidden;
+}
+.rs-accordion__item + .rs-accordion__item {
+  border-top: 1px solid var(--rs-line);
+}
+.rs-accordion__trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--rs-ink);
+  text-align: left;
+  transition: background 0.15s var(--ease-out-quart);
+}
+.rs-accordion__trigger:hover { background: var(--rs-cloud); }
+.rs-accordion__icon {
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease-out-quart);
+  color: var(--rs-red);
+}
+.rs-accordion__item.is-open .rs-accordion__trigger { background: var(--rs-cloud); }
+.rs-accordion__item.is-open .rs-accordion__icon { transform: rotate(180deg); }
+.rs-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s var(--ease-out-expo),
+              opacity 0.25s var(--ease-out-quart);
+}
+.rs-accordion__item.is-open .rs-accordion__panel {
+  max-height: 800px;
+  opacity: 1;
+}
+.rs-accordion__body {
+  padding: 0 var(--space-5) var(--space-5);
+  color: var(--rs-ink-soft);
+  line-height: var(--leading-loose);
+  font-size: var(--text-sm);
+}
+
+/* === TABS === */
+.rs-tabs {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: 1px solid var(--rs-line);
+  flex-wrap: wrap;
+}
+.rs-tab {
+  padding: var(--space-3) var(--space-5);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--rs-ink-soft);
+  cursor: pointer;
+  transition: color 0.15s var(--ease-out-quart),
+              border-color 0.15s var(--ease-out-quart);
+}
+.rs-tab:hover { color: var(--rs-ink); }
+.rs-tab[aria-selected="true"] {
+  color: var(--rs-ink);
+  border-bottom-color: var(--rs-red);
+  font-weight: var(--weight-semibold);
+}
+
+/* === TOAST === */
+.rs-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--rs-line);
+  background: var(--white);
+  box-shadow: var(--sh-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  max-width: 420px;
+}
+.rs-toast__icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; }
+.rs-toast--info    { border-color: var(--rs-sky-soft); }
+.rs-toast--info    .rs-toast__icon { color: var(--rs-sky); }
+.rs-toast--success { border-color: color-mix(in oklab, var(--rs-success) 28%, var(--rs-line)); }
+.rs-toast--success .rs-toast__icon { color: var(--rs-success); }
+.rs-toast--warn    { border-color: color-mix(in oklab, var(--rs-warn) 32%, var(--rs-line)); }
+.rs-toast--warn    .rs-toast__icon { color: var(--rs-warn); }
+.rs-toast--danger  { border-color: color-mix(in oklab, var(--rs-danger) 32%, var(--rs-line)); }
+.rs-toast--danger  .rs-toast__icon { color: var(--rs-danger); }
+.rs-toast__title { font-weight: var(--weight-semibold); color: var(--rs-ink); margin-bottom: 2px; }
+
+/* === REVIEW CARD === */
+.rs-review-card {
+  background: var(--white);
+  border: 1px solid var(--rs-line);
+  border-radius: var(--r-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+}
+.rs-review-card::before {
+  content: "\201C";
+  position: absolute;
+  top: -2px;
+  left: var(--space-5);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  color: color-mix(in oklab, var(--rs-red) 30%, transparent);
+  pointer-events: none;
+}
+.rs-review-card__quote {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  color: var(--rs-ink);
+  font-style: italic;
+  font-weight: var(--weight-regular);
+  margin-top: var(--space-3);
+  letter-spacing: var(--tracking-tight);
+}
+.rs-review-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+}
+.rs-review-card__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--rs-cloud);
+  color: var(--rs-red-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+  border: 1px solid color-mix(in oklab, var(--rs-red) 18%, var(--rs-line));
+}
+.rs-review-card__name { font-weight: var(--weight-semibold); color: var(--rs-ink); }
+.rs-review-card__city { font-size: var(--text-xs); color: var(--rs-ink-soft); }
+.rs-review-card__stars { display: inline-flex; gap: 2px; color: var(--rs-gold); }
+
+/* === SERVICE CARD === */
+.rs-service-card {
+  background: var(--white);
+  border: 1px solid var(--rs-line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s var(--ease-out-quart),
+              box-shadow 0.22s var(--ease-out-quart),
+              border-color 0.22s var(--ease-out-quart);
+  box-shadow: var(--sh-1);
+}
+.rs-service-card:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: var(--sh-2);
+}
+.rs-service-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--rs-gradient);
+  overflow: hidden;
+}
+.rs-service-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out-quart);
+}
+.rs-service-card:hover .rs-service-card__media img { transform: scale(1.04); }
+.rs-service-card__body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+.rs-service-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.rs-service-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--rs-ink);
+  letter-spacing: var(--tracking-tight);
+}
+.rs-service-card__price { font-size: var(--text-sm); color: var(--rs-ink-soft); }
+.rs-service-card__price strong {
+  color: var(--rs-red);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+.rs-service-card__features {
+  font-size: var(--text-sm);
+  color: var(--rs-ink-soft);
+  padding-left: 0;
+}
+.rs-service-card__features li {
+  position: relative;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-snug);
+}
+.rs-service-card__features li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 8px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--rs-red);
+}
+.rs-service-card__cta { margin-top: auto; align-self: flex-start; }
+
+/* === AREA CARD === */
+.rs-area-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  background: var(--white);
+  border: 1px solid var(--rs-line);
+  border-radius: var(--r-md);
+  transition: transform 0.18s var(--ease-out-quart),
+              box-shadow 0.18s var(--ease-out-quart),
+              border-color 0.18s var(--ease-out-quart);
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+}
+.rs-area-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-2);
+  border-color: var(--rs-red);
+}
+.rs-area-card__city {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  color: var(--rs-ink);
+  letter-spacing: var(--tracking-tight);
+}
+.rs-area-card__zips {
+  font-size: var(--text-xs);
+  color: var(--rs-ink-soft);
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.rs-area-card__cta {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--rs-red);
+}
+
+/* === DRAWER (slide-in from right; spec §7.1) === */
+.rs-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+  pointer-events: none;
+}
+.rs-drawer__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(11,18,32,0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out-quart);
+}
+.rs-drawer__panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(520px, 100vw);
+  background: var(--rs-paper);
+  box-shadow: var(--sh-3);
+  transform: translateX(100%);
+  transition: transform 0.35s var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
+}
+.rs-drawer[aria-hidden="false"] { pointer-events: auto; }
+.rs-drawer[aria-hidden="false"] .rs-drawer__scrim { opacity: 1; }
+.rs-drawer[aria-hidden="false"] .rs-drawer__panel { transform: translateX(0); }
+@media (max-width: 640px) {
+  .rs-drawer__panel {
+    width: 100vw;
+    height: 100dvh;
+  }
+}
+
+/* === Utility helpers === */
+.rs-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--rs-red);
+  margin-bottom: var(--space-3);
+}
+.rs-rule {
+  height: 1px;
+  background: var(--rs-line);
+  border: 0;
+  margin: var(--space-8) 0;
+}
+.rs-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  padding: var(--space-3) 0;
+  font-size: var(--text-sm);
+  color: var(--rs-ink-soft);
+}
+.rs-trust-bar > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.rs-trust-bar svg { color: var(--rs-red); flex-shrink: 0; }
+
+/* Reduced-motion overrides for the design system */
+@media (prefers-reduced-motion: reduce) {
+  .rs-btn, .rs-card, .rs-service-card, .rs-area-card,
+  .rs-stepper__btn, .rs-accordion__icon, .rs-accordion__panel,
+  .rs-drawer__scrim, .rs-drawer__panel, .rs-service-card__media img,
+  .rs-btn--cta::before {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   END RS-DESIGN-SYSTEM v1
+   ============================================================ */
+
 .pref-price {
   display: inline-block;
   font-size: var(--text-xs);
