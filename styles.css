@@ -1719,7 +1719,7 @@ body.promo-active .scroll-progress { top: var(--promo-height, 0px); }
   flex-direction: column;
   line-height: var(--leading-snug);
 }
-.badge-item h4 {
+.badge-item h3 {
   font-family: var(--font-heading);
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
