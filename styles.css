@@ -6464,3 +6464,30 @@ body.rs-drawer-open { overflow: hidden; }
     transform: none !important;
   }
 }
+
+/* ============================================================
+   Phase 8 — scroll reveals (driven by /js/motion.js)
+   - Only active when html.rs-motion-on is set (motion.js gates it)
+   - Stagger delay set inline by motion.js as --rs-reveal-delay
+   ============================================================ */
+html.rs-motion-on .rs-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms cubic-bezier(.22, .61, .36, 1) var(--rs-reveal-delay, 0ms),
+    transform 700ms cubic-bezier(.22, .61, .36, 1) var(--rs-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+html.rs-motion-on .rs-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+html.rs-motion-off .rs-reveal,
+html:not(.rs-motion-on):not(.rs-motion-off) .rs-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rs-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
