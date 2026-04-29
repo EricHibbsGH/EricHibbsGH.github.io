@@ -44,7 +44,7 @@ function header(active) {
         <li><a href="/areas/"${cur("areas")}>Areas</a></li>
         <li><a href="/checklist/"${cur("checklist")}>Checklist</a></li>
         <li><a href="/about/"${cur("about")}>About</a></li>
-        <li><a href="/faq/"${cur("faq")}>FAQ</a></li>
+        <li><a href="/#reviews">Reviews</a></li>
       </ul>
       <div class="rs-hdr__cta">
         <a href="tel:+14702400645" class="rs-hdr__phone"><svg width="16" height="16" aria-hidden="true"><use href="#i-phone"/></svg>(470) 240-0645</a>
