@@ -4309,38 +4309,51 @@ label.toggle-label {
   background: var(--white);
   border: 1px solid var(--rs-line);
   border-radius: var(--r-lg);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "quote  quote"
+    "author stars";
+  row-gap: var(--space-4);
+  column-gap: var(--space-3);
 }
+/* Subtle decorative open-quote glyph in the corner — kept lighter and smaller
+   so the new typographic quotes around the text remain the visual lead. */
 .rs-review-card::before {
   content: "\201C";
   position: absolute;
-  top: -2px;
-  left: var(--space-5);
+  top: 6px;
+  left: var(--space-4);
   font-family: var(--font-display);
-  font-size: 4rem;
+  font-size: 2.25rem;
   line-height: 1;
-  color: color-mix(in oklab, var(--rs-red) 30%, transparent);
+  color: color-mix(in oklab, var(--rs-red) 18%, transparent);
   pointer-events: none;
 }
 .rs-review-card__quote {
+  grid-area: quote;
   font-family: var(--font-display);
   font-size: var(--text-md);
   line-height: var(--leading-snug);
   color: var(--rs-ink);
   font-style: italic;
   font-weight: var(--weight-regular);
-  margin-top: var(--space-3);
+  margin: var(--space-3) 0 0;
   letter-spacing: var(--tracking-tight);
+  /* Wrap the body text in typographic curly quotes. */
+  quotes: "\201C" "\201D" "\2018" "\2019";
 }
+.rs-review-card__quote::before { content: open-quote; margin-right: 1px; }
+.rs-review-card__quote::after  { content: close-quote; margin-left: 1px; }
+
 .rs-review-card__author {
+  grid-area: author;
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin-top: auto;
+  min-width: 0;
 }
 .rs-review-card__avatar {
   width: 40px; height: 40px;
@@ -4356,9 +4369,16 @@ label.toggle-label {
   flex-shrink: 0;
   border: 1px solid color-mix(in oklab, var(--rs-red) 18%, var(--rs-line));
 }
-.rs-review-card__name { font-weight: var(--weight-semibold); color: var(--rs-ink); }
-.rs-review-card__city { font-size: var(--text-xs); color: var(--rs-ink-soft); }
-.rs-review-card__stars { display: inline-flex; gap: 2px; color: var(--rs-gold); }
+.rs-review-card__name { font-weight: var(--weight-semibold); color: var(--rs-ink); line-height: 1.25; }
+.rs-review-card__city { font-size: var(--text-xs); color: var(--rs-ink-soft); margin-top: 1px; }
+.rs-review-card__stars {
+  grid-area: stars;
+  align-self: center;
+  justify-self: end;
+  display: inline-flex;
+  gap: 2px;
+  color: var(--rs-gold);
+}
 
 /* === SERVICE CARD === */
 .rs-service-card {
