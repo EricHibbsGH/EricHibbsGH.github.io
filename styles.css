@@ -4869,20 +4869,43 @@ body.rs-drawer-open { overflow: hidden; }
 }
 .rs-qd__tw input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
 
-/* Pets toggle */
+/* Pets toggle — explicit grid so no inherited rule can re-flow it */
 .rs-qd__pets {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18px 1fr;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3);
+  column-gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   border: 1px solid var(--rs-line);
   border-radius: var(--r-md);
   background: var(--white);
   font-size: var(--text-sm);
   cursor: pointer;
   margin: 0;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
 }
-.rs-qd__pets input { width: 18px; height: 18px; accent-color: var(--rs-red); }
+.rs-qd__pets > input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px;
+  accent-color: var(--rs-red);
+  margin: 0;
+  flex: 0 0 auto;
+  justify-self: start;
+  grid-column: 1;
+}
+.rs-qd__pets > span {
+  grid-column: 2;
+  text-align: left;
+  margin: 0;
+  line-height: var(--leading-snug);
+  color: var(--rs-ink);
+}
+.rs-qd__pets:has(input:checked) {
+  border-color: color-mix(in oklab, var(--rs-red) 30%, var(--rs-line));
+  background: color-mix(in oklab, var(--rs-red) 4%, var(--white));
+}
 
 /* Step 5 — Contact grid */
 .rs-qd__contact-grid {
