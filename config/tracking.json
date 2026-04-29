@@ -1,0 +1,18 @@
+{
+  "_comment": "All IDs default to placeholders. tracking.js detects YOUR_*_HERE and runs no-op until owner fills these in.",
+  "ga4_id": "YOUR_GA4_ID_HERE",
+  "gtm_id": "YOUR_GTM_ID_HERE",
+  "meta_pixel_id": "YOUR_META_PIXEL_ID_HERE",
+  "clarity_project_id": "YOUR_CLARITY_ID_HERE",
+  "consent_default": "denied",
+  "consent_storage_key": "rsc_consent_v1",
+  "cookie_banner": {
+    "enabled": true,
+    "title": "We use cookies to improve your experience.",
+    "body": "Required cookies keep the site working. Analytics cookies help us improve it. You can change this any time in our privacy policy.",
+    "accept_label": "Accept all",
+    "deny_label": "Required only",
+    "policy_label": "Privacy policy",
+    "policy_url": "/privacy/"
+  }
+}

@@ -204,5 +204,7 @@
 (function(){var hdr=document.getElementById('header');var ticking=false;window.addEventListener('scroll',function(){if(ticking)return;ticking=true;requestAnimationFrame(function(){hdr.classList.toggle('is-scrolled',window.scrollY>16);ticking=false;});},{passive:true});var tg=document.getElementById('hdrToggle'),nv=document.getElementById('hdrNav');tg.addEventListener('click',function(){var open=nv.classList.toggle('is-open');tg.setAttribute('aria-expanded',open?'true':'false');tg.classList.toggle('is-active',open);document.body.style.overflow=open?'hidden':'';});document.querySelectorAll('.rs-accordion__trigger').forEach(function(b){b.addEventListener('click',function(){var i=b.parentElement;var o=i.classList.contains('is-open');i.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'false':'true');});});})();
 </script>
 <script type="module" src="/js/quote-drawer.js"></script>
+<script src="/js/motion.js" defer></script>
+<script src="/js/tracking.js" defer></script>
 </body>
 </html>
