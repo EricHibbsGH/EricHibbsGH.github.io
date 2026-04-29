@@ -4104,6 +4104,31 @@ label.toggle-label {
   min-height: 44px;
   font-feature-settings: inherit;
 }
+
+/* Custom dropdown chevron — pushes the arrow well off the right edge
+   and gives the select a consistent look across browsers. */
+.rs-select,
+.form-group select,
+select.rs-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B1220' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px 14px;
+  background-color: var(--white);
+  cursor: pointer;
+}
+.rs-select::-ms-expand,
+.form-group select::-ms-expand,
+select.rs-input::-ms-expand { display: none; }
+.rs-select:hover,
+.form-group select:hover,
+select.rs-input:hover {
+  border-color: color-mix(in oklab, var(--rs-red) 30%, var(--rs-line));
+}
 .rs-input:focus,
 .rs-select:focus,
 .rs-textarea:focus {
@@ -6803,55 +6828,64 @@ html:not(.rs-motion-off) body main {
   }
 }
 
-/* CTA button sheen sweep on hover */
+/* CTA button — dramatic hover: lift, glow, and a visible white sheen
+   sweep using a moving gradient on the background itself (the previous
+   z-index:-1 ::after trick was hiding the sheen BEHIND the solid red
+   background, which is why nothing was visible). */
 .rs-btn--cta {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  z-index: 0;
-  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1),
-              box-shadow 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.rs-btn--cta::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
+  background-color: var(--rs-red);
+  background-image: linear-gradient(
     100deg,
-    transparent 30%,
-    rgba(255, 255, 255, .28) 50%,
-    transparent 70%
+    transparent 35%,
+    rgba(255, 255, 255, .42) 50%,
+    transparent 65%
   );
-  transform: translateX(-100%);
-  pointer-events: none;
+  background-size: 220% 100%;
+  background-position: 220% 0;
+  background-repeat: no-repeat;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 0.28s ease,
+    background-position 0s linear;
 }
 @media (hover: hover) {
   .rs-btn--cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(200, 37, 44, .35);
+    transform: translateY(-3px) scale(1.015);
+    box-shadow:
+      0 18px 38px rgba(200, 37, 44, .42),
+      0 0 0 4px color-mix(in oklab, var(--rs-red) 18%, transparent);
+    filter: brightness(1.06);
+    animation: rsBtnSheen 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
-  .rs-btn--cta:hover::after {
-    animation: rsBtnSheen 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+  .rs-btn--cta:active {
+    transform: translateY(-1px) scale(1.0);
   }
 }
 @keyframes rsBtnSheen {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0%   { background-position: 220% 0; }
+  100% { background-position: -120% 0; }
 }
 
-/* Secondary buttons get a subtle border/color shift on hover */
+/* Secondary buttons — visible color shift + lift */
 .rs-btn--secondary {
   transition:
     background 0.22s ease,
     color 0.22s ease,
     border-color 0.22s ease,
-    transform 0.22s ease;
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 }
 @media (hover: hover) {
   .rs-btn--secondary:hover {
-    transform: translateY(-1px);
+    transform: translateY(-3px);
     border-color: var(--rs-red);
     color: var(--rs-red);
+    background: color-mix(in oklab, var(--rs-red) 4%, var(--white));
+    box-shadow: 0 12px 24px rgba(11, 18, 32, .10);
   }
 }
 
