@@ -398,40 +398,93 @@ function updateNextEnabled() {
 
 function showSuccess() {
   _drawer.querySelectorAll(".rs-qd__step").forEach(s => { s.hidden = s.dataset.step !== "success"; });
-  _drawer.querySelector(".rs-qd__head").style.display = "none";
-  _drawer.querySelector(".rs-qd__foot").style.display = "none";
 
-  if (_state.date) {
-    const startISO = _state.date.replace(/-/g, "") + (
-      _state.timeWindow === "8-11" ? "T080000" :
-      _state.timeWindow === "11-2" ? "T110000" :
-      _state.timeWindow === "2-5"  ? "T140000" : "T090000"
-    );
-    const endISO = _state.date.replace(/-/g, "") + (
-      _state.timeWindow === "8-11" ? "T110000" :
-      _state.timeWindow === "11-2" ? "T140000" :
-      _state.timeWindow === "2-5"  ? "T170000" : "T120000"
-    );
-    const title = "Red Sky Cleaning — " + pricing.serviceLabel(_state.service);
-    const details = `Address: ${_state.contact.address}, ${_state.contact.city}, GA ${_state.contact.zip}`;
-    const gurl = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
-      "&text=" + encodeURIComponent(title) +
-      "&dates=" + startISO + "/" + endISO +
-      "&details=" + encodeURIComponent(details);
-    const ics = [
-      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Red Sky Cleaning//EN",
-      "BEGIN:VEVENT",
-      "UID:" + Date.now() + "@redskycleaning.com",
-      "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
-      "DTSTART:" + startISO,"DTEND:" + endISO,
-      "SUMMARY:" + title,"DESCRIPTION:" + details,
-      "END:VEVENT","END:VCALENDAR"
-    ].join("\r\n");
-    _drawer.querySelector("[data-rs-qd-cal-google]").href = gurl;
-    _drawer.querySelector("[data-rs-qd-cal-ics]").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
-  } else {
-    _drawer.querySelector(".rs-qd__success-actions").hidden = true;
+  // Keep the close button accessible — only hide the progress / step label / title.
+  const head = _drawer.querySelector(".rs-qd__head");
+  if (head) {
+    const progress  = head.querySelector(".rs-qd__progress");
+    const stepLabel = head.querySelector(".rs-qd__step-label");
+    const title     = head.querySelector(".rs-qd__title");
+    if (progress)  progress.style.display = "none";
+    if (stepLabel) stepLabel.style.display = "none";
+    if (title)     title.style.display = "none";
+    head.style.borderBottom = "0";
+    // The close button (data-rs-qd-close) intentionally stays visible.
   }
+  const foot = _drawer.querySelector(".rs-qd__foot");
+  if (foot) foot.style.display = "none";
+
+  // Build calendar links — fall back to tomorrow 9 AM if user didn't pick
+  // a date, and tolerate any timeWindow value via a lookup with default.
+  const contact = _state.contact || {};
+  const fallbackDate = (function () {
+    const t = new Date();
+    t.setDate(t.getDate() + 1);
+    return t.toISOString().slice(0, 10); // YYYY-MM-DD
+  })();
+  const dateStr = (_state.date && /^\d{4}-\d{2}-\d{2}$/.test(_state.date)) ? _state.date : fallbackDate;
+
+  const winMap = {
+    "8-11":      ["T080000", "T110000"],
+    "11-2":      ["T110000", "T140000"],
+    "2-5":       ["T140000", "T170000"],
+    "morning":   ["T080000", "T110000"],
+    "midday":    ["T110000", "T140000"],
+    "afternoon": ["T140000", "T170000"]
+  };
+  const times = winMap[_state.timeWindow] || ["T090000", "T120000"];
+  const startISO = dateStr.replace(/-/g, "") + times[0];
+  const endISO   = dateStr.replace(/-/g, "") + times[1];
+
+  const serviceLabelSafe =
+    (pricing && typeof pricing.serviceLabel === "function" && _state.service)
+      ? pricing.serviceLabel(_state.service)
+      : (_state.service || "House Cleaning");
+  const calTitle = "Red Sky Cleaning — " + serviceLabelSafe;
+  const addrParts = [contact.address, contact.city, contact.zip ? "GA " + contact.zip : ""].filter(Boolean);
+  const details = addrParts.length
+    ? "Address: " + addrParts.join(", ")
+    : "We will text/email you to confirm the address.";
+
+  const gurl = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(calTitle)
+    + "&dates=" + startISO + "/" + endISO
+    + "&details=" + encodeURIComponent(details)
+    + (addrParts.length ? "&location=" + encodeURIComponent(addrParts.join(", ")) : "");
+
+  const ics = [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Red Sky Cleaning//EN", "CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:" + Date.now() + "@redskycleaning.com",
+    "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
+    "DTSTART:" + startISO,
+    "DTEND:" + endISO,
+    "SUMMARY:" + calTitle,
+    "DESCRIPTION:" + details.replace(/\n/g, "\\n"),
+    addrParts.length ? "LOCATION:" + addrParts.join(", ") : "",
+    "END:VEVENT", "END:VCALENDAR"
+  ].filter(Boolean).join("\r\n");
+
+  const gBtn = _drawer.querySelector("[data-rs-qd-cal-google]");
+  const iBtn = _drawer.querySelector("[data-rs-qd-cal-ics]");
+  if (gBtn) {
+    gBtn.href = gurl;
+    gBtn.removeAttribute("hidden");
+  }
+  if (iBtn) {
+    // Use a Blob URL so the browser reliably honors the download attribute
+    // (data: URIs are blocked for downloads under some browser configs).
+    try {
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      iBtn.href = URL.createObjectURL(blob);
+    } catch (e) {
+      iBtn.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+    }
+    iBtn.setAttribute("download", "redsky-cleaning.ics");
+    iBtn.removeAttribute("hidden");
+  }
+  const actions = _drawer.querySelector(".rs-qd__success-actions");
+  if (actions) actions.hidden = false;
 }
 
 // -------- submit --------

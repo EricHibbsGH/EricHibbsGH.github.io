@@ -4498,9 +4498,18 @@ select.rs-input:hover {
   color: inherit;
 }
 .rs-area-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sh-2);
+  transform: translateY(-7px);
+  box-shadow:
+    0 26px 56px rgba(11, 18, 32, .18),
+    0 8px 18px rgba(11, 18, 32, .10);
   border-color: var(--rs-red);
+}
+.rs-area-card .rs-area-card__cta {
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+.rs-area-card:hover .rs-area-card__cta {
+  color: var(--rs-red);
+  transform: translateX(4px);
 }
 .rs-area-card__city {
   font-family: var(--font-display);
@@ -6720,6 +6729,190 @@ img, svg, video, iframe, canvas { max-width: 100%; height: auto; }
 .rs-tier-card__discount > span {
   display: inline-block;
   padding-left: 2px;
+}
+
+/* ============================================================
+   HERO TYPOGRAPHY POLISH — balance line breaks so the headline
+   "Atlanta's cleanest homes start here." breaks at sensible
+   phrase boundaries instead of mid-thought. Modern browsers
+   only; older browsers gracefully fall back to default wrap.
+   ============================================================ */
+.hero h1,
+.rs-hero h1,
+.rs-page-hero h1,
+.rs-section__head h2 {
+  text-wrap: balance;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+/* ============================================================
+   PHONE LINK IN HEADER — was just a color flip; now lifts and
+   gets a soft red-tinted chip background on hover so it reads
+   as an interactive control.
+   ============================================================ */
+.rs-hdr__phone {
+  padding: 6px 10px;
+  border-radius: var(--r-pill);
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+@media (hover: hover) {
+  .rs-hdr__phone:hover {
+    color: var(--rs-red);
+    background: color-mix(in oklab, var(--rs-red) 8%, transparent);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(200, 37, 44, .14);
+  }
+  .rs-hdr__phone:hover svg { transform: scale(1.08) rotate(-6deg); }
+}
+.rs-hdr__phone svg { transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1); }
+
+/* ============================================================
+   SUCCESS-STATE CLOSE BUTTON — make sure the X stays visually
+   distinct on the white success card.
+   ============================================================ */
+.rs-quote-drawer .rs-qd__head [data-rs-qd-close] {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--rs-ink-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+.rs-quote-drawer .rs-qd__head [data-rs-qd-close]:hover {
+  background: color-mix(in oklab, var(--rs-red) 8%, transparent);
+  color: var(--rs-red);
+  border-color: color-mix(in oklab, var(--rs-red) 22%, var(--rs-line));
+  transform: rotate(90deg);
+}
+
+/* ============================================================
+   FOOTER REDESIGN — engaging, professional, on-brand.
+   Top accent strip, red-underlined column headers, elevated
+   contact panel, animated link underlines (already in place),
+   refined bottom bar.
+   ============================================================ */
+.rs-footer {
+  position: relative;
+  background:
+    radial-gradient(1200px 400px at 90% -10%, color-mix(in oklab, var(--rs-red) 18%, transparent) 0%, transparent 60%),
+    radial-gradient(1000px 360px at -10% 110%, color-mix(in oklab, var(--rs-gold) 12%, transparent) 0%, transparent 60%),
+    var(--rs-ink);
+  color: color-mix(in oklab, var(--white) 78%, transparent);
+  isolation: isolate;
+}
+.rs-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--rs-red) 0%,
+    color-mix(in oklab, var(--rs-red) 60%, var(--rs-gold)) 50%,
+    var(--rs-red) 100%);
+  background-size: 200% 100%;
+  animation: rsFooterShimmer 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes rsFooterShimmer {
+  from { background-position: 0 0; }
+  to   { background-position: 200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rs-footer::before { animation: none; }
+}
+
+.rs-footer__inner { padding-top: var(--space-14); padding-bottom: var(--space-10); }
+
+.rs-footer__brand p {
+  color: color-mix(in oklab, var(--white) 72%, transparent);
+  max-width: 36ch;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.rs-footer__col h4 {
+  position: relative;
+  color: var(--white);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  padding-bottom: 10px;
+  margin-bottom: var(--space-4);
+}
+.rs-footer__col h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--rs-red);
+  border-radius: 2px;
+}
+
+.rs-footer__col a {
+  color: color-mix(in oklab, var(--white) 70%, transparent);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.rs-footer__col a:hover {
+  color: var(--white);
+  transform: translateX(3px);
+}
+
+/* Contact column — phone & email styled as soft chips */
+.rs-footer__contact li {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+.rs-footer__contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-left: -10px;
+  border-radius: var(--r-pill);
+  background: color-mix(in oklab, var(--white) 6%, transparent);
+  color: var(--white);
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+.rs-footer__contact a:hover {
+  background: var(--rs-red);
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(200, 37, 44, .35);
+}
+
+.rs-footer__bottom {
+  border-top: 1px solid color-mix(in oklab, var(--white) 10%, transparent);
+  background: color-mix(in oklab, #000 14%, var(--rs-ink));
+}
+.rs-footer__bottom-inner {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-xs);
+  color: color-mix(in oklab, var(--white) 55%, transparent);
+}
+.rs-footer__bottom a {
+  color: color-mix(in oklab, var(--white) 75%, transparent);
+  transition: color 0.18s ease;
+}
+.rs-footer__bottom a:hover { color: var(--white); }
+.rs-footer__bottom a + a { margin-left: var(--space-2); }
+.rs-footer__bottom a + a::before {
+  content: "·";
+  margin-right: var(--space-2);
+  color: color-mix(in oklab, var(--white) 35%, transparent);
 }
 
 /* Tighten the gap between a centered page-hero and the section that
