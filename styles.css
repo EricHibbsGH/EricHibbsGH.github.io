@@ -4587,19 +4587,24 @@ label.toggle-label {
   position: fixed;
   margin: 0;
   inset: 0 0 0 auto;
-  width: min(540px, 100vw);
+  width: min(540px, 100%);
   height: 100vh;
   height: 100dvh;
-  max-width: 100vw;
+  max-width: 100%;
   max-height: 100vh;
+  max-height: 100dvh;
   border: 0;
   padding: 0;
   background: var(--rs-paper);
   color: var(--rs-ink);
   box-shadow: var(--sh-3);
   overflow: hidden;
+  box-sizing: border-box;
 }
 .rs-quote-drawer:not([open]) { display: none; }
+.rs-quote-drawer *,
+.rs-quote-drawer *::before,
+.rs-quote-drawer *::after { box-sizing: border-box; }
 .rs-quote-drawer::backdrop {
   background: rgba(11, 18, 32, 0.55);
   backdrop-filter: blur(2px);
@@ -4607,7 +4612,7 @@ label.toggle-label {
 }
 body.rs-drawer-open { overflow: hidden; }
 @media (max-width: 640px) {
-  .rs-quote-drawer { inset: 0; width: 100vw; }
+  .rs-quote-drawer { inset: 0; width: 100%; }
 }
 
 /* Form scaffold inside the dialog */
@@ -6510,4 +6515,62 @@ html:not(.rs-motion-on):not(.rs-motion-off) .rs-reveal {
 }
 @media (prefers-reduced-motion: reduce) {
   .rs-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ============================================================
+   Mobile-safety: ensure the page (and the quote drawer) never
+   overflow the visual viewport on any phone, in any orientation,
+   on any browser. Fixes left/right cutoff on the /quote/ screen.
+   ============================================================ */
+html, body {
+  max-width: 100%;
+  overflow-x: clip;          /* modern browsers — no scrollbar penalty */
+}
+@supports not (overflow-x: clip) {
+  html, body { overflow-x: hidden; }
+}
+
+/* Cap any element that might claim 100vw and bust the viewport. */
+img, svg, video, iframe, canvas { max-width: 100%; height: auto; }
+
+/* Quote drawer — tighter chrome on small phones so form fields fit. */
+@media (max-width: 480px) {
+  .rs-qd__head { padding: var(--space-4) var(--space-4) var(--space-3); }
+  .rs-qd__body { padding: var(--space-4); }
+  .rs-qd__foot { padding: var(--space-3) var(--space-4); }
+  .rs-qd__title { font-size: var(--text-lg); }
+  .rs-qd__estimate-amount { font-size: var(--text-xl); }
+}
+
+/* Sub-380px: collapse the drawer's 2-col grids so no field overflows. */
+@media (max-width: 380px) {
+  .rs-qd__svc-grid,
+  .rs-qd__freq-grid,
+  .rs-qd__contact-grid { grid-template-columns: 1fr; }
+  .rs-qd__addons { grid-template-columns: 1fr 1fr; }
+  .rs-qd__row { gap: var(--space-2); }
+  .rs-qd__actions { flex-wrap: wrap; }
+  .rs-qd__actions [data-rs-qd-back] { flex-basis: 100%; order: 2; }
+}
+
+/* Inline mini-calc: compact layout on narrow phones. */
+@media (max-width: 380px) {
+  .rs-mini-calc { padding: var(--space-4); grid-template-columns: 1fr; }
+  .rs-mini-calc__cta { width: 100%; margin-left: 0; }
+}
+
+/* Quote landing page wrapper — horizontal padding scales down. */
+@media (max-width: 640px) {
+  .quote-page { padding: var(--space-8) var(--space-4); }
+  .quote-page__hero h1 { font-size: var(--text-3xl); }
+  .quote-page__how { gap: var(--space-3); margin: var(--space-8) 0; }
+  .quote-page__how-step { padding: var(--space-4); }
+}
+
+/* Form inputs/textareas inside dialog should never push past their cell. */
+.rs-quote-drawer input,
+.rs-quote-drawer select,
+.rs-quote-drawer textarea {
+  max-width: 100%;
+  width: 100%;
 }
