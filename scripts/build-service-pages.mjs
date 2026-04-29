@@ -154,7 +154,8 @@ function renderFooter() {
 </script>
 <script type="module" src="/js/quote-drawer.js"></script>
 <script src="/js/motion.js" defer></script>
-<script src="/js/tracking.js" defer></script>`;
+<script src="/js/tracking.js" defer></script>
+<script src="/js/page-load.js" defer></script>`;
 }
 
 function renderRecurring(svc) {

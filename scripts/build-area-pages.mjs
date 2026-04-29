@@ -140,7 +140,8 @@ const FOOTER = `
 <script type="module" src="/js/quote-drawer.js"></script>
 <script type="module" src="/js/inline-calc.js"></script>
 <script src="/js/motion.js" defer></script>
-<script src="/js/tracking.js" defer></script>`;
+<script src="/js/tracking.js" defer></script>
+<script src="/js/page-load.js" defer></script>`;
 
 function cityMapScript(city) {
   return `
