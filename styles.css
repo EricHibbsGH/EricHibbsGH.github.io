@@ -6681,6 +6681,29 @@ img, svg, video, iframe, canvas { max-width: 100%; height: auto; }
   margin-right: auto;
 }
 
+/* Tighten the gap between a centered page-hero and the section that
+   follows so trust-page intros read as one continuous unit. */
+.rs-page-hero:has(> .rs-container > .rs-page-hero__inner > .rs-page-hero__copy:only-child) {
+  padding-bottom: var(--space-6);
+}
+.rs-page-hero + .rs-section { padding-top: var(--space-6); }
+
+/* Center the section sub-paragraph and any rs-section__cta-row inside
+   a centered section head — beats the global p { max-width:65ch }. */
+.rs-section__head {
+  text-align: center;
+}
+.rs-section__head .rs-section__sub,
+.rs-section__head > p {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60ch;
+}
+.rs-section__head .rs-eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ============================================================
    PAGE PROGRESS BAR (top, fires on every page load — gives
    even cache-hit/instant loads a subtle visible animation).

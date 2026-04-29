@@ -212,7 +212,7 @@ function aboutPage() {
   const body = `
 <section class="rs-section">
   <div class="rs-container rs-container--narrow">
-    <header class="rs-section__head" style="text-align:left;">
+    <header class="rs-section__head">
       <p class="rs-eyebrow">Why Red Sky</p>
       <h2>Cleaning that earns your trust the first time, and every time after.</h2>
       <p class="rs-section__sub">We&rsquo;re an Atlanta-based residential cleaning company built around three boring promises: show up when we said, follow the same checklist every visit, and leave the home spotless &mdash; or come back the next day and fix it.</p>
@@ -412,11 +412,11 @@ function checklistPage() {
   const body = `
 <section class="rs-section">
   <div class="rs-container">
-    <header class="rs-section__head" style="text-align:left;">
+    <header class="rs-section__head">
       <p class="rs-eyebrow">50 points, every visit</p>
       <h2>The same checklist your home gets, in writing.</h2>
       <p class="rs-section__sub">Every standard clean follows this exact list. Deep cleans add cabinet interiors, baseboards, and behind-furniture detail. Move-in/out cleans add appliance interiors and inside windows. Print this for your records or save the page.</p>
-      <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-4);">
+      <div class="rs-section__cta-row" style="display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;margin-top:var(--space-5);">
         <button class="rs-btn rs-btn--cta" type="button" data-rs-open-quote>Book this clean</button>
         <button class="rs-btn rs-btn--secondary" type="button" onclick="window.print()">Print checklist</button>
       </div>
@@ -490,7 +490,7 @@ function guaranteePage() {
   const body = `
 <section class="rs-section">
   <div class="rs-container rs-container--narrow">
-    <header class="rs-section__head" style="text-align:left;">
+    <header class="rs-section__head">
       <p class="rs-eyebrow">In writing</p>
       <h2>The 24-hour re-clean guarantee.</h2>
       <p class="rs-section__sub">If we miss anything on the 50-point checklist, tell us within 24 hours and we&rsquo;ll be back the next day to re-clean the affected areas &mdash; at no charge, no questions asked.</p>
@@ -641,7 +641,7 @@ function faqPage() {
   const body = `
 <section class="rs-section">
   <div class="rs-container rs-container--narrow">
-    <header class="rs-section__head" style="text-align:left;">
+    <header class="rs-section__head">
       <p class="rs-eyebrow">21 questions, plain answers</p>
       <h2>Everything people ask before they book.</h2>
       <p class="rs-section__sub">If your question isn&rsquo;t here, text us at <a href="tel:+14702400645">(470) 240-0645</a> or email <a href="mailto:support@redskycleaning.com">support@redskycleaning.com</a>. We answer within 1 business hour, every time.</p>
@@ -699,7 +699,7 @@ function contactPage() {
   <div class="rs-container">
     <div class="rs-includes-grid">
       <div class="rs-includes-grid__main">
-        <header class="rs-section__head" style="text-align:left;">
+        <header class="rs-section__head">
           <p class="rs-eyebrow">Get in touch</p>
           <h2>Talk to a real Atlantan, fast.</h2>
           <p class="rs-section__sub">Text or call <a href="tel:+14702400645">(470) 240-0645</a> &mdash; the fastest way to reach us. Or use the form below; we reply within 1 business hour, Mon&ndash;Sat.</p>
