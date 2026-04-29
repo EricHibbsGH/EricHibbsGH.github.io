@@ -6592,10 +6592,18 @@ img, svg, video, iframe, canvas { max-width: 100%; height: auto; }
   .quote-page__how-step { padding: var(--space-4); }
 }
 
-/* Form inputs/textareas inside dialog should never push past their cell. */
-.rs-quote-drawer input,
+/* Form inputs/textareas inside dialog should never push past their cell.
+   Excludes checkbox + radio so toggle inputs keep their intrinsic size
+   (width:100% on a checkbox stretches its hit-area across the row and
+   shoves the adjacent label text off to the right). */
+.rs-quote-drawer input:not([type="checkbox"]):not([type="radio"]),
 .rs-quote-drawer select,
 .rs-quote-drawer textarea {
   max-width: 100%;
   width: 100%;
+}
+.rs-quote-drawer input[type="checkbox"],
+.rs-quote-drawer input[type="radio"] {
+  width: auto;
+  flex: 0 0 auto;
 }
