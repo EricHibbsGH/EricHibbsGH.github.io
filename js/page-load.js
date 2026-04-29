@@ -10,6 +10,14 @@
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   } catch (e) {}
 
+  // Only fire on the first navigation of the session. After the bar plays
+  // once we set a sessionStorage flag so subsequent in-site clicks skip it.
+  // Each new tab/window starts a fresh session, so the bar plays again on
+  // a deliberate new entry to the site but never spams within one tab.
+  try {
+    if (sessionStorage.getItem("rsc_pagebar_shown") === "1") return;
+  } catch (e) {}
+
   function inject() {
     if (document.getElementById("rs-page-bar")) return;
     var bar = document.createElement("div");
@@ -29,14 +37,16 @@
       setTimeout(function () {
         if (bar.parentNode) bar.parentNode.removeChild(bar);
       }, 650);
+      try { sessionStorage.setItem("rsc_pagebar_shown", "1"); } catch (e) {}
     }
 
     if (document.readyState === "complete") {
-      // Cache-hit / instant load — give the bar a quick play-through anyway.
-      setTimeout(done, 320);
+      // Cache-hit / instant load — give the bar a longer play-through so
+      // the user actually sees the animation finish.
+      setTimeout(done, 700);
     } else {
       window.addEventListener("load", function () {
-        setTimeout(done, 60);
+        setTimeout(done, 200);
       }, { once: true });
     }
   }
